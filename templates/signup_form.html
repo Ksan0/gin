@@ -36,12 +36,18 @@
     $(document).ready(function(){
 
         $(".js-signup_submit").on("click", function() {
+            $(".signup-modal").find(".warning-msg").css("display", "none");
             $.ajax({
                 method: "POST",
                 url: "/ajax/signup_user",
                 data: $(".js-signup_form").serialize(),
                 success: function(data, textStatus, jqXHR) {
-
+                    var err = GIN.AjaxErrors.get_error(data);
+                    if (err == GIN.AjaxErrors.NONE) {
+                        window.location.replace("/");
+                    } else {
+                        $(".signup-modal").find(".warning-msg").css("display", "block");
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 

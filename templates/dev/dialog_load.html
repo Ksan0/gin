@@ -1,26 +1,3 @@
 <script>
-    GIN.Dialog = (function () {
-        var page = 0;
 
-        var downloadMessagesPage = function (task_id) {
-            var getArgs =
-                    "?task_id=" + task_id +
-                    "&page=" + g_dialogPage;
-            $.ajax({
-                method: "GET",
-                url: "/ajax/get_messages" + getArgs,
-                success: function(data, textStatus, jqXHR) {
-                    page = data.page + 1;
-                    console.log(data.messages);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-
-                }
-            });
-        };
-
-        return {
-            downloadMessagesPage: downloadMessagesPage
-        };
-    }());
 </script>

@@ -52,16 +52,24 @@ def ajax_get_messages(request):
 
     try:
         task_id = request.GET["task_id"]
-        page = request.GET["page"]
+        page = int(request.GET["page"])
         task = Task.objects.get(id=task_id)
         if task.user != request.user:
             return render_to_json(AjaxErrors.BAD_SESSION.json())
 
         messages = Message.objects.filter(task=task).order_by("creation_date")[page*10:(page+1)*10]
+        messages_json = []
+        for msg in messages:
+            messages_json.append({
+                "is_operator": msg.user.is_operator,
+                "text": msg.body,
+                "date": msg.get_date_str()
+            })
     except:
         return render_to_json(AjaxErrors.BAD_FORM.json())
 
     return render_to_json({
         "page": page,
-        "messages": messages
+        "messages_count": len(messages_json),
+        "messages": messages_json
     })

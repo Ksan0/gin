@@ -16,10 +16,7 @@ urlpatterns = patterns(
 
     # test
     url(r'^$', gin.views.view_index),
-    #url(r'^task$', gin.views.dialog),
-    #url(r'^paypal$', gin.views.paypal),
-    #url(r'^test$', gin.views.test),
-    #url(r'^createsuper$', gin.views.createsuper),
+    url(r'^task$', gin.views.view_task),
 
     url(r'^admin/', include(admin.site.urls)),
 )

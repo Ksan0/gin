@@ -2,10 +2,18 @@
 
 {% block content %}
 	<div class="dialog">
-		<div class="dialog__msgbefore"><a>Показать предыдущие сообщения</a></div>
+		<!--div class="dialog__msgbefore"><a>Показать предыдущие сообщения</a></div-->
 
 		<div class="dialog__msg">
-			<div class="dialog__msgleft bg-success">
+			<div class="dialog__msg__prototype">
+				{text}
+                <div class="msg__infofull">
+					<div class="msg__autor"></div>,
+					<div class="msg__time"></div>
+				</div>
+			</div>
+
+            <div class="dialog__msgleft bg-success">
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
 				Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
 				Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
@@ -70,4 +78,45 @@
 
     </div>
 
+
+    <script>
+        $(document).ready(function () {
+            GIN.Dialog = (function () {
+                var _page = 0;
+
+                var downloadMessagesPage = function (task_id) {
+                    var getArgs =
+                            "?task_id=" + task_id +
+                            "&page=" + _page;
+                    $.ajax({
+                        method: "GET",
+                        url: "/ajax/get_messages" + getArgs,
+                        success: function(data, textStatus, jqXHR) {
+                            var err = GIN.AjaxErrors.get_error(data);
+                            if (err == GIN.AjaxErrors.NONE) {
+                                _page = data.page + 1;
+                                var prototype = $(".dialog__msg__prototype");
+                                var count = parseInt(data.messages_count, 10);
+                                for (var i = 0; i < count; ++i) {
+                                    var msg = data.messages[i];
+                                    var newEl = prototype.clone();
+
+                                    newEl.find(".msg__infofull").before(msg.text);
+                                }
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+
+                        }
+                    });
+                };
+
+                return {
+                    downloadMessagesPage: downloadMessagesPage
+                };
+            }());
+
+            GIN.Dialog.downloadMessagesPage("{{ task_id }}");
+        });
+    </script>
 {% endblock %}

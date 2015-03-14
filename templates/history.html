@@ -1,7 +1,7 @@
 <div class="ground__history">
     <div class="history__title">
         <div class="title__open">
-            <a class="link link__open">Открытые</a>
+            <a class="link link__open" style="text-decoration: underline;">Открытые</a>
         </div>
 
         <div class="title__close">
@@ -11,42 +11,35 @@
 
     <div class="history__elements">
         <div class="history__open">
-            <div class="history__elem__prototype" style="display: none;">
-                <div class="date"></div>
-                <div class="event"></div>
-            </div>
-            {% for task in last_open_tasks %}
-                <div class="history__elem">
-                    <div class="date">{{ task.get_date_str }}</div>
-                    <div class="event">{{ task.text }}</div>
+            <a class="history__elem__prototype" style="text-decoration: none; display: none;">
+                <div class="history__elem bg-info">
+                    <div class="date"></div>
+                    <div class="event"></div>
                 </div>
+            </a>
+            {% for task in last_open_tasks %}
+                <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
+                    <div class="history__elem">
+                        <div class="date">{{ task.get_date_str }}</div>
+                        <div class="event">{{ task.text }}</div>
+                    </div>
+                </a>
+            {% empty %}
+                Все желания исполнены
             {% endfor %}
-            <!--div class="history__elem bg-info">
-                <div class="date">03.03.2015</div>
-                <div class="event">Поездка в Турцию</div>
-            </div>
-
-            <div class="history__elem">
-                <div class="date">25.02.2015</div>
-                <div class="event">Научно-технический вестник МГТУ им. Баумана. Конференция студенческая весна. Подготовить статью.</div>
-            </div-->
         </div>
 
         <div class="history__close">
-            <div class="history__elem bg-info">
-                <div class="date">10.03.2013</div>
-                <div class="event">Купить клубнику</div>
-            </div>
-
-            <div class="history__elem">
-                <div class="date">23.01.2013</div>
-                <div class="event">Полёт на воздушном шаре</div>
-            </div>
-
-            <div class="history__elem">
-                <div class="date">25.02.2012</div>
-                <div class="event">ИгроМир</div>
-            </div>
+            {% for task in last_close_tasks %}
+                <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
+                    <div class="history__elem">
+                        <div class="date">{{ task.get_date_str }}</div>
+                        <div class="event">{{ task.text }}</div>
+                    </div>
+                </a>
+            {% empty %}
+                Ничего нет, приходите завтра
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -56,10 +49,14 @@
         $(".link__open").on("click", function () {
             $(".history__open").show();
             $(".history__close").hide();
+            $(".link__open").css("text-decoration", "underline");
+            $(".link__close").css("text-decoration", "none");
         });
         $(".link__close").on("click", function () {
-            $(".history__open").hide();
             $(".history__close").show();
+            $(".history__open").hide();
+            $(".link__open").css("text-decoration", "none");
+            $(".link__close").css("text-decoration", "underline");
         });
     });
 </script>

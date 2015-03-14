@@ -42,7 +42,11 @@ def view_task(request):
     except:
         return redirect("/")
 
-    return render(request, "dialog.html")
+    context = {
+        "task_id": task.id
+    }
+
+    return render(request, "dialog.html", context)
 
 
 
