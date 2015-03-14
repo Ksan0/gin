@@ -1,7 +1,7 @@
 from subsystems.dialog.models import Message
 from subsystems.task.models import Task
 from subsystems.utils.db import check_len
-from subsystems.utils.json import render_to_json, AjaxPostErrors
+from subsystems.utils.json import render_to_json, AjaxErrors
 
 
 def ajax_add_message(request):
@@ -15,22 +15,53 @@ def ajax_add_message(request):
     """
 
     if not request.user.is_authenticated():
-        return render_to_json(AjaxPostErrors.BAD_SESSION.json())
+        return render_to_json(AjaxErrors.BAD_SESSION.json())
 
     if request.method != "POST":
-        return render_to_json(AjaxPostErrors.BAD_METHOD.json())
+        return render_to_json(AjaxErrors.BAD_METHOD.json())
 
     try:
         task_id = request.POST.__getitem__("task_id")
         text = check_len(request.POST.__getitem__("text"), 255)
         task = Task.objects.get(id=task_id)
     except:
-        return render_to_json(AjaxPostErrors.BAD_FORM.json())
+        return render_to_json(AjaxErrors.BAD_FORM.json())
 
     if request.user != task.user and request.user != task.operator.user and (not request.user.is_superuser):
-        return render_to_json(AjaxPostErrors.BAD_SESSION.json())
+        return render_to_json(AjaxErrors.BAD_SESSION.json())
 
     message = Message(task=task, user=request.user, body=text)
     message.save()
 
-    return render_to_json(AjaxPostErrors.NONE.json())
+    return render_to_json(AjaxErrors.NONE.json())
+
+
+def ajax_get_messages(request):
+    """
+        === INPUT ===
+            method: GET
+            "task_id"
+            "page"
+        === OUTPUT ===
+            status: AjaxError
+            "messages"
+    """
+
+    if not request.user.is_authenticated():
+        return render_to_json(AjaxErrors.BAD_SESSION.json())
+
+    try:
+        task_id = request.GET["task_id"]
+        page = request.GET["page"]
+        task = Task.objects.get(id=task_id)
+        if task.user != request.user:
+            return render_to_json(AjaxErrors.BAD_SESSION.json())
+
+        messages = Message.objects.filter(task=task).order_by("creation_date")[page*10:(page+1)*10]
+    except:
+        return render_to_json(AjaxErrors.BAD_FORM.json())
+
+    return render_to_json({
+        "page": page,
+        "messages": messages
+    })

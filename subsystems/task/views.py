@@ -1,7 +1,7 @@
 from subsystems.dialog.models import Message
 from subsystems.task.models import Task
 from subsystems.utils.db import check_len
-from subsystems.utils.json import render_to_json, AjaxStatus, AjaxPostErrors
+from subsystems.utils.json import render_to_json, AjaxStatus, AjaxErrors
 
 
 def ajax_create_task(request):
@@ -13,9 +13,6 @@ def ajax_create_task(request):
             status: LoginError
             "task_id": номер созданного таска
     """
-
-    class AjaxErrors(AjaxPostErrors):
-        pass
 
     if request.method != "POST":
         return render_to_json(AjaxErrors.BAD_METHOD.json())

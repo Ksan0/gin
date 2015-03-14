@@ -1,0 +1,24 @@
+<form class="js-create_task_form">
+    <textarea class="form-control" rows="4" placeholder="Введите запрос" maxlength="255" name="text"></textarea>
+    {% csrf_token %}
+    <button type="button" class="btn btn-info js-create_task_submit">Отправить</button>
+</form>
+<script>
+    $(document).ready(function(){
+
+        $(".js-create_task_submit").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: "/ajax/create_task",
+                data: $(".js-create_task_form").serialize(),
+                success: function(data, textStatus, jqXHR) {
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+        });
+
+    });
+</script>

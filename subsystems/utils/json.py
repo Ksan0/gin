@@ -16,7 +16,7 @@ class AjaxStatus(object):
         }
 
 
-class AjaxPostErrors(object):
+class AjaxErrors(object):
     NONE = AjaxStatus("OK")
     BAD_METHOD = AjaxStatus("BAD_METHOD")
     BAD_FORM = AjaxStatus("BAD_FORM")
