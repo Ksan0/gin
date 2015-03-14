@@ -14,9 +14,12 @@ urlpatterns = patterns(
     url(r'^ajax/add_message$', dialog.views.ajax_add_message),
     url(r'^ajax/get_messages$', dialog.views.ajax_get_messages),
 
-    # test
+    # views
     url(r'^$', gin.views.view_index),
     url(r'^task$', gin.views.view_task),
+
+    # test
+    url(r'^createoperator$', gin.views.test_createoperator),
 
     url(r'^admin/', include(admin.site.urls)),
 )

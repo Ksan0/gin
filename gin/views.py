@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.shortcuts import render, redirect
 from subsystems.a_user.models import AUser
@@ -9,7 +9,7 @@ def index_hello_page(request):
     return render(request, "main.html")
 
 
-def index_main_page(request):
+def index_main_user_page(request):
     all_history_tasks = Task.objects.filter(user=request.user).order_by("-creation_date")
     last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
     last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
@@ -20,9 +20,24 @@ def index_main_page(request):
     return render(request, "page.html", context)
 
 
+def index_main_operator_page(request):
+    all_history_tasks = Task.objects.filter(operator=request.user).order_by("-creation_date")
+    last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
+    last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
+    context = {
+        "last_open_tasks": last_open_tasks,
+        "last_close_tasks": last_close_tasks
+    }
+    return render(request, "operator.html", context)
+
+
 def view_index(request):
     if request.user.is_authenticated():
-        return index_main_page(request)
+        user = AUser.objects.get(id=request.user.id)
+        if user.is_operator:
+            return index_main_operator_page(request)
+        else:
+            return index_main_user_page(request)
     else:
         return index_hello_page(request)
 
@@ -55,8 +70,15 @@ def view_task(request):
 
 
 
+def test_createoperator(request):
+    if request.user.is_authenticated():
+        logout(request)
 
+    u = AUser.objects.create_user(password="1", is_operator=True)
 
+    u = authenticate(id=u.id, password="1")
+    login(request, u)
+    return redirect("/")
 
 
 
