@@ -10,7 +10,7 @@ def index_hello_page(request):
 
 
 def index_main_page(request):
-    all_history_tasks = Task.objects.filter(user=request.user).order_by("creation_date")
+    all_history_tasks = Task.objects.filter(user=request.user).order_by("-creation_date")
     last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
     last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
     context = {

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.datetime_safe import datetime
 from subsystems.operator.models import Operator
 from subsystems.a_user.models import AUser
 
@@ -31,4 +32,12 @@ class Task(models.Model):
     status = models.SmallIntegerField(default=Status.CREATED)
     user = models.ForeignKey(AUser)                      # юзер, который создал таск
     operator = models.ForeignKey(Operator, null=True)   # оператор, на которого повесили таск
+    text = models.CharField(max_length=255)
 
+    def get_date_str(self):
+        today = datetime.now()
+        if today.day != self.creation_date.day or today.month != self.creation_date.month \
+                or today.year != self.creation_date.year:
+            return '{:%d.%m.%Y}'.format(self.creation_date)
+        else:
+            return '{:%H:%M}'.format(self.creation_date)

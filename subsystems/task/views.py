@@ -12,6 +12,8 @@ def ajax_create_task(request):
         === OUTPUT ===
             status: LoginError
             "task_id": номер созданного таска
+            "creation_date":
+            "text":
     """
 
     if request.method != "POST":
@@ -21,12 +23,12 @@ def ajax_create_task(request):
         return render_to_json(AjaxErrors.BAD_SESSION.json())
 
     try:
-        form_text = check_len(request.POST.__getitem__("text"), 255)
+        form_text = check_len(request.POST.__getitem__("text"), 255, 1)
     except:
         return render_to_json(AjaxErrors.BAD_FORM.json())
 
     try:
-        task = Task(user=request.user)
+        task = Task(user=request.user, text=form_text)
         task.save()
 
         message = Message(task=task, user=request.user, body=form_text)
@@ -35,7 +37,9 @@ def ajax_create_task(request):
         return render_to_json(AjaxErrors.INTERNAL_ERROR.json())
 
     response_data = {
-        "task_id": task.id
+        "task_id": task.id,
+        "creation_date": task.get_date_str(),
+        "text": task.text
     }
     response_data.update(AjaxErrors.NONE.json())
 

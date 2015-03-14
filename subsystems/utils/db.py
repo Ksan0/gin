@@ -12,8 +12,9 @@ def is_obj_exist(klass, **kwargs):
 
 
 def check_len(val, max=0, min=0):
-    if val < min:
+    l = len(val)
+    if l < min:
         raise Exception()
-    if val > max:
+    if l > max:
         raise Exception()
     return val
