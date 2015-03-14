@@ -59,7 +59,6 @@
 
 .hello
 {
-	/*border-left:1px solid blue;*/
 	height: 250px;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -78,6 +77,7 @@
 
 .hello__buttons
 {
+    border-left: 1px solid blue;
 	left: 61%;
 	height: 250px;
 	position: absolute;
@@ -85,24 +85,24 @@
 	width: 40%;
 }
 
-.signin .btn-primary, .signup .btn-primary
+.signin-window .btn-primary, .signup-window .btn-primary
 {
 	text-align: center;
 	width: 200px;
 }
 
-.signin, .signup
+.signin-window, .signup-window
 {
 	left: 30%;
 	position: absolute;
 }
 
-.signin
+.signin-window
 {
 	top: 60px;
 }
 
-.signup
+.signup-window
 {
 	top: 130px;
 }
@@ -188,7 +188,7 @@
 	margin-left: 380px;
 }
 
-.ground__history .mem
+.ground__history .memcell
 {
 	border: 1px solid #b0e2ff;
 	border-radius: 10px;
@@ -235,6 +235,7 @@
 	border-radius: 10px;
 	margin-bottom: 3%;
 	padding: 10px;
+    padding-bottom: 5px !important;
 	position: relative;
 	width: 40%;
 }
@@ -253,12 +254,12 @@
 {
 	color: #999999;
 	font-size: smaller;
-	padding: 3%;
 	position: relative;
+    text-align: right;
 	white-space: nowrap;
 }
 
-.msg__info
+/*.msg__info
 {
 	margin-left: 75%;
 }
@@ -276,7 +277,7 @@
 .msg__infofullbig
 {
 	margin-left: 50%;
-}
+}*/
 
 .msg__autor, .msg__time
 {
