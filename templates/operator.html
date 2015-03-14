@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="profile">
+        Профиль
+    </div>
+
+    <div class="tasks">
+        <div class="history__title">
+            <div class="title__open">
+                <a class="link link__open" style="text-decoration: underline;">Открытые</a>
+            </div>
+
+            <div class="title__close">
+                <a class="link link__close">Закрытые</a>
+            </div>
+        </div>
+
+        <div class="history__elements">
+            <div class="history__open">
+                <a class="history__elem__prototype" style="text-decoration: none; display: none;">
+                    <div class="history__elem bg-info">
+                        <div class="date"></div>
+                        <div class="event"></div>
+                    </div>
+                </a>
+                {% for task in last_open_tasks %}
+                    <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
+                        <div class="history__elem">
+                            <div class="date">{{ task.get_date_str }}</div>
+                            <div class="event">{{ task.text }}</div>
+                        </div>
+                    </a>
+                {% empty %}
+                    Все желания исполнены
+                {% endfor %}
+            </div>
+
+            <div class="history__close">
+                {% for task in last_close_tasks %}
+                    <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
+                        <div class="history__elem">
+                            <div class="date">{{ task.get_date_str }}</div>
+                            <div class="event">{{ task.text }}</div>
+                        </div>
+                    </a>
+                {% empty %}
+                    Ничего нет, приходите завтра
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

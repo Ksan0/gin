@@ -161,7 +161,8 @@
 
 .ground__history
 {
-	border-left: 1px solid blue;;
+	border-left: 1px solid blue;
+    min-height: 300px;
 	left: 740px;
 	padding-left: 30px;
 	position: absolute;
@@ -176,7 +177,7 @@
     position: relative;
 	text-align: center;
 	top: 15px;
-    white-spice: nowrap;
+    white-space: nowrap;
 }
 
 .title__close
@@ -290,7 +291,7 @@
 	left: 60%;
 }
 
-.msg__info, .msg__infofull, .msg__infofullbig, .msg__infobig
+.msg__info
 {
 	color: #999999;
 	font-size: smaller;
@@ -298,26 +299,6 @@
     text-align: right;
 	white-space: nowrap;
 }
-
-/*.msg__info
-{
-	margin-left: 75%;
-}
-
-.msg__infofull
-{
-	margin-left: 60%;
-}
-
-.msg__infobig
-{
-	margin-left: 65%
-}
-
-.msg__infofullbig
-{
-	margin-left: 50%;
-}*/
 
 .msg__autor, .msg__time
 {
