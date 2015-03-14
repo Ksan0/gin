@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
 from django.shortcuts import render, redirect
 from subsystems.a_user.models import AUser
-from subsystems.task.models import Task
+from subsystems.task.models import Task, TaskManager
 
 
 def index_hello_page(request):
@@ -11,9 +11,11 @@ def index_hello_page(request):
 
 def index_main_page(request):
     all_history_tasks = Task.objects.filter(user=request.user).order_by("creation_date")
-    last10_solved = all_history_tasks.filter(status=Task.Status.SOLVED)
+    last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
+    last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
     context = {
-        "history_tasks": history_tasks
+        "last_open_tasks": last_open_tasks,
+        "last_close_tasks": last_close_tasks
     }
     return render(request, "page.html", context)
 
