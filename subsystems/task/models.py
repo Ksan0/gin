@@ -9,7 +9,7 @@ class TaskManager(models.Manager):
             index = Task.Status.OPEN_INDEX
         else:
             index = Task.Status.CLOSE_INDEX
-        return self.filter(status__gte=index[0], status_lt=index[1])
+        return self.filter(status__gte=index[0], status__lt=index[1])
 
 
 class Task(models.Model):

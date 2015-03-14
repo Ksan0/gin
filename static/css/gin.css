@@ -124,7 +124,7 @@
 
 .warning-msg
 {
-	/*display: none !important;*/
+	display: none !important;
 	text-align: center;
 }
 
@@ -135,7 +135,7 @@
 
 /*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
 
-/*---------------------------------------------------------------------PAGE BEGIN-----------------------------------------------------------*/
+/*---------------------------------------------------------------------HISTORY BEGIN-----------------------------------------------------------*/
 
 .ground
 {
@@ -160,24 +160,28 @@
 	resize: none;
 }
 
-.ground__title
-{
-	font-size: x-large;
-	font-weight: bold;
-	left: 950px;
-	position: absolute;
-	text-align: center;
-	top: 10px;
-}
-
 .ground__history
 {
 	border-left: 1px solid blue;;
-	left: 740px;	
+	left: 740px;
 	padding-left: 30px;
 	position: absolute;
-	top: 50px;
+	top: 0px;
 	width: 500px;
+}
+
+.history__title
+{
+	font-size: x-large;
+	font-weight: bold;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+}
+
+.history_elements
+{
+    top: 20px;
 }
 
 .ground__query .btn-info
@@ -194,7 +198,7 @@
 	margin-left: 380px;
 }
 
-.ground__history .memcell
+.ground__history .history_elem
 {
 	border: 1px solid #b0e2ff;
 	border-radius: 10px;
@@ -209,7 +213,7 @@
 	text-align: center;
 }
 
-/*---------------------------------------------------------------------PAGE END-----------------------------------------------------------*/
+/*---------------------------------------------------------------------HISTORY END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------DIALOGUE BEGIN-----------------------------------------------------------*/
 
