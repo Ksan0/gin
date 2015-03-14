@@ -1,11 +1,11 @@
 <form class="js-create_task_form">
-    <div class="create__task__msg text-info" style="display: none;">
-        Желание принято к исполнению. Не хотите ли загадать еще одно?
-    </div>
-
     <textarea class="form-control" rows="4" placeholder="Введите запрос" maxlength="255" name="text"></textarea>
     {% csrf_token %}
     <button type="button" class="btn btn-info js-create_task_submit">Отправить</button>
+
+    <div class="create__task__msg text-info" style="display: none;">
+        Желание принято к исполнению. Не хотите ли загадать еще одно?
+    </div>
 </form>
 <script>
     $(document).ready(function(){

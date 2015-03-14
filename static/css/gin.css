@@ -358,5 +358,9 @@
 
 .create__task__msg
 {
-    top: 300px;
+    font-size: large;
+    position: absolute;
+    text-align: center;
+    top: 170px;
+    width: 700px;
 }
