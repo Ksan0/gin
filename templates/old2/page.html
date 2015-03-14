@@ -1,6 +1,23 @@
-{% extends "base.html" %}
+<html>
 
-{% block content %}
+<head>
+	{% load static from staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/gin.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap3/css/bootstrap.min.css" %}" />
+    <script type="text/javascript" src="{% static "jquery/jquery-1.11.2.js" %}"></script>
+    <script type="text/javascript" src="{% static "Zbootstrap3/js/bootstrap.min.js" %}"></script>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <title>Джин</title>
+</head>
+
+<body>
+	<div class="header">
+			<div class="header__title">Джин</div>
+			<div class="header__menu">
+				
+			</div>
+	</div>
 
 	<div class="ground">
 		<div class="ground__query">
@@ -27,5 +44,6 @@
 			</div>
 		</div>
 	</div>
+</body>
 
-{% endblock %}
+</html>

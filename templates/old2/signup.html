@@ -1,0 +1,27 @@
+<form class="js-signup_form">
+    <input type="text" name="login" />
+    <input type="password" name="password" />
+    <input type="password" name="password_confirm" />
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+    <input class="js-signup_submit" type="button" value="send" />
+</form>
+
+<script>
+    $(document).ready(function(){
+
+        $(".js-signup_submit").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: "/ajax/signup_user",
+                data: $(".js-signup_form").serialize(),
+                success: function(data, textStatus, jqXHR) {
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+        });
+
+    });
+</script>

@@ -1,0 +1,22 @@
+<html>
+<head>
+    {% load static from staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/gin.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap3/css/bootstrap.min.css" %}" />
+    <script type="text/javascript" src="{% static "jquery/jquery-1.11.2.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap3/js/bootstrap.min.js" %}"></script>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <title>Джин</title>
+</head>
+<body>
+	<div class="header">
+			<div class="header__title">Джин</div>
+			<div class="header__menu">
+
+			</div>
+	</div>
+
+    {% block content %}{% endblock %}
+</body>
+</html>
