@@ -97,12 +97,12 @@
 	position: absolute;
 }
 
-.signin-window
+.signin-btn
 {
 	top: 60px;
 }
 
-.signup-window
+.signup-btn
 {
 	top: 130px;
 }
@@ -349,7 +349,7 @@
 
 .profile
 {
-    background-color: #b2dba1;
+    background-color: #d6e9c6;
     font-size: large;
     font-weight: bold;
     min-height: 300px;
@@ -358,4 +358,22 @@
 }
 
 /*---------------------------------------------------------------------OPERATOR END-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------ADMIN BEGIN-----------------------------------------------------------*/
+
+.admin__title
+{
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.new-operator-btn
+{
+    text-align: center;
+    top: 300px;
+}
+
+/*---------------------------------------------------------------------ADMIN END-----------------------------------------------------------*/
+
 
