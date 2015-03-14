@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    {% load static from staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/gin.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap3/css/bootstrap.min.css" %}" />
+    <script type="text/javascript" src="{% static "jquery/jquery-1.11.2.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap3/js/bootstrap.min.js" %}"></script>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <title>Джин</title>
+</head>
+
+<body>
+	<div class="header">
+		<div class="header__title">Джин</div>
+		<div class="header__menu">
+			
+		</div>
+	</div>
+
+	<div class="hello">
+        <div class="hello__text">
+        Приветствие
+        </div>
+
+        <div class="hello__buttons">
+			<div class="signin">
+                <a href="#signin" data-toggle="modal" data-target="#signin">
+                    <div type="button" class="btn btn-primary">Войти</div>
+                </a>
+            </div>
+
+			<div class="signup">
+              	<a href="#signup" data-toggle="modal" data-target="#signup">
+                    <div type="button" class="btn btn-primary">Зарегистрироваться</div>
+                </a>
+			</div>
+		</div>	
+	</div>
+    
+
+	<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Закрыть</span>
+                    </button>
+				</div>
+
+				<div class="modal-body">
+					<!--{% include "signup.html" %}-->
+					<form class="signup_form">
+					    <input type="text" name="login" />
+					    <input type="password" name="password" />
+					    <input type="password" name="password_confirm" />
+					    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+					    <input class="signup_submit" type="button" value="send" />
+					</form>
+				</div>
+
+				<!--<div class="modal-footer">
+					<button type="button" class="btn btn-primary">Зарегистрироваться</button>
+				</div>-->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="warning-msg text-danger">
+						Введен неверный пароль. Попробуйте еще раз.
+					</div>
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Закрыть</span></button>
+				</div>
+
+				<div class="modal-body">
+					<!--{% include "signin.html" %}-->
+					<form class="signin_form">
+					    <input type="text" name="login" />
+					    <input type="password" name="password" />
+					    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+					    <input class="signin_submit" type="button" value="send" />
+					</form>
+				</div>
+
+				<!--div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-sign-in">Войти</button>
+				</div-->
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<form class="task_form">
+    <textarea name="text"></textarea>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+    <input class="task_submit" type="button" value="send" />
+</form>
+
+<script>
+    $(document).ready(function(){
+
+        $(".task_submit").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: "/ajax/create_task",
+                data: $(".task_form").serialize(),
+                success: function(data, textStatus, jqXHR) {
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    
+                }
+            });
+        });
+
+    });
+</script>

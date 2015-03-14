@@ -1,0 +1,315 @@
+@charset "utf-8";
+
+* 
+{    
+	font-family: Arial;
+	margin: 0;
+	padding: 0;
+	-moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+
+}
+
+/*---------------------------------------------------------------------HEADER BEGIN-----------------------------------------------------------*/
+
+.header, .header-dialog
+{
+	background: linear-gradient(to top, #000000, #999999);
+	color: #ffffff;
+	font-size: large;
+	font-weight: bold;
+	height: 70px; /*visota*/
+	margin: auto;
+	position: absolute;
+	width: 100%;
+	z-index: 1040;
+} 
+
+.header__title, .header-dialog__title
+{
+	margin-left: 50px;
+	margin-top: 20px;
+	position: absolute;
+	width: 350px;
+	z-index: 1040;
+}
+
+.header__menu, .header-dialog__menu
+{	
+	margin-left: 350px;
+	margin-top: 20px;
+	position: absolute;
+	z-index: 1040;
+}
+
+.header-dialog, .header-dialog__title, .header-dialog__menu
+{
+	position: fixed !important;
+} 
+
+.header-dialog
+{
+	border-bottom: 2px solid #cccc99;
+}
+
+/*---------------------------------------------------------------------HEADER END-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------HELL0 BEGIN-----------------------------------------------------------*/
+
+.hello
+{
+	/*border-left:1px solid blue;*/
+	height: 250px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 10px;
+	position: absolute;
+	top: 90px;
+	width: 80%;
+}
+
+.hello__text
+{
+	height: 250px;
+	position: absolute;
+	width: 60%;
+}
+
+.hello__buttons
+{
+	left: 61%;
+	height: 250px;
+	position: absolute;
+	text-align: center;
+	width: 40%;
+}
+
+.signin .btn-primary, .signup .btn-primary
+{
+	text-align: center;
+	width: 200px;
+}
+
+.signin, .signup
+{
+	left: 30%;
+	position: absolute;
+}
+
+.signin
+{
+	top: 60px;
+}
+
+.signup
+{
+	top: 130px;
+}
+
+/*---------------------------------------------------------------------HELL0 END-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------FORMS BEGIN-----------------------------------------------------------*/
+
+.modal-header
+{
+	height: 50px !important;
+	border-bottom: 0px !important;
+}
+
+.modal-content
+{
+	top: 200px !important;
+}
+
+.warning-msg
+{
+	/*display: none !important;*/
+	text-align: center;
+}
+/*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------PAGE BEGIN-----------------------------------------------------------*/
+
+.ground
+{
+	height: 100%;
+	margin-left: 2%;
+	margin-right: 2%;
+	position: absolute;
+	top: 80px;
+	width: 96%;
+}
+
+.ground__query
+{
+	position: absolute;
+	top: 10px;
+	width: 700px;
+}
+
+.ground__query .form-control
+{
+	width: 700px;
+	resize: none;
+}
+
+.ground__title
+{
+	font-size: x-large;
+	font-weight: bold;
+	left: 950px;
+	position: absolute;
+	text-align: center;
+	top: 10px;
+}
+
+.ground__history
+{
+	border-left: 1px solid blue;;
+	left: 740px;	
+	padding-left: 30px;
+	position: absolute;
+	top: 50px;
+	width: 500px;
+}
+
+.ground__query .btn-info
+{
+	margin-top: 10px;
+	position: absolute;
+	width: 700px;
+}
+
+.ground__history .data
+{
+	font-size: smaller;
+	color: #b4cdcd;
+	margin-left: 380px;
+}
+
+.ground__history .mem
+{
+	border: 1px solid #b0e2ff;
+	border-radius: 10px;
+	margin: 5px;
+	padding-bottom: 17px;
+}
+
+.ground__history .event
+{
+	padding-left: 40px;
+	padding-right: 40px;
+	text-align: center;
+}
+
+/*---------------------------------------------------------------------PAGE END-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------DIALOGUE BEGIN-----------------------------------------------------------*/
+
+.dialog
+{
+	margin-left: 20%;
+	margin-right: 20%;
+	top: 90px;
+	position: absolute;
+	width: 60%;
+}
+
+.dialog__msgbefore
+{
+	text-align: center;
+	top: 2px;
+}
+
+.dialog__msg
+{
+	margin-bottom: 10%;
+	position: absolute;
+	top: 40px;
+}
+
+.dialog__msgleft, .dialog__msgright
+{
+	border: 2px solid #cccccc;
+	border-radius: 10px;
+	margin-bottom: 3%;
+	padding: 10px;
+	position: relative;
+	width: 40%;
+}
+
+.dialog__msgleft
+{
+
+}
+
+.dialog__msgright
+{
+	left: 60%;
+}
+
+.msg__info, .msg__infofull, .msg__infofullbig, .msg__infobig
+{
+	color: #999999;
+	font-size: smaller;
+	padding: 3%;
+	position: relative;
+	white-space: nowrap;
+}
+
+.msg__info
+{
+	margin-left: 75%;
+}
+
+.msg__infofull
+{
+	margin-left: 60%;
+}
+
+.msg__infobig
+{
+	margin-left: 65%
+}
+
+.msg__infofullbig
+{
+	margin-left: 50%;
+}
+
+.msg__autor, .msg__time
+{
+	display: inline;
+}
+
+.dialog__input
+{
+	border: 1px solid #ccccdd;
+	background-color: #e6e6fa;
+	height: 12%;
+	padding: 1%;
+	position: fixed;
+	top: 88%;
+	width: 100%;
+}
+
+.dialog .form-control
+{
+	position: fixed;
+	resize: none;
+	top: 90%;
+	width: 45%;
+	z-index: 1040;
+}
+
+.dialog .btn-info
+{
+	position: fixed;
+	left: 67%;
+	top: 91.8%;
+	width: 10%;
+	z-index: 1040;
+}
+
+/*---------------------------------------------------------------------DIALOGUE END-----------------------------------------------------------*/

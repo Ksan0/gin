@@ -1,0 +1,49 @@
+<html>
+
+<head>
+	{% load static from staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/gin.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap3/css/bootstrap.min.css" %}" />
+    <script type="text/javascript" src="{% static "jquery/jquery-1.11.2.js" %}"></script>
+    <script type="text/javascript" src="{% static "Zbootstrap3/js/bootstrap.min.js" %}"></script>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <title>Джин</title>
+</head>
+
+<body>
+	<div class="header">
+			<div class="header__title">Джин</div>
+			<div class="header__menu">
+				
+			</div>
+	</div>
+
+	<div class="ground">
+		<div class="ground__query">
+			<textarea class="form-control" rows="4" placeholder="Введите запрос" maxlength="255"></textarea>
+			<button type="button" class="btn btn-info">Отправить</button>
+		</div>
+
+		<div class="ground__title">История</div>
+
+		<div class="ground__history">
+			<div class="mem bg-info">
+				<div class="data">03.03.2015</div> 
+				<div class="event">Поездка в Турцию</div>
+			</div>
+
+			<div class="mem">
+				<div class="data">28.02.2015</div> 
+				<div class="event">Покупка кота</div>
+			</div>
+
+			<div class="mem">
+				<div class="data">25.02.2015</div> 
+				<div class="event">Научно-технический вестник МГТУ им. Баумана. Конференция студенческая весна. Подготовить статью.</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
