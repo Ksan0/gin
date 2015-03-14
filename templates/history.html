@@ -1,43 +1,60 @@
 <div class="ground__history">
     <div class="history__title">
-        <a class="title__open">Открытые</a>
+        <div class="title__open">
+            <a class="link__open">Открытые</a>
+        </div>
 
-        <a class="title__close">Закрытые</a>
+        <div class="title__close">
+            <a class="link__close">Закрытые</a>
+        </div>
     </div>
 
-    <div class="history__elements"
+    <div class="history__elements">
         <div class="history__open">
             <div class="history__elem bg-info">
-                <div class="data">03.03.2015</div>
+                <div class="date">03.03.2015</div>
                 <div class="event">Поездка в Турцию</div>
             </div>
 
             <div class="history__elem">
-                <div class="data">28.02.2015</div>
+                <div class="date">28.02.2015</div>
                 <div class="event">Покупка кота</div>
             </div>
 
             <div class="history__elem">
-                <div class="data">25.02.2015</div>
+                <div class="date">25.02.2015</div>
                 <div class="event">Научно-технический вестник МГТУ им. Баумана. Конференция студенческая весна. Подготовить статью.</div>
             </div>
         </div>
 
         <div class="history__close">
             <div class="history__elem bg-info">
-                <div class="data">10.03.2013</div>
+                <div class="date">10.03.2013</div>
                 <div class="event">Купить клубнику</div>
             </div>
 
             <div class="history__elem">
-                <div class="data">23.01.2013</div>
+                <div class="date">23.01.2013</div>
                 <div class="event">Полёт на воздушном шаре</div>
             </div>
 
             <div class="history__elem">
-                <div class="data">25.02.2012</div>
+                <div class="date">25.02.2012</div>
                 <div class="event">ИгроМир</div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $(".link__open").on("click", function () {
+            $(".history__open").show();
+            $(".history__close").hide();
+        });
+        $(".link__close").on("click", function () {
+            $(".history__open").hide();
+            $(".history__close").show();
+        });
+    });
+</script>

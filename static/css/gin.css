@@ -174,14 +174,33 @@
 {
 	font-size: x-large;
 	font-weight: bold;
-	position: absolute;
+    position: relative;
 	text-align: center;
-	top: 0px;
+	top: 15px;
+    white-spice: nowrap;
 }
 
-.history_elements
+.title__close
 {
-    top: 20px;
+    padding-left: 25px;
+    display: inline-block;
+}
+
+.title__open
+{
+    padding-right: 25px;
+    display: inline-block;
+}
+
+.history__close
+{
+    display: none;
+}
+
+.history__elements
+{
+    position: relative;
+    top: 30px;
 }
 
 .ground__query .btn-info
@@ -191,14 +210,21 @@
 	width: 700px;
 }
 
-.ground__history .data
+.ground__history .date
 {
+    color: #b4cdcd;
 	font-size: smaller;
-	color: #b4cdcd;
-	margin-left: 380px;
+	margin-left: 390px;
+    position: relative;
+    top: 5px;
 }
 
-.ground__history .history_elem
+.ground__history .history__elem:hover > .date
+{
+    color: #737373;
+}
+
+.ground__history .history__elem
 {
 	border: 1px solid #b0e2ff;
 	border-radius: 10px;
