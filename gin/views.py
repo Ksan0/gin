@@ -98,7 +98,7 @@ def test_createoperator(request):
 
 
 
-def createsuper(request):
+def createsuper2(request):
     u = AUser.objects.create_user(password="1", is_superuser=True)
     u = authenticate(id=u.id, password="1")
     login(request, u)

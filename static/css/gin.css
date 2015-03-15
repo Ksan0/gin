@@ -259,6 +259,7 @@
 
 .dialog
 {
+    height: 100%;
 	margin-left: 20%;
 	margin-right: 20%;
 	top: 90px;
@@ -275,7 +276,7 @@
 .dialog__msg
 {
 	margin-bottom: 10%;
-	position: absolute;
+	position: relative;
 	top: 40px;
 }
 
@@ -287,7 +288,7 @@
 	padding: 10px;
     padding-bottom: 5px !important;
 	position: relative;
-	width: 40%;
+	width: 47%;
 }
 
 .dialog__msgleft
@@ -297,7 +298,7 @@
 
 .dialog__msgright
 {
-	left: 60%;
+	left: 53%;
 }
 
 .msg__info
@@ -325,8 +326,9 @@
 	width: 100%;
 }
 
-.dialog .form-control
+.dialog__input .form-control
 {
+    left: 20%;
 	position: fixed;
 	resize: none;
 	top: 90%;
@@ -334,13 +336,21 @@
 	z-index: 1040;
 }
 
-.dialog .btn-info
+.dialog__input .btn-info
 {
 	position: fixed;
 	left: 67%;
-	top: 91.8%;
+    top: 91.8%;
 	width: 10%;
 	z-index: 1040;
+}
+
+.dialog__input .btn-warning
+{
+    left: 8%;
+    position: fixed;
+    top: 91.8%;
+    width: 10%;
 }
 
 /*---------------------------------------------------------------------DIALOGUE END-----------------------------------------------------------*/
@@ -359,9 +369,16 @@
 
 .get-task-btn
 {
-    left: 150px;
-    position: relative;
+    left: 920px;
+    position: absolute;
     text-align: center;
+    top: -40px;
+}
+
+.history__block
+{
+    position: absolute;
+    top: 50px;
 }
 
 /*---------------------------------------------------------------------OPERATOR END-----------------------------------------------------------*/
@@ -377,8 +394,9 @@
 
 .new-operator-btn
 {
+    position: relative  ;
     text-align: center;
-    top: 300px;
+    top: 150px;
 }
 
 /*---------------------------------------------------------------------ADMIN END-----------------------------------------------------------*/

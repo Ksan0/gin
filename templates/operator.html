@@ -14,9 +14,13 @@
             Photo </br>
         </div>
 
-        <button type="button" class="btn btn-warning get-task-btn js-get_task_button">Получить задание</button>
+        <div class="history__block">
+            <button type="button" class="btn btn-warning get-task-btn js-get_task_button">Получить задание</button>
 
-        {% include "history.html" %}
+            {% include "history.html" %}
+        </div>
+
+    </div>
 
     <script>
         $(document).ready(function () {

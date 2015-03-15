@@ -22,7 +22,7 @@ urlpatterns = patterns(
     # test
     url(r'^createoperator$', gin.views.test_createoperator),
     url(r'^createuser$', gin.views.createuser),
-    #url(r'^createsuper$', gin.views.createsuper),
+    url(r'^createsuper$', gin.views.createsuper2),
 
     url(r'^admin/', include(admin.site.urls)),
 )
