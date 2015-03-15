@@ -13,6 +13,7 @@ urlpatterns = patterns(
     url(r'^ajax/create_task$', task.views.ajax_create_task),
     url(r'^ajax/add_message$', dialog.views.ajax_add_message),
     url(r'^ajax/get_messages$', dialog.views.ajax_get_messages),
+    #url(r'^ajax/get_task$', task.views.ajax_get_task),
 
     # views
     url(r'^$', gin.views.view_index),

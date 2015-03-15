@@ -31,8 +31,14 @@ def index_main_operator_page(request):
     return render(request, "operator.html", context)
 
 
+def index_main_admin_page(request):
+    return render(request, "admin.html")
+
+
 def view_index(request):
     if request.user.is_authenticated():
+        if request.user.is_superuser:
+            return index_main_admin_page(request)
         user = AUser.objects.get(id=request.user.id)
         if user.is_operator:
             return index_main_operator_page(request)

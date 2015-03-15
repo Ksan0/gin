@@ -1,0 +1,39 @@
+<form class="js-send_message_form">
+    <textarea class="form-control" rows="2" name="text"></textarea>
+    <input type="hidden" name="task_id" value="{{ task_id }}" />
+    <button type="button" class="btn btn-info js-send_message_submit">Отправить</button>
+    {% csrf_token %}
+</form>
+
+<script>
+    $(document).ready(function(){
+
+        $(".js-send_message_submit").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: "/ajax/add_message",
+                data: $(".js-send_message_form").serialize(),
+                success: function(data, textStatus, jqXHR) {
+                    debugger;
+                    var err = GIN.AjaxErrors.get_error(data);
+                    if (err == GIN.AjaxErrors.NONE) {
+                        var prototype = $(".dialog__msg__prototype");
+                        var newEl = prototype.clone();
+
+                        newEl.removeClass("dialog__msg__prototype");
+                        newEl.addClass(data.is_operator ? "dialog__msgright bg-warning" : "dialog__msgleft bg-success");
+                        newEl.css("display", "block");
+                        newEl.find(".msg__info").before(data.text);
+                        newEl.find(".msg__autor").html(data.is_operator ? "Оператор" : "Вы");
+                        newEl.find(".msg__time").html(data.date);
+                        prototype.after(newEl);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+        });
+
+    });
+</script>

@@ -33,7 +33,14 @@ def ajax_add_message(request):
     message = Message(task=task, user=request.user, body=text)
     message.save()
 
-    return render_to_json(AjaxErrors.NONE.json())
+    response_data = {
+        "text": text,
+        "date": message.get_date_str(),
+        "is_operator": message.user.is_operator
+    }
+    response_data.update(AjaxErrors.NONE.json())
+
+    return render_to_json(response_data)
 
 
 def ajax_get_messages(request):

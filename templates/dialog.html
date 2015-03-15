@@ -5,15 +5,14 @@
 		<!--div class="dialog__msgbefore"><a>Показать предыдущие сообщения</a></div-->
 
 		<div class="dialog__msg">
-			<div class="dialog__msg__prototype">
-				{text}
+			<div class="dialog__msg__prototype" style="display: none;">
                 <div class="msg__info">
 					<div class="msg__autor"></div>,
 					<div class="msg__time"></div>
 				</div>
 			</div>
 
-            <div class="dialog__msgleft bg-success">
+            <!--div class="dialog__msgleft bg-success">
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
 				Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
 				Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
@@ -65,17 +64,12 @@
 					<div class="msg__time">18:50</div>
 				</div>
 			</div>
-		</div>
-
-		
-		<textarea class="form-control" rows="2"></textarea>
-
-		<button type="button" class="btn btn-info">Отправить</button>
+		</div-->
 
 	</div>
 
     <div class="dialog__input">
-
+        {% include "send_message_form.html" %}
     </div>
 
 
@@ -101,7 +95,13 @@
                                     var msg = data.messages[i];
                                     var newEl = prototype.clone();
 
+                                    newEl.removeClass("dialog__msg__prototype");
+                                    newEl.addClass(msg.is_operator ? "dialog__msgright bg-warning" : "dialog__msgleft bg-success");
+                                    newEl.css("display", "block");
                                     newEl.find(".msg__info").before(msg.text);
+                                    newEl.find(".msg__autor").html(msg.is_operator ? "Оператор" : "Вы");
+                                    newEl.find(".msg__time").html(msg.date);
+                                    prototype.after(newEl);
                                 }
                             }
                         },
