@@ -10,4 +10,4 @@ class Message(models.Model):
     creation_date = models.DateField(auto_now_add=True)
 
     def get_date_str(self):
-        return '{:%d.%m.%Y :%H:%M}'.format(self.creation_date)
+        return '{:%d.%m.%Y %H:%M}'.format(self.creation_date)

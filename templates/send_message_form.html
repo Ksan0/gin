@@ -14,7 +14,6 @@
                 url: "/ajax/add_message",
                 data: $(".js-send_message_form").serialize(),
                 success: function(data, textStatus, jqXHR) {
-                    debugger;
                     var err = GIN.AjaxErrors.get_error(data);
                     if (err == GIN.AjaxErrors.NONE) {
                         var prototype = $(".dialog__msg__prototype");
@@ -26,7 +25,7 @@
                         newEl.find(".msg__info").before(data.text);
                         newEl.find(".msg__autor").html(data.is_operator ? "Оператор" : "Вы");
                         newEl.find(".msg__time").html(data.date);
-                        prototype.after(newEl);
+                        $(".dialog__msg").append(newEl);
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.shortcuts import render, redirect
 from subsystems.a_user.models import AUser
+from subsystems.operator.models import Operator
 from subsystems.task.models import Task, TaskManager
 
 
@@ -21,7 +22,8 @@ def index_main_user_page(request):
 
 
 def index_main_operator_page(request):
-    all_history_tasks = Task.objects.filter(operator=request.user).order_by("-creation_date")
+    operator = Operator.objects.get(user=request.user.id)
+    all_history_tasks = Task.objects.filter(operator=operator).order_by("-creation_date")
     last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
     last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
     context = {
@@ -58,7 +60,7 @@ def view_task(request):
 
     try:
         task = Task.objects.get(id=task_id)
-        if task.user != request.user:
+        if task.user != request.user and task.operator.user != request.user:
             return redirect("/")
     except:
         return redirect("/")
@@ -84,6 +86,10 @@ def test_createoperator(request):
 
     u = authenticate(id=u.id, password="1")
     login(request, u)
+
+    x = Operator.objects.create(user=u)
+    x.save()
+
     return redirect("/")
 
 
@@ -92,11 +98,18 @@ def test_createoperator(request):
 
 
 
-def createsuper2(request):
+def createsuper(request):
     u = AUser.objects.create_user(password="1", is_superuser=True)
     u = authenticate(id=u.id, password="1")
     login(request, u)
-    return render(request, "test.html")
+    return redirect("/")
+
+
+def createuser(request):
+    u = AUser.objects.create_user(password="1", is_superuser=False)
+    u = authenticate(id=u.id, password="1")
+    login(request, u)
+    return redirect("/")
 
 
 def index2(request):

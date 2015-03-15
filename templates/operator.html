@@ -14,53 +14,35 @@
             Photo </br>
         </div>
 
-        <div class="ground__history">
-            <button type="button" class="btn btn-warning get-task-btn">Получить задание</button>
+        <button type="button" class="btn btn-warning get-task-btn js-get_task_button">Получить задание</button>
 
-            <div class="history__title">
-                <div class="title__open">
-                    <a class="link link__open" style="text-decoration: underline;">Открытые</a>
-                </div>
+        {% include "history.html" %}
 
-                <div class="title__close">
-                    <a class="link link__close">Закрытые</a>
-                </div>
-            </div>
+    <script>
+        $(document).ready(function () {
+            $(".js-get_task_button").on("click", function () {
+                $.ajax({
+                    method: "GET",
+                    url: "/ajax/get_task",
+                    success: function(data, textStatus, jqXHR) {
+                        var err = GIN.AjaxErrors.get_error(data);
+                        if (err == GIN.AjaxErrors.NONE) {
+                            var prototype = $(".history__elem__prototype");
+                            var newEl = prototype.clone();
+                            newEl.find(".date").html(data.date);
+                            newEl.find(".event").html(data.text);
+                            newEl[0].href = "/task?task_id=" + data.task_id;
+                            newEl.removeClass("history__elem__prototype");
+                            newEl.css("display", "block");
+                            prototype.after(newEl);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
 
-            <div class="history__elements">
-                <div class="history__open">
-                    <a class="history__elem__prototype" style="text-decoration: none; display: none;">
-                        <div class="history__elem bg-info">
-                            <div class="date"></div>
-                            <div class="event"></div>
-                        </div>
-                    </a>
-                    {% for task in last_open_tasks %}
-                        <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
-                            <div class="history__elem">
-                                <div class="date">{{ task.get_date_str }}</div>
-                                <div class="event">{{ task.text }}</div>
-                            </div>
-                        </a>
-                    {% empty %}
-                        Все желания исполнены
-                    {% endfor %}
-                </div>
-
-                <div class="history__close">
-                    {% for task in last_close_tasks %}
-                        <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
-                            <div class="history__elem">
-                                <div class="date">{{ task.get_date_str }}</div>
-                                <div class="event">{{ task.text }}</div>
-                            </div>
-                        </a>
-                    {% empty %}
-                        Ничего нет, приходите завтра
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+                    }
+                });
+            });
+        });
+    </script>
 
 {% endblock %}

@@ -13,7 +13,7 @@ urlpatterns = patterns(
     url(r'^ajax/create_task$', task.views.ajax_create_task),
     url(r'^ajax/add_message$', dialog.views.ajax_add_message),
     url(r'^ajax/get_messages$', dialog.views.ajax_get_messages),
-    #url(r'^ajax/get_task$', task.views.ajax_get_task),
+    url(r'^ajax/get_task$', task.views.ajax_get_task),
 
     # views
     url(r'^$', gin.views.view_index),
@@ -21,6 +21,8 @@ urlpatterns = patterns(
 
     # test
     url(r'^createoperator$', gin.views.test_createoperator),
+    url(r'^createuser$', gin.views.createuser),
+    #url(r'^createsuper$', gin.views.createsuper),
 
     url(r'^admin/', include(admin.site.urls)),
 )
