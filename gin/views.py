@@ -65,8 +65,12 @@ def view_task(request):
     except:
         return redirect("/")
 
+    u = AUser.objects.get(id=request.user.id)
+
     context = {
-        "task_id": task.id
+        "task_id": task.id,
+        "is_operator": u.is_operator,
+        "price": task.price
     }
 
     return render(request, "dialog.html", context)

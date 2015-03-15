@@ -33,6 +33,7 @@ class Task(models.Model):
     user = models.ForeignKey(AUser)                      # юзер, который создал таск
     operator = models.ForeignKey(Operator, null=True)   # оператор, на которого повесили таск
     text = models.CharField(max_length=255)
+    price = models.IntegerField(default=0)
 
     def get_date_str(self):
         today = datetime.now()
