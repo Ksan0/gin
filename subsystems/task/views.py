@@ -78,3 +78,37 @@ def ajax_get_task(request):
     response_data.update(AjaxErrors.NONE.json())
 
     return render_to_json(response_data)
+
+
+def ajax_set_price(request):
+    if request.method != "POST":
+        return render_to_json(AjaxErrors.BAD_METHOD.json())
+
+    if not request.user.is_authenticated():
+        return render_to_json(AjaxErrors.BAD_SESSION.json())
+
+    user = AUser.objects.get(id=request.user.id)
+    if not user.is_operator:
+        return render_to_json(AjaxErrors.BAD_SESSION.json())
+
+    try:
+        price = request.POST.__getitem__("price")
+        task_id = request.POST.__getitem__("task_id")
+        task = Task.objects.get(id=task_id)
+    except:
+        return render_to_json(AjaxErrors.BAD_FORM.json())
+
+    if task.operator != user.operator:
+        return render_to_json(AjaxErrors.BAD_SESSION.json())
+
+    task.price = price
+    task.status = Task.Status.SOLVED
+    task.save()
+    task.operator.active_tasks_count -= 1
+    task.operator.save()
+
+    response_data = {
+        "price": price
+    }
+    response_data.update(AjaxErrors.NONE.json())
+    return render_to_json(response_data)

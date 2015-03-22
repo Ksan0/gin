@@ -17,9 +17,14 @@
     <div class="dialog__input">
         {% if is_operator %}
             <div class="btn-price">
-                <a href="#price" data-toggle="modal" data-target="#price">
-                    <div type="button" class="btn btn-warning">Выставить счёт</div>
-                </a>
+                {% if price > 0 %}
+                    <div class="btn btn-warning js-set_price_out">{{ price }} P</div>
+                {% else %}
+                    <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">
+                        <div class="btn btn-warning">Выставить счёт</div>
+                    </a>
+                    <div class="btn btn-warning js-set_price_out" style="display: none"></div>
+                {% endif %}
             </div>
         {% else %}
             {% if price > 0 %}

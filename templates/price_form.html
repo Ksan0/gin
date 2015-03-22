@@ -1,13 +1,39 @@
-<form class="form-inline">
-  <div class="form-group">
-    <label class="sr-only" for="exampleInputAmount">Сумма(в рублях)</label>
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Сумма">
-      <div class="input-group-addon">Руб</div>
+<form class="form-inline js-price_form">
+    <div class="form-group">
+        <label class="sr-only" for="exampleInputAmount">Сумма(в рублях)</label>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Сумма" name="price">
+            <div class="input-group-addon">Руб</div>
+        </div>
     </div>
-  </div>
 
-  <button type="submit" class="btn btn-primary">Выставить счёт</button>
-
+    <button class="btn btn-primary js-price_submit">Выставить счёт</button>
+    <input type="hidden" name="task_id" value="{{ task_id }}" />
     {% csrf_token %}
 </form>
+
+<script>
+    $(document).ready(function(){
+
+        $(".js-price_submit").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: "/ajax/set_price",
+                data: $(".js-price_form").serialize(),
+                success: function(data, textStatus, jqXHR) {
+                    var err = GIN.AjaxErrors.get_error(data);
+                    if (err == GIN.AjaxErrors.NONE) {
+                        $(".js-set_price_out").html(data.price + " Р").css("display", "block");
+                        $(".price-modal").hide();
+                        $(".js-a-ololo").hide();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
