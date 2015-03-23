@@ -1,0 +1,30 @@
+<form id="{{ form.html_id }}" class="{{ form.html_class }}">
+    {% csrf_token %}
+
+    <div class="__all___error form_error">
+
+    </div>
+    {% for field in form %}
+        <div>
+            {{ field.label_tag }}
+            {{ field }}
+            <div class="{{ field.name }}_error form_error">
+
+            </div>
+        </div>
+    {% endfor %}
+
+    <input class="form_submit_button" type="button" value="submit">
+</form>
+
+<script>
+    var     method = "{{ form.action_method }}",
+            url = "{% url form.action_url_name %}",
+            form_id = "{{ form.html_id }}",
+            f_success,
+            f_error;
+
+    {% block add_script %}{% endblock %}
+
+    GIN.RegForm(method, url, form_id, f_success, f_error);
+</script>

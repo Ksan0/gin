@@ -1,0 +1,34 @@
+# === venv ===
+sudo apt-get -y install python3-pip
+sudo pip3 install virtualenv
+
+sudo virtualenv /home/gin
+sudo chown -R ${USER} /home/gin
+cd /home/gin
+source bin/activate
+sudo pip3 install Django
+deactivate
+
+# === postgresql ===
+sudo apt-get -y install libpq-dev python3-dev
+sudo apt-get -y install postgresql postgresql-contrib
+
+sudo su - postgres
+createdb gindb
+createuser -SDR -P --interactive
+# ginuser, ginteam0
+psql -c "GRANT ALL PRIVILEGES ON DATABASE gindb TO ginuser;"
+exit
+
+# === pgbouncer ===
+sudo apt-get -y install pgbouncer
+sudo usermod -a -G postgres $USER
+
+mkdir conf log pid
+# copy pgbouncer.ini to conf/
+# copy pgbouncer_users to conf/
+pgbouncer -d conf/pgbouncer.ini
+
+sudo apt-get install python3-psycopg2
+
+# django syncdb

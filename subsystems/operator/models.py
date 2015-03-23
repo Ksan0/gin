@@ -3,5 +3,5 @@ from subsystems.a_user.models import AUser
 
 
 class Operator(models.Model):
-    user = models.OneToOneField(AUser)
+    user = models.ForeignKey(AUser)
     active_tasks_count = models.SmallIntegerField(default=0)

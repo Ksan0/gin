@@ -2,17 +2,34 @@
 
 {% block content %}
 	<div class="dialog">
-		<!--div class="dialog__msgbefore"><a>Показать предыдущие сообщения</a></div-->
+        <div>
+            {% if paginator.has_previous %}
+                <a href="{% url 'view_task' task_id %}">
+                    {{ paginator.previous_page_number }}
+                </a>
+            {% endif %}
+        </div>
 
 		<div class="dialog__msg">
-			<div class="dialog__msg__prototype" style="display: none;">
+            <div class="dialog__msg__prototype" style="display: none;">
                 <div class="msg__info">
 					<div class="msg__autor"></div>,
 					<div class="msg__time"></div>
 				</div>
 			</div>
+
+            {% for msg in messages %}
+                <div class="{{ msg.class }}">
+                    {{ msg.text }}
+                    <div class="msg__info">
+                        <div class="msg__time">{{ msg.date }}</div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
 	</div>
+
+    {% include "history.html" %}
 
     <div class="dialog__input">
         {% if is_operator %}
@@ -64,51 +81,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function () {
-            GIN.Dialog = (function () {
-                var _page = 0;
-
-                var downloadMessagesPage = function (task_id) {
-                    var getArgs =
-                            "?task_id=" + task_id +
-                            "&page=" + _page;
-                    $.ajax({
-                        method: "GET",
-                        url: "/ajax/get_messages" + getArgs,
-                        success: function(data, textStatus, jqXHR) {
-                            var err = GIN.AjaxErrors.get_error(data);
-                            if (err == GIN.AjaxErrors.NONE) {
-                                _page = data.page + 1;
-                                var prototype = $(".dialog__msg__prototype");
-                                var count = parseInt(data.messages_count, 10);
-                                for (var i = 0; i < count; ++i) {
-                                    var msg = data.messages[i];
-                                    var newEl = prototype.clone();
-
-                                    newEl.removeClass("dialog__msg__prototype");
-                                    newEl.addClass(msg.is_operator ? "dialog__msgright bg-warning" : "dialog__msgleft bg-success");
-                                    newEl.css("display", "block");
-                                    newEl.find(".msg__info").before(msg.text);
-                                    newEl.find(".msg__autor").html(msg.is_operator ? "Оператор" : "Вы");
-                                    newEl.find(".msg__time").html(msg.date);
-                                    prototype.after(newEl);
-                                }
-                            }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-
-                        }
-                    });
-                };
-
-                return {
-                    downloadMessagesPage: downloadMessagesPage
-                };
-            }());
-
-            GIN.Dialog.downloadMessagesPage("{{ task_id }}");
-        });
-    </script>
 {% endblock %}

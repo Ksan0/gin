@@ -5,15 +5,6 @@ from subsystems.utils.json import render_to_json, AjaxErrors
 
 
 def ajax_add_message(request):
-    """
-        === INPUT ===
-            method: POST
-            "task_id": id таска к которому добавляем сообщение
-            "text"
-        === OUTPUT ===
-            status: AjaxError
-    """
-
     if not request.user.is_authenticated():
         return render_to_json(AjaxErrors.BAD_SESSION.json())
 

@@ -1,0 +1,41 @@
+<form class="js-create_task_form">
+    <textarea class="form-control" rows="4" placeholder="Введите запрос" maxlength="255" name="text"></textarea>
+    {% csrf_token %}
+    <button type="button" class="btn btn-info js-create_task_submit">Отправить</button>
+
+    <div class="create__task__msg text-info" style="display: none;">
+        Желание принято к исполнению. Не хотите ли загадать еще одно?
+    </div>
+</form>
+<script>
+
+        $(".js-create_task_submit").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: "/ajax/create_task",
+                data: $(".js-create_task_form").serialize(),
+                success: function(data, textStatus, jqXHR) {
+                    var err = GIN.AjaxErrors.get_error(data);
+                    if (err == GIN.AjaxErrors.NONE) {
+                        var prototype = $(".history__elem__prototype");
+                        var newEl = prototype.clone();
+                        newEl.find(".date").html(data.creation_date);
+                        newEl.find(".event").html(data.text);
+                        newEl[0].href = "/task?task_id=" + data.task_id;
+                        newEl.removeClass("history__elem__prototype");
+                        newEl.css("display", "block");
+                        prototype.after(newEl);
+
+                        var frm = $(".js-create_task_form");
+                        frm.find(".form-control").val("");
+                        var msg = frm.find(".text-info");
+                        msg.css("display", "block");
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+        });
+
+</script>

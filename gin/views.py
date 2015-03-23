@@ -1,28 +1,36 @@
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from subsystems.a_user.models import AUser
 from subsystems.operator.models import Operator
+from subsystems.task.forms import CreateTaskForm
 from subsystems.task.models import Task, TaskManager
+from subsystems import user
 
 
 def index_hello_page(request):
-    return render(request, "main.html")
+    context = {
+        "signup_form": user.forms.SignupForm(),
+        "signin_form": user.forms.SigninForm()
+    }
+    return render(request, "main.html", context)
 
 
 def index_main_user_page(request):
     all_history_tasks = Task.objects.filter(user=request.user).order_by("-creation_date")
-    last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
-    last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
+    last_open_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, True), 10)
+    last_close_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, False), 10)
     context = {
-        "last_open_tasks": last_open_tasks,
-        "last_close_tasks": last_close_tasks
+        "last_open_tasks": last_open_tasks.page(1),
+        "last_close_tasks": last_close_tasks.page(1),
+        "create_task_form": CreateTaskForm()
     }
     return render(request, "page.html", context)
 
 
 def index_main_operator_page(request):
-    operator = Operator.objects.get(user=request.user.id)
+    operator = Operator.objects.get(user=request.user)
     all_history_tasks = Task.objects.filter(operator=operator).order_by("-creation_date")
     last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
     last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
@@ -95,8 +103,6 @@ def test_createoperator(request):
     x.save()
 
     return redirect("/")
-
-
 
 
 

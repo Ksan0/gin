@@ -18,7 +18,7 @@
                 </div>
             </a>
             {% for task in last_open_tasks %}
-                <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
+                <a href="/task/{{ task.id }}" style="text-decoration: none;">
                     <div class="history__elem">
                         <div class="date">{{ task.get_date_str }}</div>
                         <div class="event">{{ task.text }}</div>
@@ -31,7 +31,7 @@
 
         <div class="history__close">
             {% for task in last_close_tasks %}
-                <a href="/task?task_id={{ task.id }}" style="text-decoration: none;">
+                <a href="/task/{{ task.id }}" style="text-decoration: none;">
                     <div class="history__elem">
                         <div class="date">{{ task.get_date_str }}</div>
                         <div class="event">{{ task.text }}</div>
@@ -45,18 +45,16 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $(".link__open").on("click", function () {
-            $(".history__open").show();
-            $(".history__close").hide();
-            $(".link__open").css("text-decoration", "underline");
-            $(".link__close").css("text-decoration", "none");
-        });
-        $(".link__close").on("click", function () {
-            $(".history__close").show();
-            $(".history__open").hide();
-            $(".link__open").css("text-decoration", "none");
-            $(".link__close").css("text-decoration", "underline");
-        });
+    $(".link__open").on("click", function () {
+        $(".history__open").show();
+        $(".history__close").hide();
+        $(".link__open").css("text-decoration", "underline");
+        $(".link__close").css("text-decoration", "none");
+    });
+    $(".link__close").on("click", function () {
+        $(".history__close").show();
+        $(".history__open").hide();
+        $(".link__open").css("text-decoration", "none");
+        $(".link__close").css("text-decoration", "underline");
     });
 </script>

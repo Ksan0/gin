@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.datetime_safe import datetime
-from subsystems.operator.models import Operator
 from subsystems.a_user.models import AUser
 
 
@@ -30,8 +29,8 @@ class Task(models.Model):
 
     creation_date = models.DateTimeField(auto_now_add=True)
     status = models.SmallIntegerField(default=Status.CREATED)
-    user = models.ForeignKey(AUser)                      # юзер, который создал таск
-    operator = models.ForeignKey(Operator, null=True)   # оператор, на которого повесили таск
+    user = models.ForeignKey(AUser, related_name='+')                      # юзер, который создал таск
+    operator = models.ForeignKey(AUser, null=True, related_name='+')   # оператор, на которого повесили таск
     text = models.CharField(max_length=255)
     price = models.IntegerField(default=0)
 
