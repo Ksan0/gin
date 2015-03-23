@@ -64,9 +64,11 @@
                     </button>
                 </div>
 
-                <div class="modal-body">
-                    {% include "forms/set_price_form.html" with form=set_price_form %}
-                </div>
+                {% if is_operator %}
+                    <div class="modal-body">
+                        {% include "forms/set_price_form.html" with form=set_price_form %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
