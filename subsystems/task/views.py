@@ -138,7 +138,7 @@ def view_task(request, task_id):
 
     user = AUser.objects.get(id=request.user.id)
 
-    paginator = Paginator(Message.objects.filter(task=task).order_by("id"), 25)
+    paginator = Paginator(Message.objects.filter(task=task).order_by("id"), 1)
     try:
         raw_messages = paginator.page(request.GET['p'])
     except:

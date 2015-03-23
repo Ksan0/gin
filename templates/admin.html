@@ -2,17 +2,19 @@
 
 {% block content %}
     <div class="ground">
-        <div class="admin__title">
+        <div class="ground__title">
             Страница администратора
         </div>
 
-        <div class="new-operator-btn">
+        <div class="ground__new-operator-btn">
             <a href="#newoperator" data-toggle="modal" data-target="#newoperator">
                 <div type="button" class="btn btn-primary">Создать оператора</div>
             </a>
         </div>
 
-        <div class="modal fade newoperator-modal" id="newoperator" tabindex="-1" role="dialog" aria-hidden="true">
+        <!--Ниже классы структурируются только по-бустраповски,
+            потому что!!!-->
+        <div class="modal fade ground__newoperator-modal" id="newoperator" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

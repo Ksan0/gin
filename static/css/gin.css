@@ -1,19 +1,18 @@
 @charset "utf-8";
 
 * 
-{    
+{
+    box-sizing: border-box; /* Для IE и Opera */
 	font-family: Arial;
 	margin: 0;
 	padding: 0;
 	-moz-box-sizing: border-box; /* Для Firefox */
     -webkit-box-sizing: border-box; /* Для Safari и Chrome */
-    box-sizing: border-box; /* Для IE и Opera */
-
 }
 
 /*---------------------------------------------------------------------HEADER BEGIN-----------------------------------------------------------*/
 
-.header, .header-dialog
+.header
 {
 	background: linear-gradient(to top, #000000, #999999);
 	color: #ffffff;
@@ -26,7 +25,7 @@
 	z-index: 1040;
 } 
 
-.header__title, .header-dialog__title
+.header__title
 {
 	margin-left: 50px;
 	margin-top: 20px;
@@ -35,7 +34,7 @@
 	z-index: 1040;
 }
 
-.header__menu, .header-dialog__menu
+.header__menu
 {	
 	margin-left: 350px;
 	margin-top: 20px;
@@ -43,14 +42,9 @@
 	z-index: 1040;
 }
 
-.header-dialog, .header-dialog__title, .header-dialog__menu
+.header, .header__title, .header__menu
 {
 	position: fixed !important;
-} 
-
-.header-dialog
-{
-	border-bottom: 2px solid #cccc99;
 }
 
 /*---------------------------------------------------------------------HEADER END-----------------------------------------------------------*/
@@ -75,7 +69,7 @@
 	width: 60%;
 }
 
-.hello__buttons
+.hello__btns
 {
     border-left: 1px solid blue;
 	left: 61%;
@@ -134,17 +128,19 @@
 
 /*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
 
-/*---------------------------------------------------------------------HISTORY BEGIN-----------------------------------------------------------*/
+/*---------------------------------------------------------------------GROUND!!!-----------------------------------------------------------*/
 
 .ground
 {
 	height: 100%;
-	margin-left: 2%;
-	margin-right: 2%;
 	position: absolute;
 	top: 80px;
-	width: 96%;
+	width: 100%;
 }
+
+/*---------------------------------------------------------------------GROUND!!!-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------MAIN_USER->QUERY BEGIN-----------------------------------------------------------*/
 
 .ground__query
 {
@@ -159,18 +155,30 @@
 	resize: none;
 }
 
+.create__task__msg
+{
+    font-size: large;
+    position: absolute;
+    text-align: center;
+    top: 170px;
+    width: 700px;
+}
+
+/*---------------------------------------------------------------------MAIN_USER->QUERY END-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------MAIN_USER->HISTORY BEGIN-----------------------------------------------------------*/
 .ground__history
 {
 	border-left: 1px solid blue;
-    min-height: 300px;
-	left: 740px;
+    min-height: 500px;
+	left: 800px;
 	padding-left: 30px;
-	position: absolute;
-	top: 0px;
-	width: 500px;
+	position: fixed;
+	top: 80px;
+	width: 450px;
 }
 
-.history__title
+.ground__history__title
 {
 	font-size: x-large;
 	font-weight: bold;
@@ -180,29 +188,29 @@
     white-space: nowrap;
 }
 
-.title__close
+.ground__history__title__close
 {
     padding-left: 25px;
     display: inline-block;
 }
 
-.title__open
+.ground__history__title__open
 {
     padding-right: 25px;
     display: inline-block;
 }
 
-.link
+.ground__history__title__open__link
 {
     cursor: pointer;
 }
 
-.history__close
+.ground__history__elems__close
 {
     display: none;
 }
 
-.history__elements
+.ground__history__elems
 {
     position: relative;
     top: 30px;
@@ -215,21 +223,21 @@
 	width: 700px;
 }
 
-.ground__history .date
+.ground__history .ground__history__elems__open__prototype__elem__date
 {
     color: #b4cdcd;
 	font-size: smaller;
-	margin-left: 390px;
+	margin-left: 370px;
     position: relative;
     top: 5px;
 }
 
-.ground__history .history__elem:hover > .date
+.ground__history .ground__history__elems__open__prototype__elem:hover > .ground__history__elems__open__prototype__elem__date
 {
     color: #737373;
 }
 
-.ground__history .history__elem
+.ground__history .ground__history__elems__open
 {
 	border: 1px solid #b0e2ff;
 	border-radius: 10px;
@@ -237,43 +245,32 @@
 	padding-bottom: 17px;
 }
 
-.ground__history .event
+.ground__history .ground__history__elems__open__prototype__elem__event
 {
 	padding-left: 40px;
 	padding-right: 40px;
 	text-align: center;
 }
 
-.create__task__msg
-{
-    font-size: large;
-    position: absolute;
-    text-align: center;
-    top: 170px;
-    width: 700px;
-}
-
-/*---------------------------------------------------------------------HISTORY END-----------------------------------------------------------*/
+/*---------------------------------------------------------------------MAIN_USER->HISTORY END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------DIALOGUE BEGIN-----------------------------------------------------------*/
 
-.dialog
+.ground__dialog
 {
     height: 100%;
-	margin-left: 20%;
-	margin-right: 20%;
-	top: 90px;
+    padding: 5px;
 	position: absolute;
-	width: 60%;
+	width: 800px;
 }
 
-.dialog__msgbefore
+.ground__dialog__msgbefore
 {
 	text-align: center;
 	top: 2px;
 }
 
-.dialog__msg
+.ground__dialog__msgs
 {
 	margin-bottom: 10%;
 	position: relative;
@@ -301,7 +298,7 @@
 	left: 53%;
 }
 
-.msg__info
+.ground__msgs__prototype__info
 {
 	color: #999999;
 	font-size: smaller;
@@ -310,12 +307,12 @@
 	white-space: nowrap;
 }
 
-.msg__autor, .msg__time
+.ground__msgs__prototype__info__autor, .ground__msgs__prototype__info__time
 {
 	display: inline;
 }
 
-.dialog__input
+.ground__dialog__input
 {
 	border: 1px solid #ccccdd;
 	background-color: #e6e6fa;
@@ -326,7 +323,7 @@
 	width: 100%;
 }
 
-.dialog__input .form-control
+.ground__dialog__input .form-control
 {
     left: 20%;
 	position: fixed;
@@ -336,7 +333,7 @@
 	z-index: 1040;
 }
 
-.dialog__input .btn-info
+.ground__dialog__input .btn-info
 {
 	position: fixed;
 	left: 67%;
@@ -345,12 +342,17 @@
 	z-index: 1040;
 }
 
-.dialog__input .btn-warning
+.ground__dialog__input .btn-warning
 {
     left: 8%;
     position: fixed;
     top: 91.8%;
     width: 10%;
+}
+
+.ground__dialog__input .ground__dialog__input__add-msg-form
+{
+    width: 60%;
 }
 
 /*---------------------------------------------------------------------DIALOGUE END-----------------------------------------------------------*/
@@ -375,7 +377,7 @@
     top: -40px;
 }
 
-.history__block
+.ground__history-block
 {
     position: absolute;
     top: 50px;

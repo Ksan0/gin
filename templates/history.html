@@ -1,27 +1,27 @@
 <div class="ground__history">
-    <div class="history__title">
-        <div class="title__open">
-            <a class="link link__open" style="text-decoration: underline;">Открытые</a>
+    <div class="ground__history__title">
+        <div class="ground__history__title__open">
+            <a class="link ground__history__title__open__link" style="text-decoration: underline;">Открытые</a>
         </div>
 
-        <div class="title__close">
-            <a class="link link__close">Закрытые</a>
+        <div class="ground__history__title__close">
+            <a class="link ground__history__title__close__link">Закрытые</a>
         </div>
     </div>
 
-    <div class="history__elements">
-        <div class="history__open">
-            <a class="history__elem__prototype" style="text-decoration: none; display: none;">
-                <div class="history__elem bg-info">
-                    <div class="date"></div>
-                    <div class="event"></div>
+    <div class="ground__history__elems">
+        <div class="ground__history__elems__open">
+            <a class="ground__history__elems__open__prototype" style="text-decoration: none; display: none;">
+                <div class="ground__history__elems__open__prototype__elem bg-info">
+                    <div class="ground__history__elems__open__prototype__elem__date"></div>
+                    <div class="ground__history__elems__open__prototype__elem__event"></div>
                 </div>
             </a>
             {% for task in last_open_tasks %}
                 <a href="/task/{{ task.id }}" style="text-decoration: none;">
-                    <div class="history__elem">
-                        <div class="date">{{ task.get_date_str }}</div>
-                        <div class="event">{{ task.text }}</div>
+                    <div class="ground__history__elems__open__prototype__elem">
+                        <div class="ground__history__elems__open__prototype__elem__date">{{ task.get_date_str }}</div>
+                        <div class="ground__history__elems__open__prototype__elem__event">{{ task.text }}</div>
                     </div>
                 </a>
             {% empty %}
@@ -29,12 +29,13 @@
             {% endfor %}
         </div>
 
-        <div class="history__close">
+        <div class="ground__history__elems__close">
             {% for task in last_close_tasks %}
                 <a href="/task/{{ task.id }}" style="text-decoration: none;">
-                    <div class="history__elem">
-                        <div class="date">{{ task.get_date_str }}</div>
-                        <div class="event">{{ task.text }}</div>
+                <!--Да, тут повтор, потому что одно и то же!!!-->
+                    <div class="ground__history__elems__open__prototype__elem">
+                        <div class="ground__history__elems__open__prototype__elem__date">{{ task.get_date_str }}</div>
+                        <div class="ground__history__elems__open__prototype__elem__event">{{ task.text }}</div>
                     </div>
                 </a>
             {% empty %}
