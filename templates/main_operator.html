@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="ground">
+
+        <div class="profile">
+            Профиль </br>
+
+            Какая-то инфа </br>
+
+            Блаблабла </br>
+
+            Photo </br>
+        </div>
+
+        <div class="history__block">
+            {% include "forms/assign_self_task_form.html" with form=assign_self_task_form %}
+            <!--button type="button" class="btn btn-warning get-task-btn js-get_task_button">Получить задание</button-->
+
+            {% include "history.html" %}
+        </div>
+
+    </div>
+
+{% endblock %}

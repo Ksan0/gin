@@ -2,18 +2,9 @@
 
 {% block content %}
 	<div class="dialog">
-        <div>
-            {% if paginator.has_previous %}
-                <a href="{% url 'view_task' task_id %}">
-                    {{ paginator.previous_page_number }}
-                </a>
-            {% endif %}
-        </div>
-
 		<div class="dialog__msg">
             <div class="dialog__msg__prototype" style="display: none;">
                 <div class="msg__info">
-					<div class="msg__autor"></div>,
 					<div class="msg__time"></div>
 				</div>
 			</div>
@@ -31,35 +22,33 @@
 
     {% include "history.html" %}
 
-    <div class="dialog__input">
+    <div class="dialog__input" style="top: 200px;">
         {% if is_operator %}
             <div class="btn-price">
-                {% if price > 0 %}
-                    <div class="btn btn-warning js-set_price_out">{{ price }} P</div>
-                {% else %}
-                    <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">
-                        <div class="btn btn-warning">Выставить счёт</div>
-                    </a>
-                    <div class="btn btn-warning js-set_price_out" style="display: none"></div>
-                {% endif %}
+                <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">
+                    <div class="btn btn-warning">Выставить счёт</div>
+                </a>
+                <div class="btn btn-warning js-set_price_out" style="display: none"></div>
             </div>
         {% else %}
-            {% if price > 0 %}
+            {% if set_price_form.price_count.value > 0 %}
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <input type="hidden" name="cmd" value="_xclick" />
                     <input type="hidden" name="bn" value="Gin-BuyNow_gingin_RU" />
                     <input type="hidden" name="business" value="kgfq@mail.ru" />
-                    <input type="hidden" name="item_name" value="gingingin" />
+                    <input type="hidden" name="item_name" value="{{ set_price_form.price_title.value }}" />
                     <input type="hidden" name="currency_code" value="RUB" />
-                    <input type="hidden" name="amount" value="{{ price }}" />
+                    <input type="hidden" name="amount" value="{{ set_price_form.price_count.value }}" />
                     <input type="hidden" name="no_shipping" value="1">
-                    <input type="hidden" name="custom" value="OLOLO" />
+                    <input type="hidden" name="custom" value="custom-field" />
                     <button type="submit" class="btn btn-warning btn-pay">Оплатить</button>
                 </form>
             {% endif %}
         {% endif %}
 
-        {% include "send_message_form.html" %}
+        {% include "forms/add_message_form.html" with form=add_message_form %}
+
+        {% include "utils/task_paginator.html" %}
     </div>
 
     <div class="modal fade price-modal" id="price" tabindex="-1" role="dialog" aria-hidden="true">
@@ -76,9 +65,17 @@
                 </div>
 
                 <div class="modal-body">
-                    {% include "price_form.html" %}
+                    {% include "forms/set_price_form.html" with form=set_price_form %}
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                    $('html,body').scrollTop($(document).height());
+                }, 100);
+        });
+    </script>
 {% endblock %}

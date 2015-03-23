@@ -1,0 +1,19 @@
+{% extends "forms/form.html" %}
+
+<script>
+{% block add_script %}
+    f_success = function (data, textStatus, jqXHR, form) {
+        var prototype = $(".dialog__msg__prototype");
+        var newEl = prototype.clone();
+
+        newEl.removeClass("dialog__msg__prototype");
+        newEl.addClass(data["class"]);
+        newEl.css("display", "block");
+        newEl.find(".msg__info").before(data[GIN.AjaxResponseKeys.CREATION_DATA]);
+        newEl.find(".msg__time").html(data[GIN.AjaxResponseKeys.CREATION_DATE]);
+        $(".dialog__msg").append(newEl);
+
+        form.find(".text").val("");
+    };
+{% endblock %}
+</script>

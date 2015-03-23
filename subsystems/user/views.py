@@ -43,7 +43,7 @@ def ajax_signin(request):
     try:
         s_email = form.cleaned_data["email"]
         s_password = form.cleaned_data["password"]
-        user = AUser.objects.get(s_email, s_password, False)
+        user = AUser.objects.get(email=s_email)
         user = authenticate(id=user.id, password=s_password)
         if user is None:
             raise Exception()

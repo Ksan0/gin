@@ -1,0 +1,20 @@
+{% extends "forms/form.html" %}
+
+<script>
+{% block add_script %}
+    f_success = function (data, textStatus, jqXHR, form) {
+        if (data[GIN.AjaxResponseKeys.CREATION_ID]) {
+            var prototype = $(".history__elem__prototype");
+            var newEl = prototype.clone();
+            newEl.find(".date").html(data[GIN.AjaxResponseKeys.CREATION_DATE]);
+            newEl.find(".event").html(data[GIN.AjaxResponseKeys.CREATION_DATA]);
+            newEl[0].href = "/task/" + data[GIN.AjaxResponseKeys.CREATION_ID];
+            newEl.removeClass("history__elem__prototype");
+            newEl.css("display", "block");
+            prototype.after(newEl);
+
+            form.find(".text").val("");
+        }
+    };
+{% endblock %}
+</script>

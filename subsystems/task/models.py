@@ -18,21 +18,24 @@ class Task(models.Model):
         OPEN_INDEX = (0, 50)
         CLOSE_INDEX = (50, 100)
         # open
-        CREATED = 0             # таск был создан, но его еще не смотрел оператор
-        LOOKED = 1              # оператор смотрел этот таск
+        CREATE = 0                  # таск был создан, но его еще не распределили оператору
+        ASSIGN = 1                  # оператор получил этот таск
+        HAVE_PRICE = 2              # счет выставлен
         # close
-        CANCEL_BY_USER = 50      # юзер отменил таск
-        CANCEL_BY_OPERATOR = 51  # оператор отменил таск
-        SOLVED = 52              # таск решен
+        CANCEL_BY_USER = 50         # юзер отменил таск
+        CANCEL_BY_OPERATOR = 51     # оператор отменил таск
+        SOLVED = 52                 # таск решен
 
     objects = TaskManager()
 
     creation_date = models.DateTimeField(auto_now_add=True)
-    status = models.SmallIntegerField(default=Status.CREATED)
-    user = models.ForeignKey(AUser, related_name='+')                      # юзер, который создал таск
-    operator = models.ForeignKey(AUser, null=True, related_name='+')   # оператор, на которого повесили таск
+    status = models.SmallIntegerField(default=Status.CREATE)
+    user = models.ForeignKey(AUser, related_name='+')                       # юзер, который создал таск
+    operator = models.ForeignKey(AUser, null=True, related_name='+')        # оператор, который выполняет таск
     text = models.CharField(max_length=255)
-    price = models.IntegerField(default=0)
+
+    price_title = models.CharField(default="", max_length=50)
+    price_count = models.IntegerField(default=0)
 
     def get_date_str(self):
         today = datetime.now()

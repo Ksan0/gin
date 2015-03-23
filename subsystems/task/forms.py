@@ -10,4 +10,14 @@ class CreateTaskForm(GinForm):
 
 
 class AssignSelfTaskForm(GinForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super(AssignSelfTaskForm, self).__init__("ajax_assign_self_task", "POST", "", *args, **kwargs)
+
+
+class SetPriceForm(GinForm):
+    price_title = forms.CharField()
+    price_count = forms.IntegerField()
+    task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
+
+    def __init__(self, *args, **kwargs):
+        super(SetPriceForm, self).__init__("ajax_set_price", "POST", "", *args, **kwargs)

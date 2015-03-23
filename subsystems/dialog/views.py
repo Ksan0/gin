@@ -1,36 +1,46 @@
+from subsystems.dialog.forms import AddMessageForm
 from subsystems.dialog.models import Message
 from subsystems.task.models import Task
-from subsystems.utils.db import check_len
+from subsystems.utils.ajax import AjaxResponseKeys
 from subsystems.utils.json import render_to_json, AjaxErrors
 
 
 def ajax_add_message(request):
-    if not request.user.is_authenticated():
-        return render_to_json(AjaxErrors.BAD_SESSION.json())
+    form = AddMessageForm(request.POST or None)
 
     if request.method != "POST":
-        return render_to_json(AjaxErrors.BAD_METHOD.json())
+        form.add_error(None, "bad method")
+        return render_to_json(form.errors_to_json())
+
+    if not request.user.is_authenticated():
+        form.add_error(None, "bad session")
+        return render_to_json(form.errors_to_json())
+
+    if not form.is_valid():
+        return render_to_json(form.errors_to_json())
 
     try:
-        task_id = request.POST.__getitem__("task_id")
-        text = check_len(request.POST.__getitem__("text"), 255)
-        task = Task.objects.get(id=task_id)
+        s_task_id = form.cleaned_data['task_id']
+        task = Task.objects.get(id=s_task_id)
     except:
-        return render_to_json(AjaxErrors.BAD_FORM.json())
+        form.add_error(None, "bad task id")
+        return render_to_json(form.errors_to_json())
 
-    if request.user != task.user and request.user != task.operator.user and (not request.user.is_superuser):
-        return render_to_json(AjaxErrors.BAD_SESSION.json())
+    if task.user.id != request.user.id and task.operator.id != request.user.id and not request.user.is_superuser:
+        form.add_error(None, "bad session")
+        return render_to_json(form.errors_to_json())
 
-    message = Message(task=task, user=request.user, body=text)
+    s_text = form.cleaned_data['text']
+
+    message = Message(task=task, user=request.user, body=s_text)
     message.save()
 
     response_data = {
-        "text": text,
-        "date": message.get_date_str(),
-        "is_operator": message.user.is_operator
+        AjaxResponseKeys.CREATION_ID: message.id,
+        AjaxResponseKeys.CREATION_DATA: s_text,
+        AjaxResponseKeys.CREATION_DATE: message.get_date_str(),
+        "class": "dialog__msgright bg-warning"
     }
-    response_data.update(AjaxErrors.NONE.json())
-
     return render_to_json(response_data)
 
 
