@@ -27,8 +27,8 @@
 
 .header__title
 {
-	margin-left: 50px;
-	margin-top: 20px;
+	margin-left: 30px;
+	margin-top: 15px;
 	position: absolute;
 	width: 350px;
 	z-index: 1040;
@@ -73,7 +73,7 @@
 {
     border-left: 1px solid blue;
 	left: 61%;
-	height: 250px;
+	height: 300px;
 	position: absolute;
 	text-align: center;
 	width: 40%;
@@ -91,13 +91,15 @@
 	position: absolute;
 }
 
-.signin-btn
+.hello__btns__signin-btn
 {
-	top: 60px;
+    position: relative;
+	top: 100px;
 }
 
-.signup-btn
+.hello__btns__signup-btn
 {
+    position: relative;
 	top: 130px;
 }
 
@@ -151,8 +153,18 @@
 
 .ground__query .form-control
 {
+    height: 150px;
+    left: 2%;
+    position: relative;
+    resize: none;
 	width: 700px;
-	resize: none;
+}
+
+.ground__query .form_submit_button
+{
+    left: 20%;
+    top: 10px;
+    position: relative;
 }
 
 .create__task__msg
@@ -237,7 +249,7 @@
     color: #737373;
 }
 
-.ground__history .ground__history__elems__open
+.ground__history .ground__history__elems__open__prototype__elem
 {
 	border: 1px solid #b0e2ff;
 	border-radius: 10px;
@@ -323,7 +335,7 @@
 	width: 100%;
 }
 
-.ground__dialog__input .form-control
+/*.ground__dialog__input .form-control
 {
     left: 20%;
 	position: fixed;
@@ -331,7 +343,7 @@
 	top: 90%;
 	width: 45%;
 	z-index: 1040;
-}
+}*/
 
 .ground__dialog__input .btn-info
 {
@@ -342,17 +354,33 @@
 	z-index: 1040;
 }
 
-.ground__dialog__input .btn-warning
+/*.ground__dialog__input .btn-warning
 {
     left: 8%;
     position: fixed;
     top: 91.8%;
     width: 10%;
+}*/
+
+.ground__dialog__input .ground__dialog__input__add-msg-form__txtarea
+{
+    height: 40px;
+    resize: none;
+    width: 60%;
 }
 
-.ground__dialog__input .ground__dialog__input__add-msg-form
+.ground__dialog__input .form_submit_button
 {
-    width: 60%;
+    top: 91.8%;
+    left: 800px;
+    position: fixed;
+}
+
+.ground__dialog__input .btn-price
+{
+    top: 91.3%;
+    left: 1100px;
+    position: fixed;
 }
 
 /*---------------------------------------------------------------------DIALOGUE END-----------------------------------------------------------*/
