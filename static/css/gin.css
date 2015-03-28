@@ -369,20 +369,20 @@
 {
     height: 40px;
     resize: none;
-    width: 770px;
+    width: 60%;
 }
 
 .ground__dialog__input .form_submit_button
 {
-    top: 91.8%;
-    left: 800px;
+    top: 91.3%;
+    left: 61%;
     position: fixed;
 }
 
 .ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
 {
     top: 91.3%;
-    left: 1100px;
+    left: 80%;
     position: fixed;
 }
 
