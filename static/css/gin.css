@@ -183,8 +183,8 @@
 
 .ground__query .form_submit_button
 {
-    left: 20%;
-    top: 10px;
+    left: 2%;
+    top: 170px;
     position: relative;
 }
 
@@ -408,14 +408,16 @@
 
 /*---------------------------------------------------------------------OPERATOR BEGIN-----------------------------------------------------------*/
 
-.profile
+.ground__profile
 {
     background-color: #d6e9c6;
     font-size: large;
     font-weight: bold;
-    min-height: 300px;
+    left: 10px;
+    min-height: 200px;
+    position: relative;
     text-align: center;
-    width: 700px;
+    width: 770px;
 }
 
 .get-task-btn
