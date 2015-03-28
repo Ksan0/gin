@@ -70,3 +70,6 @@ def test_create(request):
         return redirect("/")
 
     return redirect("/")
+
+def view_faq(request):
+    return render(request, "faq.html")
