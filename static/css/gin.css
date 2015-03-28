@@ -356,16 +356,6 @@
 	width: 100%;
 }
 
-/*.ground__dialog__input .form-control
-{
-    left: 20%;
-	position: fixed;
-	resize: none;
-	top: 90%;
-	width: 45%;
-	z-index: 1040;
-}*/
-
 .ground__dialog__input .btn-info
 {
 	position: fixed;
@@ -375,19 +365,11 @@
 	z-index: 1040;
 }
 
-/*.ground__dialog__input .btn-warning
-{
-    left: 8%;
-    position: fixed;
-    top: 91.8%;
-    width: 10%;
-}*/
-
 .ground__dialog__input .ground__dialog__input__add-msg-form__txtarea
 {
     height: 40px;
     resize: none;
-    width: 60%;
+    width: 770px;
 }
 
 .ground__dialog__input .form_submit_button
@@ -397,7 +379,7 @@
     position: fixed;
 }
 
-.ground__dialog__input .btn-price
+.ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
 {
     top: 91.3%;
     left: 1100px;
