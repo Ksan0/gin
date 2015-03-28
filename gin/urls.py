@@ -17,7 +17,7 @@ urlpatterns = patterns(
     # views
     url(r"^$", gin.views.view_index),
     url(r"^task/(?P<task_id>\d+)$", task.views.view_task, name="view_task"),
-    url(r"^faq/$", gin.views.view_faq),
+    url(r"^faq$", gin.views.view_faq, name="view_faq"),
 
     # test
     url(r"^test_create$", gin.views.test_create),
