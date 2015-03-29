@@ -62,10 +62,16 @@
     text-decoration: none;
 }
 
-.header__menu__faq
+.header__menu__elem
 {
-    left: 850px;
+    color: lightblue;
     position: relative;
+    margin-left: 50px;
+}
+
+.header__menu__elem__current
+{
+    text-decoration: underline;
 }
 
 /*---------------------------------------------------------------------HEADER END-----------------------------------------------------------*/
@@ -256,7 +262,7 @@
 	width: 700px;
 }
 
-.ground__history .ground__history__elems__open__prototype__elem__date
+.ground__history .ground__history__elems__i__date
 {
     color: #b4cdcd;
 	font-size: smaller;
@@ -265,12 +271,12 @@
     top: 5px;
 }
 
-.ground__history .ground__history__elems__open__prototype__elem:hover > .ground__history__elems__open__prototype__elem__date
+.ground__history .ground__history__elems__i:hover > .ground__history__elems__i__date
 {
     color: #737373;
 }
 
-.ground__history .ground__history__elems__open__prototype__elem
+.ground__history .ground__history__elems__i
 {
 	border: 1px solid #b0e2ff;
 	border-radius: 10px;
@@ -278,7 +284,7 @@
 	padding-bottom: 17px;
 }
 
-.ground__history .ground__history__elems__open__prototype__elem__event
+.ground__history .ground__history__elems__i__event
 {
 	padding-left: 40px;
 	padding-right: 40px;
@@ -340,7 +346,7 @@
 	white-space: nowrap;
 }
 
-.ground__msgs__prototype__info__autor, .ground__msgs__prototype__info__time
+.ground__msgs__prototype__info__autor, .ground__msgs__info__time
 {
 	display: inline;
 }
@@ -446,4 +452,40 @@
     top: 10px;
 }
 
+.ground__faq__q__title
+{
+    font-size: 15pt;
+    color: #ff910a;
+    display: inline;
+}
+
+.ground__faq__a__title
+{
+    font-size: 15pt;
+    color: #7784e6;
+    display: inline;
+}
+
+.ground__faq__q__text
+{
+    font-size: 12pt;
+    font-weight: bold;
+    display: inline;
+    margin-left: 10px;
+}
+
+.ground__faq__a__text
+{
+    font-size: 12pt;
+    font-weight: bold;
+    display: inline;
+    margin-left: 22px;
+}
+
 /*---------------------------------------------------------------------FAQ END-----------------------------------------------------------*/
+
+
+.form_error
+{
+    color: red;
+}

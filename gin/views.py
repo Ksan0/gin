@@ -10,8 +10,10 @@ from subsystems import user
 
 def index_hello_page(request):
     context = {
+        "current_page": "index",
         "signup_form": user.forms.SignupForm(),
-        "signin_form": user.forms.SigninForm()
+        "signin_form": user.forms.SigninForm(),
+        "restore_password_form": user.forms.RestorePasswordForm()
     }
     return render(request, "hello.html", context)
 
@@ -21,6 +23,7 @@ def index_main_user_page(request):
     last_open_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, True), 10)
     last_close_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, False), 10)
     context = {
+        "current_page": "index",
         "last_open_tasks": last_open_tasks.page(1),
         "last_close_tasks": last_close_tasks.page(1),
         "create_task_form": CreateTaskForm()
@@ -33,6 +36,7 @@ def index_main_operator_page(request):
     last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
     last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
     context = {
+        "current_page": "index",
         "last_open_tasks": last_open_tasks,
         "last_close_tasks": last_close_tasks,
         "assign_self_task_form": AssignSelfTaskForm()
@@ -72,4 +76,7 @@ def test_create(request):
     return redirect("/")
 
 def view_faq(request):
-    return render(request, "faq.html")
+    context = {
+        "current_page": "faq"
+    }
+    return render(request, "faq.html", context)

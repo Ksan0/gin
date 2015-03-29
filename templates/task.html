@@ -4,17 +4,18 @@
     <div class="ground">
         <div class="ground__dialog">
             <div class="ground__dialog__msgs">
-                <div class="ground__dialog__msgs__prototype" style="display: none;">
-                    <div class="ground__dialog__msgs__prototype__info">
-                        <div class="ground__dialog__msgs__prototype__info__time"></div>
+                <div class="ground__dialog__msgs__prototype dialog__msgright bg-warning" style="display: none;">
+                    <span class="ground__dialog__msgs__text"></span>
+                    <div class="ground__dialog__msgs__info">
+                        <div class="ground__dialog__msgs__info__time"></div>
                     </div>
                 </div>
 
                 {% for msg in messages %}
                     <div class="{{ msg.class }}">
-                        {{ msg.text }}
-                        <div class="ground__dialog__msgs__prototype__info">
-                            <div class="ground__dialog__msgs__prototype__info__time">{{ msg.date }}</div>
+                        <span class="ground__dialog__msgs__text">{{ msg.text }}</span>
+                        <div class="ground__dialog__msgs__info">
+                            <div class="ground__dialog__msgs__info__time">{{ msg.date }}</div>
                         </div>
                     </div>
                 {% endfor %}
@@ -58,9 +59,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="warning-msg text-danger" style="display: none;">
-                        Ой-ой-ой. Где-то закралась ошибка.
-                    </div>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Закрыть</span>

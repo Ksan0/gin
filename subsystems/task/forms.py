@@ -6,12 +6,12 @@ class CreateTaskForm(GinForm):
     text = forms.CharField(label="", widget=forms.Textarea({"class": "text form-control"}), min_length=10, max_length=255)
     
     def __init__(self, *args, **kwargs):
-        super(CreateTaskForm, self).__init__("ajax_create_task", "POST", "", *args, **kwargs)
+        super(CreateTaskForm, self).__init__("ajax_create_task", "POST", "", "Отправить", *args, **kwargs)
 
 
 class AssignSelfTaskForm(GinForm):
     def __init__(self, *args, **kwargs):
-        super(AssignSelfTaskForm, self).__init__("ajax_assign_self_task", "POST", "", *args, **kwargs)
+        super(AssignSelfTaskForm, self).__init__("ajax_assign_self_task", "POST", "", "Взять задачу", *args, **kwargs)
 
 
 class SetPriceForm(GinForm):
@@ -20,4 +20,4 @@ class SetPriceForm(GinForm):
     task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
 
     def __init__(self, *args, **kwargs):
-        super(SetPriceForm, self).__init__("ajax_set_price", "POST", "", *args, **kwargs)
+        super(SetPriceForm, self).__init__("ajax_set_price", "POST", "", "Выставить счет", *args, **kwargs)

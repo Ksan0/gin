@@ -19,9 +19,12 @@
             </div>
 
 			<div class="header__menu">
-                <a href="{% url "view_faq" %}" class="header__menu__faq">
-                    FAQ
-                </a>
+                <a href="{% url "view_index" %}" class="header__menu__elem header__menu__elem__index">Главная</a>
+                <a href="{% url "view_faq" %}" class="header__menu__elem header__menu__elem__faq">FAQ</a>
+
+                <script>
+                    $(".header__menu__elem__{{ current_page }}").addClass("header__menu__elem__current");
+                </script>
 			</div>
 	</div>
 

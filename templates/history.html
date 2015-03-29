@@ -1,27 +1,27 @@
 <div class="ground__history">
     <div class="ground__history__title">
         <div class="ground__history__title__open">
-            <a class="link ground__history__title__open__link" style="text-decoration: underline;">Открытые</a>
+            <a class="ground__history__title__open__link" style="text-decoration: underline; cursor: pointer;">Открытые</a>
         </div>
 
         <div class="ground__history__title__close">
-            <a class="link ground__history__title__close__link">Закрытые</a>
+            <a class="ground__history__title__close__link" style="cursor: pointer;">Закрытые</a>
         </div>
     </div>
 
     <div class="ground__history__elems">
         <div class="ground__history__elems__open">
-            <a class="ground__history__elems__open__prototype" style="text-decoration: none; display: none;">
-                <div class="ground__history__elems__open__prototype__elem bg-info">
-                    <div class="ground__history__elems__open__prototype__elem__date"></div>
-                    <div class="ground__history__elems__open__prototype__elem__event"></div>
+            <a class="ground__history__elems__prototype" style="text-decoration: none; display: none;">
+                <div class="ground__history__elems__i bg-info">
+                    <div class="ground__history__elems__i__date"></div>
+                    <div class="ground__history__elems__i__event"></div>
                 </div>
             </a>
             {% for task in last_open_tasks %}
-                <a href="/task/{{ task.id }}" style="text-decoration: none;">
-                    <div class="ground__history__elems__open__prototype__elem">
-                        <div class="ground__history__elems__open__prototype__elem__date">{{ task.get_date_str }}</div>
-                        <div class="ground__history__elems__open__prototype__elem__event">{{ task.text }}</div>
+                <a href="{% url 'view_task' task.id %}" style="text-decoration: none;">
+                    <div class="ground__history__elems__i">
+                        <div class="ground__history__elems__i__date">{{ task.get_date_str }}</div>
+                        <div class="ground__history__elems__i__event">{{ task.text }}</div>
                     </div>
                 </a>
             {% empty %}
@@ -31,11 +31,10 @@
 
         <div class="ground__history__elems__close">
             {% for task in last_close_tasks %}
-                <a href="/task/{{ task.id }}" style="text-decoration: none;">
-                <!--Да, тут повтор, потому что одно и то же!!!-->
-                    <div class="ground__history__elems__open__prototype__elem">
-                        <div class="ground__history__elems__open__prototype__elem__date">{{ task.get_date_str }}</div>
-                        <div class="ground__history__elems__open__prototype__elem__event">{{ task.text }}</div>
+                <a href="{% url 'view_task' task.id %}" style="text-decoration: none;">
+                    <div class="ground__history__elems__i">
+                        <div class="ground__history__elems__i__date">{{ task.get_date_str }}</div>
+                        <div class="ground__history__elems__i__event">{{ task.text }}</div>
                     </div>
                 </a>
             {% empty %}
@@ -46,16 +45,16 @@
 </div>
 
 <script>
-    $(".link__open").on("click", function () {
-        $(".history__open").show();
-        $(".history__close").hide();
-        $(".link__open").css("text-decoration", "underline");
-        $(".link__close").css("text-decoration", "none");
+    $(".ground__history__title__open__link").on("click", function () {
+        $(".ground__history__elems__open").show();
+        $(".ground__history__elems__close").hide();
+        $(".ground__history__title__open__link").css("text-decoration", "underline");
+        $(".ground__history__title__close__link").css("text-decoration", "none");
     });
-    $(".link__close").on("click", function () {
-        $(".history__close").show();
-        $(".history__open").hide();
-        $(".link__open").css("text-decoration", "none");
-        $(".link__close").css("text-decoration", "underline");
+    $(".ground__history__title__close__link").on("click", function () {
+        $(".ground__history__elems__close").show();
+        $(".ground__history__elems__open").hide();
+        $(".ground__history__title__open__link").css("text-decoration", "none");
+        $(".ground__history__title__close__link").css("text-decoration", "underline");
     });
 </script>

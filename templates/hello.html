@@ -27,9 +27,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="warning-msg text-danger" style="display: none;">
-                        Ой-ой-ой. Где-то закралась ошибка.
-                    </div>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Закрыть</span>
@@ -47,9 +44,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="warning-msg text-danger" style="display: none;">
-                        Введен неверный пароль или логин. Попробуйте еще раз.
-                    </div>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Закрыть</span>
@@ -57,8 +51,24 @@
                 </div>
 
                 <div class="modal-body">
-                    {% include "forms/signin_form.html" with form=signin_form %}
-                    <button type="button" class="btn btn-info">Восстановить пароль</button>
+                    <div class="signin__form__show">
+                        {% include "forms/signin_form.html" with form=signin_form %}
+                        <a href="#">Восстановить пароль</a>
+                    </div>
+                    <div class="restore__password__form__show" style="display: none;">
+                        {% include "forms/restore_password_form.html" with form=restore_password_form %}
+                        <a href="#">Войти</a>
+                    </div>
+                    <script>
+                        $(".signin__form__show a").on("click", function () {
+                            $(".signin__form__show").hide();
+                            $(".restore__password__form__show").show();
+                        });
+                        $(".restore__password__form__show a").on("click", function () {
+                            $(".signin__form__show").show();
+                            $(".restore__password__form__show").hide();
+                        });
+                    </script>
                 </div>
             </div>
         </div>

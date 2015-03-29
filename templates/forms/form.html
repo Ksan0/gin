@@ -1,6 +1,9 @@
 <form id="{{ form.html_id }}" class="{{ form.html_class }}">
     {% csrf_token %}
 
+    <div class="__all___success">
+
+    </div>
     <div class="__all___error form_error">
 
     </div>
@@ -14,7 +17,7 @@
         </div>
     {% endfor %}
 
-    <input class="form_submit_button btn btn-info" type="button" value="submit">
+    <input class="form_submit_button btn btn-info" type="button" value="{{ form.submit_button_title }}">
 </form>
 
 <script>
