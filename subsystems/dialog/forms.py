@@ -7,4 +7,4 @@ class AddMessageForm(GinForm):
     task_id = forms.IntegerField(widget=forms.HiddenInput(), label='')
 
     def __init__(self, *args, **kwargs):
-        super(AddMessageForm, self).__init__("ajax_add_message", "POST", "ground__dialog__input__add-msg-form", "Отправить", *args, **kwargs)
+        super(AddMessageForm, self).__init__("ajax_add_message", "POST", "ground__dialog__input__add-msg-form", "", "Отправить", *args, **kwargs)

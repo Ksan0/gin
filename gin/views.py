@@ -77,6 +77,9 @@ def test_create(request):
 
 def view_faq(request):
     context = {
-        "current_page": "faq"
+        "current_page": "faq",
+        "signup_form": user.forms.SignupForm(),
+        "signin_form": user.forms.SigninForm(),
+        "restore_password_form": user.forms.RestorePasswordForm()
     }
     return render(request, "faq.html", context)

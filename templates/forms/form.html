@@ -1,4 +1,4 @@
-<form id="{{ form.html_id }}" class="{{ form.html_class }}">
+<form id="{{ form.html_id }}" class="{{ form.html_class }} form-horizontal">
     {% csrf_token %}
 
     <div class="__all___success">
@@ -7,17 +7,18 @@
     <div class="__all___error form_error">
 
     </div>
-    {% for field in form %}
-        <div>
-            {{ field.label_tag }}
-            {{ field }}
-            <div class="{{ field.name }}_error form_error">
 
+    <div class="form-group">
+        {% for field in form %}
+            <div>
+                {{ field.label_tag }}
+                {{ field }}
+                <div class="{{ field.name }}_error form_error"></div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 
-    <input class="form_submit_button btn btn-info" type="button" value="{{ form.submit_button_title }}">
+    <input class="form_submit_button {{ form.submit_button_class }} btn btn-info" type="button" value="{{ form.submit_button_title }}">
 </form>
 
 <script>

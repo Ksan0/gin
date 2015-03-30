@@ -35,20 +35,25 @@
 {
     color: #ffffff;
     font-size: 25px;
-    margin-left: 30px;
-	margin-top: 15px;
-	position: absolute;
-	width: 350px;
+    left: 30px;
+	position: relative;
+    top: 15px;
+	width: 200px;
 	z-index: 1040;
 }
 
 .header__menu
 {
     font-size: 25px;
-	margin-left: 350px;
-	margin-top: 15px;
-	position: absolute;
+	left: 30%;
+	position: relative;
+    top: 15px;
 	z-index: 1040;
+}
+
+.header__menu a:hover
+{
+    text-decoration: none;
 }
 
 .header, .header__title, .header__menu
@@ -71,8 +76,43 @@
 
 .header__menu__elem__current
 {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
+
+.header__btns
+{
+	left: 75%;
+	position: absolute;
+	text-align: center;
+}
+
+.heder__btns .btn-primary, .header__btns .btn-primary
+{
+	text-align: center;
+	width: 160px;
+}
+
+.header__btns__signin-btn
+{
+    right: 90px;
+    position: relative;
+    top: 14px;
+}
+
+.header__btns__signup-btn
+{
+    bottom: 20px;
+    position: relative;
+    left: 80px;
+}
+
+.header__btns__signout-btn
+{
+    left: 120px;
+    position: relative;
+    top: 14px;
+}
+
 
 /*---------------------------------------------------------------------HEADER END-----------------------------------------------------------*/
 
@@ -96,43 +136,13 @@
 	width: 60%;
 }
 
-.hello__btns
-{
-    border-left: 1px solid blue;
-	left: 61%;
-	height: 300px;
-	position: absolute;
-	text-align: center;
-	width: 40%;
-}
-
-.signin-window .btn-primary, .signup-window .btn-primary
-{
-	text-align: center;
-	width: 200px;
-}
-
-.signin-window, .signup-window
-{
-	left: 30%;
-	position: absolute;
-}
-
-.hello__btns__signin-btn
-{
-    position: relative;
-	top: 100px;
-}
-
-.hello__btns__signup-btn
-{
-    position: relative;
-	top: 130px;
-}
-
 /*---------------------------------------------------------------------HELL0 END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------FORMS BEGIN-----------------------------------------------------------*/
+.signup-modal .modal-body, .signin-modal .modal-body
+{
+    padding: 40px;
+}
 
 .modal-header
 {
@@ -153,6 +163,32 @@
 .col-sm-offset-2, .col-sm-10
 {
     text-align: right !important;
+}
+
+.signin-modal .form_submit_button
+{
+    left: 200px;
+    position: relative;
+}
+
+.signin-modal .href-restore
+{
+    top: 10px;
+    left: 165px;
+    position: relative;
+}
+
+.signin-modal .href-signin
+{
+    left: 235px;
+    position: relative;
+    top: 10px;
+}
+
+.signup-modal .form_submit_button
+{
+    left: 160px;
+    position: relative;
 }
 
 /*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
@@ -181,7 +217,7 @@
 .ground__query .form-control
 {
     height: 150px;
-    left: 2%;
+    left: 4%;
     position: relative;
     resize: none;
 	width: 700px;
@@ -203,13 +239,18 @@
     width: 700px;
 }
 
+.ground__query .form_error
+{
+    left: 33%;
+    position: relative;
+}
 /*---------------------------------------------------------------------MAIN_USER->QUERY END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------MAIN_USER->HISTORY BEGIN-----------------------------------------------------------*/
 .ground__history
 {
 	border-left: 1px solid blue;
-    min-height: 500px;
+    min-height: 300px;
 	left: 800px;
 	padding-left: 30px;
 	position: fixed;
@@ -357,39 +398,39 @@
 	background-color: #e6e6fa;
 	height: 12%;
 	padding: 1%;
+    padding-left: 2%;
 	position: fixed;
 	top: 88%;
 	width: 100%;
 }
 
-.ground__dialog__input .btn-info
-{
-	position: fixed;
-	left: 67%;
-    top: 91.8%;
-	width: 10%;
-	z-index: 1040;
-}
-
 .ground__dialog__input .ground__dialog__input__add-msg-form__txtarea
 {
     height: 40px;
+    position: relative;
     resize: none;
     width: 60%;
 }
 
 .ground__dialog__input .form_submit_button
 {
-    top: 91.3%;
     left: 61%;
     position: fixed;
+    top: 91.3%;
 }
 
 .ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
 {
-    top: 91.3%;
     left: 80%;
     position: fixed;
+    top: 91.3%;
+}
+
+.ground__dialog__input .task-pag
+{
+    left: 70%;
+    position: fixed;
+    bottom: 4%;
 }
 
 /*---------------------------------------------------------------------DIALOGUE END-----------------------------------------------------------*/
@@ -408,18 +449,29 @@
     width: 770px;
 }
 
-.get-task-btn
-{
-    left: 920px;
-    position: absolute;
-    text-align: center;
-    top: -40px;
-}
-
 .ground__history-block
 {
-    position: absolute;
-    top: 50px;
+    position: relative;
+}
+
+.ground__history-block .ground__history
+{
+    position: relative !important;
+    top: -180px;
+}
+
+.ground__history-block__take-task-btn
+{
+    left: 55%;
+    position: relative;
+    text-align: center;
+    top: -200px;
+    width: 50%;
+}
+
+.ground__history-block__take-task-btn .form_submit_button
+{
+    width: 59.5%;
 }
 
 /*---------------------------------------------------------------------OPERATOR END-----------------------------------------------------------*/
