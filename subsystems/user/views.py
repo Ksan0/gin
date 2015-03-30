@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from subsystems.a_user.models import AUser
@@ -130,3 +130,7 @@ def restore_password_confirm(request):
     }
 
     return render(request, "restore_password_confirm.html", context)
+
+def view_logout(request):
+    logout(request)
+    return redirect("/")

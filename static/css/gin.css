@@ -191,6 +191,11 @@
     position: relative;
 }
 
+.form_error
+{
+    color: red;
+}
+
 /*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------GROUND!!!-----------------------------------------------------------*/
@@ -366,6 +371,7 @@
     padding-bottom: 5px !important;
 	position: relative;
 	width: 47%;
+    word-break: break-all;
 }
 
 .dialog__msgleft
@@ -378,7 +384,7 @@
 	left: 53%;
 }
 
-.ground__msgs__prototype__info
+.ground__dialog__msgs__info
 {
 	color: #999999;
 	font-size: smaller;
@@ -387,7 +393,7 @@
 	white-space: nowrap;
 }
 
-.ground__msgs__prototype__info__autor, .ground__msgs__info__time
+.ground__dialog__msgs__info__autor, .ground__dialog__msgs__info__time
 {
 	display: inline;
 }
@@ -535,9 +541,3 @@
 }
 
 /*---------------------------------------------------------------------FAQ END-----------------------------------------------------------*/
-
-
-.form_error
-{
-    color: red;
-}
