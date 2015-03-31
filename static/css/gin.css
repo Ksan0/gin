@@ -12,107 +12,52 @@
 
 /*---------------------------------------------------------------------HEADER BEGIN-----------------------------------------------------------*/
 
-.header
-{
-	background: linear-gradient(to top, #000000, #999999);
-	color: #ffffff;
-	font-size: large;
-	font-weight: bold;
-	height: 70px; /*visota*/
-	margin: auto;
-	position: absolute;
-	width: 100%;
-	z-index: 1040;
-}
-
-.header a:hover
-{
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.header__title
-{
-    color: #ffffff;
-    font-size: 25px;
-    left: 30px;
-	position: relative;
-    top: 15px;
-	width: 200px;
-	z-index: 1040;
-}
-
-.header__menu
-{
-    font-size: 25px;
-	left: 30%;
-	position: relative;
-    top: 15px;
-	z-index: 1040;
-}
-
-.header__menu a:hover
-{
-    text-decoration: none;
-}
-
-.header, .header__title, .header__menu
-{
-	position: fixed !important;
-}
-
-.header__menu__faq, .header__title__href
-{
-    color: white;
-    text-decoration: none;
-}
-
-.header__menu__elem
-{
-    color: lightblue;
-    position: relative;
-    margin-left: 50px;
-}
-
-.header__menu__elem__current
+.header__elem__current
 {
     text-decoration: underline !important;
 }
 
-.header__btns
+.b-link
 {
-	left: 75%;
-	position: absolute;
-	text-align: center;
+    color: black !important;
 }
 
-.heder__btns .btn-primary, .header__btns .btn-primary
+a.b-link:hover
 {
-	text-align: center;
-	width: 160px;
+    color: #002a80 !important;
 }
 
-.header__btns__signin-btn
+.bb-link
 {
-    right: 90px;
-    position: relative;
-    top: 14px;
+    color: black !important;
+    font-size: x-large !important;
 }
 
-.header__btns__signup-btn
+.navbar-brand
 {
-    bottom: 20px;
-    position: relative;
-    left: 80px;
+    padding: 25px 15px !important;
 }
 
-.header__btns__signout-btn
+.navbar-right
 {
-    left: 120px;
-    position: relative;
-    top: 14px;
+    float: right !important;
+    margin-right: -15px !important;
 }
 
+.navbar-right .btn-primary
+{
+    width: 160px;
+}
+
+ul.nav.navbar-nav
+{
+    padding-top: 12px;
+}
+
+ul.nav.navbar-nav.navbar-right
+{
+    padding-top: 5px;
+}
 
 /*---------------------------------------------------------------------HEADER END-----------------------------------------------------------*/
 
@@ -120,25 +65,14 @@
 
 .hello
 {
-	height: 250px;
-	margin-left: 10%;
-	margin-right: 10%;
-	padding: 10px;
+	top: 80px;
 	position: absolute;
-	top: 90px;
-	width: 80%;
-}
-
-.hello__text
-{
-	height: 250px;
-	position: absolute;
-	width: 60%;
 }
 
 /*---------------------------------------------------------------------HELL0 END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------FORMS BEGIN-----------------------------------------------------------*/
+
 .signup-modal .modal-body, .signin-modal .modal-body
 {
     padding: 40px;
@@ -196,6 +130,11 @@
     color: red;
 }
 
+.money-btn
+{
+    background-color: #245269;
+}
+
 /*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------GROUND!!!-----------------------------------------------------------*/
@@ -214,53 +153,43 @@
 
 .ground__query
 {
-	position: absolute;
-	top: 10px;
-	width: 700px;
+    padding-left: 25px !important;
+	top: 80px;
 }
 
 .ground__query .form-control
 {
     height: 150px;
-    left: 4%;
-    position: relative;
     resize: none;
 	width: 700px;
 }
 
-.ground__query .form_submit_button
+.ground__query .btn-info
 {
-    left: 2%;
-    top: 170px;
-    position: relative;
-}
-
-.create__task__msg
-{
-    font-size: large;
-    position: absolute;
-    text-align: center;
-    top: 170px;
-    width: 700px;
+	position: absolute;
+    top: 200px;
+	width: 700px;
 }
 
 .ground__query .form_error
 {
     left: 33%;
-    position: relative;
+    top: 15px;
 }
+
+.ground__query .form-group
+{
+    margin: 0 !important;
+}
+
 /*---------------------------------------------------------------------MAIN_USER->QUERY END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------MAIN_USER->HISTORY BEGIN-----------------------------------------------------------*/
+
 .ground__history
 {
 	border-left: 1px solid blue;
-    min-height: 300px;
-	left: 800px;
-	padding-left: 30px;
-	position: fixed;
-	top: 80px;
-	width: 450px;
+    min-height: 300px !important;
 }
 
 .ground__history__title
@@ -269,7 +198,6 @@
 	font-weight: bold;
     position: relative;
 	text-align: center;
-	top: 15px;
     white-space: nowrap;
 }
 
@@ -301,13 +229,6 @@
     top: 30px;
 }
 
-.ground__query .btn-info
-{
-	margin-top: 10px;
-	position: absolute;
-	width: 700px;
-}
-
 .ground__history .ground__history__elems__i__date
 {
     color: #b4cdcd;
@@ -335,6 +256,7 @@
 	padding-left: 40px;
 	padding-right: 40px;
 	text-align: center;
+    word-break: break-all;
 }
 
 /*---------------------------------------------------------------------MAIN_USER->HISTORY END-----------------------------------------------------------*/

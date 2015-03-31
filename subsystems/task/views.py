@@ -64,7 +64,7 @@ def ajax_assign_self_task(request):
         form.add_error(None, "Достигнуто максимальное количество активных задач")
         return render_to_json(form.errors_to_json())
 
-    tasks = Task.objects.filter(operator=None, status=Task.Status.CREATE)
+    tasks = Task.objects.filter(operator=None, status=Task.Status.CREATE).order_by("id")
     if len(tasks) <= 0:
         form.add_error(None, "Очередь задач пуста")
         return render_to_json(form.errors_to_json())

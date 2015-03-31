@@ -1,0 +1,34 @@
+<div class="task-pag">
+    {% if page.has_other_pages %}
+        {% if page.has_next %}
+            {% if page.next_page_number != page.paginator.num_pages %}
+                <a href="{% url 'view_task' task_id %}">
+                    начало
+                </a>
+                ...
+                <a href="{% url 'view_task' task_id %}?p={{ page.next_page_number }}">
+                    {{ page.next_page_number }}
+                    <--
+                </a>
+            {% else %}
+                <a href="{% url 'view_task' task_id%}">
+                    {{ page.next_page_number }}
+                    <--
+            </a>
+            {% endif %}
+        {% endif %}
+        {{ page.number }}
+        {% if page.has_previous %}
+            <a href="{% url 'view_task' task_id %}?p={{ page.previous_page_number }}">
+                -->
+                {{ page.previous_page_number }}
+            </a>
+            {% if page.previous_page_number != 1 %}
+                ...
+                <a href="{% url 'view_task' task_id %}?p=1">
+                    конец
+                </a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</div>

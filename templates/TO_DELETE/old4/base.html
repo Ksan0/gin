@@ -1,68 +1,55 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<html>
 <head>
     {% load static from staticfiles %}
 	<link rel="stylesheet" type="text/css" href="{% static "css/gin.css" %}" />
-	<link rel="stylesheet" type="text/css" href="{% static "bootstrap2/css/bootstrap.min.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap3/css/bootstrap.min.css" %}" />
     <script type="text/javascript" src="{% static "jquery/jquery-1.11.2.js" %}"></script>
-    <script type="text/javascript" src="{% static "bootstrap2/js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap3/js/bootstrap.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/script.js" %}"></script>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
     <title>Джин</title>
 </head>
-
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand bb-link" href="/">
-              Джин
-          </a>
-        </div>
+	<div class="header">
+			<div class="header__title">
+                <a href="/" class="header__title__href">
+                    Джин
+                </a>
+            </div>
 
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-
-            <li><a href="{% url "view_index" %}" class="header__elem__index b-link">Главная</a></li>
-
-            <li><a href="{% url "view_faq" %}" class="header__elem__faq b-link">FAQ</a></li>
-          </ul>
-
-          <form class="nav navbar-nav navbar-left">
-
-          </form>
-
-          <ul class="nav navbar-nav navbar-right">
-            {% if not user.is_authenticated %}
-                    <li>
-                        <a href="#signin" data-toggle="modal" data-target="#signin">
-                            <div type="button" class="btn btn-primary">Войти</div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#signup" data-toggle="modal" data-target="#signup">
-                            <div type="button" class="btn btn-primary">Зарегистрироваться </div>
-                        </a>
-                    </li>
-
-                {% else %}
-                    <li>
-                        <a href={% url "view_logout" %}>
-                            <div type="button" class="btn btn-primary">Выйти</div>
-                        </a>
-                    </li>
-                {% endif %}
+			<div class="header__menu">
+                <a href="{% url "view_index" %}" class="header__menu__elem header__menu__elem__index">Главная</a>
+                <a href="{% url "view_faq" %}" class="header__menu__elem header__menu__elem__faq">FAQ</a>
 
                 <script>
-                    $(".header__elem__{{ current_page }}").addClass("header__elem__current");
+                    $(".header__menu__elem__{{ current_page }}").addClass("header__menu__elem__current");
                 </script>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </div>
+			</div>
+
+            <div class="header__btns">
+                {% if not user.is_authenticated %}
+                    <div class="header__btns__signin-btn">
+                        <a href="#signin" data-toggle="modal" data-target="#signin">
+                            <div type="button" class="btn btn-primary original-btn">Войти</div>
+                        </a>
+                    </div>
+
+                    <div class="header__btns__signup-btn">
+                        <a href="#signup" data-toggle="modal" data-target="#signup">
+                            <div type="button" class="btn btn-primary original-btn">Зарегистрироваться </div>
+                        </a>
+                    </div>
+
+                {% else %}
+                    <div class="header__btns__signout-btn">
+                        <a href={% url "view_logout" %}>
+                            <div type="button" class="btn btn-primary original-btn">Выйти</div>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+	</div>
 
     {% if not user.is_authenticated %}
          <div class="modal fade signup-modal" id="signup" tabindex="-1" role="dialog" aria-hidden="true">
@@ -117,10 +104,6 @@
         </div>
     {% endif %}
 
-    <div class="container">
-        <div class="row">
-            {% block content %}{% endblock %}
-        </div>
-    </div>
+    {% block content %}{% endblock %}
 </body>
 </html>
