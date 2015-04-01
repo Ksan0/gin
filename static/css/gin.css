@@ -10,6 +10,11 @@
     -webkit-box-sizing: border-box; /* Для Safari и Chrome */
 }
 
+body
+{
+    padding-top: 100px;
+}
+
 /*---------------------------------------------------------------------HEADER BEGIN-----------------------------------------------------------*/
 
 .header__elem__current
@@ -33,7 +38,7 @@ a.b-link:hover
     font-size: x-large !important;
 }
 
-.navbar-brand
+.brand
 {
     padding: 25px 15px !important;
 }
@@ -44,20 +49,22 @@ a.b-link:hover
     margin-right: -15px !important;
 }
 
-.navbar-right .btn-primary
+.nav-btns .btn-primary
 {
+    bottom: 5px !important;
     width: 160px;
 }
 
-ul.nav.navbar-nav
+.nav-btns
 {
-    padding-top: 12px;
+    padding-top: 5px !important;
 }
 
-ul.nav.navbar-nav.navbar-right
+ul.nav
 {
-    padding-top: 5px;
+    padding-top: 15px;
 }
+
 
 /*---------------------------------------------------------------------HEADER END-----------------------------------------------------------*/
 
@@ -73,6 +80,11 @@ ul.nav.navbar-nav.navbar-right
 
 /*---------------------------------------------------------------------FORMS BEGIN-----------------------------------------------------------*/
 
+.signin-modal, .signup-modal
+{
+    top: 150px !important;
+}
+
 .signup-modal .modal-body, .signin-modal .modal-body
 {
     padding: 40px;
@@ -84,39 +96,30 @@ ul.nav.navbar-nav.navbar-right
 	border-bottom: 0px !important;
 }
 
-.modal-content
-{
-	top: 200px !important;
-}
-
 .warning-msg
 {
 	text-align: center;
-}
-
-.col-sm-offset-2, .col-sm-10
-{
-    text-align: right !important;
 }
 
 .signin-modal .form_submit_button
 {
     left: 200px;
     position: relative;
+    top: 15px;
 }
 
 .signin-modal .href-restore
 {
-    top: 10px;
     left: 165px;
     position: relative;
+    top: 5px;
 }
 
 .signin-modal .href-signin
 {
-    left: 235px;
+    left: 220px;
     position: relative;
-    top: 10px;
+    top: 5px;
 }
 
 .signup-modal .form_submit_button
@@ -133,6 +136,11 @@ ul.nav.navbar-nav.navbar-right
 .money-btn
 {
     background-color: #245269;
+}
+
+.signin-modal .form_error, .signup-modal .form_error
+{
+    float: right;
 }
 
 /*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
