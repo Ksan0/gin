@@ -39,6 +39,6 @@ def ajax_add_message(request):
         AjaxResponseKeys.CREATION_ID: message.id,
         AjaxResponseKeys.CREATION_DATA: s_text,
         AjaxResponseKeys.CREATION_DATE: message.get_date_str(),
-        "class": "dialog__msgright bg-warning"
+        "class": "dialog__msgright warning"
     }
     return render_to_json(response_data)

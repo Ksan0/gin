@@ -9,9 +9,9 @@ def clean_password(password, password2):
 
 
 class SignupForm(GinForm):
-    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": "form-control"}), label="Ваш email")
-    password = forms.CharField(widget=forms.PasswordInput({"class": "form-control"}), label="Придумайте  пароль")
-    password2 = forms.CharField(widget=forms.PasswordInput({"class": "form-control"}), label="Повторите пароль")
+    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": ""}), label="Ваш email")
+    password = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Придумайте  пароль")
+    password2 = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Повторите пароль")
 
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__("ajax_signup_user", "POST", "", "", "Зарегистрироваться", *args, **kwargs)
@@ -21,8 +21,8 @@ class SignupForm(GinForm):
 
 
 class SigninForm(GinForm):
-    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": "form-control"}), label="Ваш email")
-    password = forms.CharField(widget=forms.PasswordInput({"class": "form-control"}), label="Пароль")
+    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": ""}), label="Ваш email")
+    password = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Пароль")
     
     def __init__(self, *args, **kwargs):
         super(SigninForm, self).__init__("ajax_signin_user", "POST", "", "", "Войти", *args, **kwargs)

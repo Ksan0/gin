@@ -1,57 +1,64 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="ground">
-        <div class="ground__dialog">
-            <div class="ground__dialog__msgs">
-                <div class="ground__dialog__msgs__prototype dialog__msgright bg-warning" style="display: none;">
-                    <span class="ground__dialog__msgs__text"></span>
-                    <div class="ground__dialog__msgs__info">
-                        <div class="ground__dialog__msgs__info__time"></div>
-                    </div>
+    <div class="row-fluid">
+        <div class="span7">
+            <div class="ground__dialog">
+                <div class="ground__dialog__msgbefore">
+                    Показать предыдущие сообщения
                 </div>
-
-                {% for msg in messages %}
-                    <div class="{{ msg.class }}">
-                        <span class="ground__dialog__msgs__text">{{ msg.text }}</span>
+                <div class="ground__dialog__msgs">
+                    <div class="ground__dialog__msgs__prototype dialog__msgright warning" style="display: none;">
+                        <span class="ground__dialog__msgs__text"></span>
                         <div class="ground__dialog__msgs__info">
-                            <div class="ground__dialog__msgs__info__time">{{ msg.date }}</div>
+                            <div class="ground__dialog__msgs__info__time"></div>
                         </div>
                     </div>
-                {% endfor %}
+
+                    {% for msg in messages %}
+                        <div class="{{ msg.class }}">
+                            <span class="ground__dialog__msgs__text">{{ msg.text }}</span>
+                            <div class="ground__dialog__msgs__info">
+                                <div class="ground__dialog__msgs__info__time">{{ msg.date }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
 
         {% include "history.html" %}
+    </div>
 
-        <div class="ground__dialog__input">
-            {% if is_operator %}
-                <!--Да, тут нет структуры и не будет!!!-->
-                <div class="btn-price">
-                    <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">
-                        <div class="btn btn-warning">Выставить счёт</div>
-                    </a>
-                    <div class="btn btn-warning js-set_price_out" style="display: none"></div>
-                </div>
-            {% else %}
-                {% if set_price_form.price_count.value > 0 %}
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                        <input type="hidden" name="cmd" value="_xclick" />
-                        <input type="hidden" name="bn" value="Gin-BuyNow_gingin_RU" />
-                        <input type="hidden" name="business" value="kgfq@mail.ru" />
-                        <input type="hidden" name="item_name" value="{{ set_price_form.price_title.value }}" />
-                        <input type="hidden" name="currency_code" value="RUB" />
-                        <input type="hidden" name="amount" value="{{ set_price_form.price_count.value }}" />
-                        <input type="hidden" name="no_shipping" value="1">
-                        <input type="hidden" name="custom" value="custom-field" />
-                        <button type="submit" class="btn btn-warning btn-pay">Оплатить</button>
-                    </form>
+    <div class="row">
+        <div class="">
+            <div class="ground__dialog__input">
+                {% if is_operator %}
+                    <!--Да, тут нет структуры и не будет!!!-->
+                    <div class="btn-price">
+                        <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">
+                            <div class="btn btn-warning">Выставить счёт</div>
+                        </a>
+                        <div class="btn btn-warning js-set_price_out" style="display: none"></div>
+                    </div>
+                {% else %}
+                    {% if set_price_form.price_count.value > 0 %}
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                            <input type="hidden" name="cmd" value="_xclick" />
+                            <input type="hidden" name="bn" value="Gin-BuyNow_gingin_RU" />
+                            <input type="hidden" name="business" value="kgfq@mail.ru" />
+                            <input type="hidden" name="item_name" value="{{ set_price_form.price_title.value }}" />
+                            <input type="hidden" name="currency_code" value="RUB" />
+                            <input type="hidden" name="amount" value="{{ set_price_form.price_count.value }}" />
+                            <input type="hidden" name="no_shipping" value="1">
+                            <input type="hidden" name="custom" value="custom-field" />
+                            <button type="submit" class="btn btn-warning btn-pay">Оплатить</button>
+                        </form>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
 
-            {% include "forms/add_message_form.html" with form=add_message_form %}
-
-            {% include "utils/task_paginator.html" %}
+                {% include "forms/add_message_form.html" with form=add_message_form %}
+            </div>
         </div>
     </div>
 

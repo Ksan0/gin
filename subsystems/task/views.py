@@ -147,7 +147,7 @@ def view_task(request, task_id):
     messages = []
     for msg in raw_messages:
         messages.append({
-            "class": msg.user.id == request.user.id and "dialog__msgright bg-warning" or "dialog__msgleft bg-success",
+            "class": msg.user.id == request.user.id and "dialog__msgright warning" or "dialog__msgleft success",
             "text": msg.body,
             "date": msg.get_date_str()
         })

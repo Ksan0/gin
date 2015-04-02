@@ -9,7 +9,7 @@ class CreateTaskForm(GinForm):
         min_length=10,
         max_length=255,
         error_messages={
-            'min_length': '    Желания менее 10 символов не исполняются'
+            'min_length': 'Опишите задачу подробнее'
         }
     )
     

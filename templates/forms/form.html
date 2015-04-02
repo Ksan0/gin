@@ -4,16 +4,16 @@
     <div class="__all___success">
 
     </div>
-    <div class="__all___error form_error">
+    <div class="__all___error form_error form_error_center">
 
     </div>
 
-    <div class="form-group">
+    <div>
         {% for field in form %}
-            <div>
-                {{ field.label_tag }}
-                {{ field }}
-                <div class="{{ field.name }}_error form_error"></div>
+            <div class="control-group">
+                <div class="control-label">{{ field.label_tag }}</div>
+                <div class="controls">{{ field }}</div>
+                <div class="{{ field.name }}_error form_error controls"></div>
             </div>
         {% endfor %}
     </div>
