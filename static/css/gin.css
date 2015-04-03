@@ -7,7 +7,7 @@
 	margin: 0;
 	padding: 0;
 	-moz-box-sizing: border-box; /* Для Firefox */
-    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome*/
 }
 
 body
@@ -80,17 +80,17 @@ ul.nav
 
 /*---------------------------------------------------------------------FORMS BEGIN-----------------------------------------------------------*/
 
-.signin-modal, .signup-modal
+.signin-modal, .signup-modal, .price-modal, .newoperator-modal
 {
-    top: 150px !important;
+    top: 25% !important;
 }
 
-.signin-modal .control-group, .signup-modal .control-group
+#subsystems_user_forms_SigninForm .control-group, #subsystems_user_forms_SignupForm .control-group
 {
     margin-left: -50px !important;
 }
 
-.signup-modal .modal-body, .signin-modal .modal-body
+#subsystems_user_forms_SigninForm .modal-body, .signup-modal .modal-body
 {
     padding: 40px;
 }
@@ -98,7 +98,7 @@ ul.nav
 .modal-header
 {
 	height: 50px !important;
-	border-bottom: 0px !important;
+	border-bottom: 0 !important;
 }
 
 .warning-msg
@@ -106,11 +106,17 @@ ul.nav
 	text-align: center;
 }
 
-.signin-modal .form_submit_button
+#subsystems_user_forms_SigninForm .form_submit_button
 {
     left: 200px;
     position: relative;
     top: 15px;
+}
+
+#subsystems_user_forms_RestorePasswordForm .btn-restore
+{
+    left: 180px;
+    position: relative;
 }
 
 .signin-modal .href-restore
@@ -127,7 +133,7 @@ ul.nav
     top: 5px;
 }
 
-.signup-modal .form_submit_button
+#subsystems_user_forms_SignupForm .form_submit_button
 {
     left: 160px;
     position: relative;
@@ -143,14 +149,32 @@ ul.nav
     background-color: #245269;
 }
 
-.signin-modal .form_error_center, .signup-modal .form_error_center
+#subsystems_user_forms_SigninForm .form_error_center, #subsystems_user_forms_SignupForm .form_error_center
 {
     text-align: center !important;
 }
 
-.signin-modal .form_error, .signup-modal .form_error
+#subsystems_user_forms_SigninForm .form_error, #subsystems_user_forms_SignupForm .form_error
 {
 
+}
+
+input
+{
+    min-height: 25px !important;
+}
+
+#subsystems_task_forms_SetPriceForm  .set-price-btn
+{
+    left: 180px !important;
+    position: relative;
+}
+
+.newoperator-modal .btn
+{
+    left: 170px;
+    position: relative;
+    text-align: center;
 }
 
 /*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
@@ -163,12 +187,12 @@ ul.nav
 	top: 80px;
 }
 
-.ground__query .control-label
+#subsystems_task_forms_CreateTaskForm .control-label
 {
     display: none;
 }
 
-.ground__query .controls
+#subsystems_task_forms_CreateTaskForm .controls
 {
     margin-left: 0 !important;
 }
@@ -186,17 +210,17 @@ ul.nav
 	width: 100%;
 }
 
-.ground__query .form_error
+#subsystems_task_forms_CreateTaskForm .form_error
 {
     text-align: center;
 }
 
-.ground__query .form-group
+#subsystems_task_forms_CreateTaskForm .form-group
 {
     margin-left: 0 !important;
 }
 
-.ground__query .control-group
+#subsystems_task_forms_CreateTaskForm .control-group
 {
     margin-bottom: 0 !important;
 }
@@ -212,6 +236,7 @@ ul.nav
     padding-left: 3%;
     padding-right: 3%;
     position: fixed;
+    width: inherit;
 }
 
 .ground__history__title
@@ -287,7 +312,6 @@ ul.nav
 .ground__dialog
 {
     height: 100%;
-    padding: 5px;
 	width: 100%;
 }
 
@@ -299,10 +323,18 @@ ul.nav
 
 .ground__dialog__msgs
 {
-	margin-bottom: 10%;
+	margin-bottom: 12%;
 	position: relative;
 	top: 40px;
     width: 100%;
+}
+
+@-moz-document url-prefix()
+{
+    .ground__dialog__msgs
+    {
+        margin-bottom: 18%;
+    }
 }
 
 .dialog__msgleft, .dialog__msgright
@@ -347,39 +379,65 @@ ul.nav
 	background-color: #e6e6fa;
 	height: 12%;
 	padding: 1%;
-    padding-left: 2%;
 	position: fixed;
 	top: 88%;
 	width: 100%;
 }
 
-.ground__dialog__input .ground__dialog__input__add-msg-form__txtarea
+#subsystems_dialog_forms_AddMessageForm .control-label
 {
-    height: 50px;
+    display: none;
+}
+
+#subsystems_dialog_forms_AddMessageForm .controls
+{
+    margin-left: 0 !important;
+}
+
+#subsystems_dialog_forms_AddMessageForm .ground__dialog__input__add-msg-form__txtarea
+{
     resize: none;
     width: 60%;
 }
 
-.ground__dialog__input .form_submit_button
+textarea.ground__dialog__input__add-msg-form__txtarea
+{
+    height: 5% !important;
+    min-height: 5% !important;
+    width: 60% !important;
+}
+
+#subsystems_dialog_forms_AddMessageForm .form_submit_button
 {
     left: 61%;
     position: fixed;
-    top: 91.3%;
+    top: 92%;
 }
 
 .ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
 {
-    left: 80%;
+    left: 70%;
     position: fixed;
-    top: 91.3%;
+    top: 92%;
 }
 
-.ground__dialog__input .task-pag
+.btn-price .btn, .btn-pay .btn
+{
+    background-color: #dcdaa1 !important;
+    background-image: none;
+}
+
+.btn-price .btn:hover, .btn-pay .btn:hover
+{
+    background-color: #d2d098 !important;
+}
+
+/*.ground__dialog__input .task-pag
 {
     left: 70%;
     position: fixed;
     bottom: 4%;
-}
+}*/
 
 /*---------------------------------------------------------------------DIALOGUE END-----------------------------------------------------------*/
 
@@ -388,85 +446,77 @@ ul.nav
 .ground__profile
 {
     background-color: #d6e9c6;
+    border-radius: 20px;
     font-size: large;
     font-weight: bold;
     left: 10px;
-    min-height: 200px;
+    min-height: 300px;
     position: relative;
     text-align: center;
-    width: 770px;
+    width: 100%;
 }
 
 .ground__history-block
 {
-    position: relative;
-}
-
-.ground__history-block .ground__history
-{
-    position: relative !important;
-    top: -180px;
+    position: fixed;
+    width: inherit;
 }
 
 .ground__history-block__take-task-btn
 {
-    left: 55%;
     position: relative;
     text-align: center;
-    top: -200px;
-    width: 50%;
+    width: 100%;
 }
 
-.ground__history-block__take-task-btn .form_submit_button
+#subsystems_task_forms_AssignSelfTaskForm .form_submit_button
 {
-    width: 59.5%;
+    width: 100%;
 }
 
 /*---------------------------------------------------------------------OPERATOR END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------ADMIN BEGIN-----------------------------------------------------------*/
 
-.ground__title
+.ground__new-operator-btn
 {
-    font-size: large;
-    font-weight: bold;
-    text-align: center;
-}
-
-.new-operator-btn
-{
-    position: relative  ;
     text-align: center;
     top: 150px;
+    width: inherit;
+}
+
+.ground__new-operator-btn .btn
+{
+    width: 100% !important;
 }
 
 /*---------------------------------------------------------------------ADMIN END-----------------------------------------------------------*/
 
 /*---------------------------------------------------------------------FAQ BEGIN-----------------------------------------------------------*/
 
-.ground__faq
+.ground__title
 {
-    height: 100%;
-    padding: 2% 5%;
-    position: relative;
-    top: 10px;
+    font-size: x-large;
+    margin-bottom: 50px;
+    text-align: center;
+    width: inherit;
 }
 
-.ground__faq__q__title
+.ground__q__title
 {
     font-size: 15pt;
     color: #ff910a;
     display: inline;
 }
 
-.ground__faq__a__title
+.ground__a__title
 {
     font-size: 15pt;
     color: #7784e6;
     display: inline;
 }
 
-.ground__faq__q__text
+.ground__q__text
 {
     font-size: 12pt;
     font-weight: bold;
@@ -474,7 +524,7 @@ ul.nav
     margin-left: 10px;
 }
 
-.ground__faq__a__text
+.ground__a__text
 {
     font-size: 12pt;
     font-weight: bold;

@@ -2,23 +2,27 @@
 
 {% block content %}
 
-    <div class="ground">
-        <div class="ground__profile">
-            Профиль </br>
+    <div class="row-fluid">
+        <div class="span7">
+            <div class="ground__profile">
+                Профиль </br>
 
-            Какая-то инфа </br>
+                Какая-то инфа </br>
 
-            Блаблабла </br>
+                Блаблабла </br>
 
-            Photo </br>
+                Photo </br>
+            </div>
         </div>
 
-        <div class="ground__history-block">
-            <div class="ground__history-block__take-task-btn">
-                {% include "forms/assign_self_task_form.html" with form=assign_self_task_form %}
-             </div>
+        <div class="span5">
+            <div class="ground__history-block">
+                <div class="ground__history-block__take-task-btn">
+                    {% include "forms/assign_self_task_form.html" with form=assign_self_task_form %}
+                </div>
 
-            {% include "history.html" %}
+                {% include "history.html" %}
+            </div>
         </div>
     </div>
 

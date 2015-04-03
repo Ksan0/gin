@@ -3,7 +3,7 @@ from django import forms
 
 
 class AddMessageForm(GinForm):
-    text = forms.CharField(label="", widget=forms.Textarea({"class": "text ground__dialog__input__add-msg-form__txtarea form-control"}))
+    text = forms.CharField(label="", widget=forms.Textarea({"class": "text ground__dialog__input__add-msg-form__txtarea form-control", "rows": "2"}))
     task_id = forms.IntegerField(widget=forms.HiddenInput(), label='')
 
     def __init__(self, *args, **kwargs):

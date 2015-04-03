@@ -28,4 +28,4 @@ class SetPriceForm(GinForm):
     task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
 
     def __init__(self, *args, **kwargs):
-        super(SetPriceForm, self).__init__("ajax_set_price", "POST", "", "", "Выставить счет", *args, **kwargs)
+        super(SetPriceForm, self).__init__("ajax_set_price", "POST", "", "set-price-btn", "Выставить счет", *args, **kwargs)

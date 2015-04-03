@@ -22,6 +22,8 @@ urlpatterns = patterns(
     url(r"^faq$", gin.views.view_faq, name="view_faq"),
     url(r"^restore_password_confirm$", user.views.restore_password_confirm),
     url(r"^logout$", user.views.view_logout, name="view_logout"),
+    # url(r"^admin$", gin.views.index_main_admin_page, name="index_main_admin_page"),
+
     # test
     url(r"^test_create$", gin.views.test_create),
 

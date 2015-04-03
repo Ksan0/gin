@@ -1,35 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="ground">
-        <div class="ground__title">
-            Страница администратора
-        </div>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="offset1 ground__title">
+                Страница администратора
+            </div>
 
-        <div class="ground__new-operator-btn">
-            <a href="#newoperator" data-toggle="modal" data-target="#newoperator">
-                <div type="button" class="btn btn-primary">Создать оператора</div>
-            </a>
-        </div>
+            <div class="offset1 ground__new-operator-btn">
+                <a href="#newoperator" data-toggle="modal" data-target="#newoperator">
+                    <div type="button" class="btn btn-info">Создать оператора</div>
+                </a>
+            </div>
 
-        <!--Ниже классы структурируются только по-бустраповски,
-            потому что!!!-->
-        <div class="modal fade ground__newoperator-modal" id="newoperator" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="warning-msg text-danger" style="display: none;">
-                            Такого пользователя не существует. Попробуйте еще раз.
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Закрыть</span>
-                        </button>
+            <!--Ниже классы структурируются только по-бустраповски,
+                потому что!!!-->
+            <div class="modal hide fade newoperator-modal" id="newoperator" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-header">
+                    <div class="warning-msg text-danger" style="display: none;">
+                        Такого пользователя не существует. Попробуйте еще раз.
                     </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        x
+                    </button>
+                </div>
 
-                    <div class="modal-body">
-                        {% include "newoperator_form.html" %}
-                    </div>
+                <div class="modal-body">
+                    {% include "newoperator_form.html" %}
                 </div>
             </div>
         </div>

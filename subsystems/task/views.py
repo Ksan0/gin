@@ -152,7 +152,10 @@ def view_task(request, task_id):
             "date": msg.get_date_str()
         })
 
-    all_history_tasks = Task.objects.filter(user=request.user).order_by("-creation_date")
+    if user.is_operator:
+        all_history_tasks = Task.objects.filter(operator=user).order_by("-creation_date")
+    else:
+        all_history_tasks = Task.objects.filter(user=user).order_by("-creation_date")
     last_open_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, True), 10)
     last_close_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, False), 10)
 

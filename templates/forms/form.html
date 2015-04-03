@@ -18,11 +18,14 @@
         {% endfor %}
     </div>
 
-    <input class="form_submit_button {{ form.submit_button_class }} btn btn-info original-btn" type="button" value="{{ form.submit_button_title }}">
+    <input class="form_submit_button {{ form.submit_button_class }} btn btn-info" type="submit" value="{{ form.submit_button_title }}">
 </form>
 
 <script>
-    var     method = "{{ form.action_method }}",
+    var     on = {
+                e_ctrl_enter: false
+            },
+            method = "{{ form.action_method }}",
             url = "{% url form.action_url_name %}",
             form_id = "{{ form.html_id }}",
             f_success,
@@ -30,5 +33,5 @@
 
     {% block add_script %}{% endblock %}
 
-    GIN.RegForm(method, url, form_id, f_success, f_error);
+    GIN.RegForm(on, method, url, form_id, f_success, f_error);
 </script>

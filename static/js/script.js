@@ -12,9 +12,10 @@ var GIN = {
 };
 
 
-GIN.RegForm = function(method, url, form_id, f_success, f_error) {
+GIN.RegForm = function(on, method, url, form_id, f_success, f_error) {
     var form = $("#" + form_id);
-    form.find(".form_submit_button").on("click", function () {
+
+    var f_send = function () {
         form.find(".form_error").html("");
         $.ajax({
             method: method,
@@ -41,5 +42,16 @@ GIN.RegForm = function(method, url, form_id, f_success, f_error) {
             }
         });
         return false;
+    };
+
+    form.find(".form_submit_button").on("click", function () {
+        return f_send();
     });
+    if (on.e_ctrl_enter) {
+        form.on("keydown", function (event) {
+            if (event.keyCode == 13 && event.ctrlKey) {
+                return f_send();
+            }
+        });
+    }
 };

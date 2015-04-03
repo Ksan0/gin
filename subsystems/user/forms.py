@@ -32,7 +32,7 @@ class RestorePasswordForm(GinForm):
     email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": "form-control"}), label="Ваш email")
 
     def __init__(self, *args, **kwargs):
-        super(RestorePasswordForm, self).__init__("ajax_restore_password", "POST", "", "btn-restore original-btn", "Восстановить", *args, **kwargs)
+        super(RestorePasswordForm, self).__init__("ajax_restore_password", "POST", "", "btn-restore", "Восстановить", *args, **kwargs)
 
 
 class RestorePasswordConfirmForm(GinForm):

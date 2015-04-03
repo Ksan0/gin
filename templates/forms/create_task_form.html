@@ -2,6 +2,8 @@
 
 <script>
 {% block add_script %}
+    on.e_ctrl_enter = true;
+
     f_success = function (data, textStatus, jqXHR, form) {
         if (data[GIN.AjaxResponseKeys.CREATION_ID]) {
             var prototype = $(".ground__history__elems__prototype");
