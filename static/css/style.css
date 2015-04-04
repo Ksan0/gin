@@ -385,7 +385,7 @@ input
 {
 	border: 1px solid #ccccdd;
 	background-color: #e6e6fa;
-	height: 12%;
+	/*height: 12%;*/
 	padding: 1%;
 	position: fixed;
 	top: 88%;
@@ -405,7 +405,6 @@ input
 #subsystems_task_forms_CreateTaskMessageForm .ground__dialog__input__add-msg-form__txtarea
 {
     resize: none;
-    width: 100%;
 }
 
 textarea.ground__dialog__input__add-msg-form__txtarea
@@ -417,19 +416,21 @@ textarea.ground__dialog__input__add-msg-form__txtarea
 
 #subsystems_task_forms_CreateTaskMessageForm .form_submit_button
 {
-    /*left: 61%;*/
-    /*position: fixed;*/
     margin-top: 15%;
+    min-width: 100px;
 }
 
 .ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
 {
-    /*left: 70%;*/
-    /*position: fixed;*/
-    top: 92%;
+    margin-top: 15%;
 }
 
-.span7 + .control-group
+.btn-price .btn, .btn-pay
+{
+    width: 150px;
+}
+
+.span9 + .control-group
 {
     display: none;
 }

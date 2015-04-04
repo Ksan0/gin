@@ -36,9 +36,8 @@ class CreateTaskMessageForm(GinForm):
         self.set_action("ajax_create_task_message")
         self.set_submit_button("Отправить")
         self.set_on_ctrl_enter(True)
-        self.set_field_wrapper_class("text", "span7")
+        self.set_field_wrapper_class("text", "span9")
         self.set_field_wrapper_class("submit_button", "span1")
-
 
 class GetTaskMessagesForm(GinForm):
     task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
