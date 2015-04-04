@@ -557,6 +557,16 @@ textarea.ground__dialog__input__add-msg-form__txtarea
 	padding-bottom: 17px;
 }
 
+.history__close .ground__history__elems__i
+{
+    background-color: #cccccc;
+}
+
+.history__open .ground__history__elems__i
+{
+    background-color: white;
+}
+
 /*--------------------------------------------------------------HISTORY_PAGE END-----------------------------------------------------------*/
 
 
