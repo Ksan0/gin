@@ -144,7 +144,7 @@ def ajax_get_task_messages(request):
         form.add_error(None, "bad session")
         return render_to_json(form.errors_to_json())
 
-    MESSAGES_CHUNK = 25
+    MESSAGES_CHUNK = 50
 
     try:
         s_last_download_message_id = form.cleaned_data['last_download_message_id']
