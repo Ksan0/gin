@@ -8,7 +8,7 @@
 
     </div>
 
-    <div>
+    <!--div-->
         {% for field in form %}
             <div class="control-group {{ form|get_form_field_wrapper:field }}">
                 <div class="control-label">{{ field.label_tag }}</div>
@@ -16,10 +16,10 @@
                 <div class="{{ field.name }}_error form_error controls"></div>
             </div>
         {% endfor %}
-    </div>
+    <!--/div-->
 
     <div class="{{ form|get_form_field_wrapper:'submit_button' }}">
-    <input type="submit" class="form_submit_button {{ form.get_submit_button_class }} btn btn-info" value="{{ form.get_submit_button_title }}">
+        <input type="submit" class="form_submit_button {{ form.get_submit_button_class }} btn btn-info" value="{{ form.get_submit_button_title }}">
     </div>
 </form>
 

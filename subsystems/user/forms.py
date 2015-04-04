@@ -4,7 +4,7 @@ from subsystems.user.utils import forms_clean_password
 
 
 class SignupForm(GinForm):
-    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": ""}), label="Ваш email")
+    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "youremail@super.ru", "class": ""}), label="Ваш email")
     password = forms.CharField(widget=forms.PasswordInput({"class": "", "klass": "aaa"}), label="Придумайте  пароль")
     password2 = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Повторите пароль")
 
@@ -19,7 +19,7 @@ class SignupForm(GinForm):
 
 
 class SigninForm(GinForm):
-    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": ""}), label="Ваш email")
+    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "youremail@super.ru", "class": ""}), label="Ваш email")
     password = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Пароль")
     
     def __init__(self, *args, **kwargs):
@@ -29,7 +29,7 @@ class SigninForm(GinForm):
 
 
 class RestorePasswordRequestForm(GinForm):
-    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": "form-control"}), label="Ваш email")
+    email = forms.EmailField(widget=forms.EmailInput({"placeholder": "youremail@super.ru", "class": "form-control"}), label="Ваш email")
 
     def __init__(self, *args, **kwargs):
         super(RestorePasswordRequestForm, self).__init__(*args, **kwargs)

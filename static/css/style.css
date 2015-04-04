@@ -172,7 +172,7 @@ input
     min-height: 25px !important;
 }
 
-#subsystems_task_forms_SetPriceForm  .set-price-btn
+#subsystems_task_forms_SetPriceForm .set-price-btn
 {
     left: 180px !important;
     position: relative;
@@ -418,15 +418,20 @@ textarea.ground__dialog__input__add-msg-form__txtarea
 #subsystems_task_forms_CreateTaskMessageForm .form_submit_button
 {
     /*left: 61%;*/
-    position: fixed;
-    top: 92%;
+    /*position: fixed;*/
+    margin-top: 15%;
 }
 
 .ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
 {
     /*left: 70%;*/
-    position: fixed;
+    /*position: fixed;*/
     top: 92%;
+}
+
+.span7 + .control-group
+{
+    display: none;
 }
 
 .btn-price .btn, .btn-pay .btn
