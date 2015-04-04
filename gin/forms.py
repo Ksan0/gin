@@ -82,4 +82,6 @@ class GinForm(forms.Form):
 
 @register.filter
 def get_form_field_wrapper(form, field):
+    if isinstance(field, str):
+        return form.get_field_wrapper_class(field)
     return form.get_field_wrapper_class(field.name)
