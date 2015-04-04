@@ -11,7 +11,7 @@ def view_restore_password_confirm(request):
         })
     }
 
-    return render(request, "restore_password_confirm.html", context)
+    return render(request, "pages/restore_password_confirm.html", context)
 
 
 def view_logout(request):

@@ -5,13 +5,14 @@ from subsystems.user.utils import forms_clean_password
 
 class SignupForm(GinForm):
     email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": ""}), label="Ваш email")
-    password = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Придумайте  пароль")
+    password = forms.CharField(widget=forms.PasswordInput({"class": "", "klass": "aaa"}), label="Придумайте  пароль")
     password2 = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Повторите пароль")
 
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)
         self.set_action("ajax_signup_user")
         self.set_submit_button("Зарегистрироваться")
+        self.set_field_wrapper_class("email", "ololo")
 
     def clean_password(self):
         return forms_clean_password(self.data['password'], self.data['password2'])

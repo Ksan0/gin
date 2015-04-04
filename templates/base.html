@@ -62,7 +62,7 @@
              </div>
 
              <div class="modal-body">
-                 {% include "forms/user/signup_form.html" with form=signup_form %}
+                 {% include "forms/user/signup.html" with form=signup_form %}
              </div>
          </div>
 
@@ -75,11 +75,11 @@
 
             <div class="modal-body">
                 <div class="signin__form__show">
-                    {% include "forms/user/signin_form.html" with form=signin_form %}
+                    {% include "forms/user/signin.html" with form=signin_form %}
                     <a href="#" class="href-restore">Восстановить пароль</a>
                 </div>
                 <div class="restore__password__form__show" style="display: none;">
-                    {% include "forms/user/restore_password_request_form.html" with form=restore_password_request_form %}
+                    {% include "forms/user/restore_password_request.html" with form=restore_password_request_form %}
                     <a href="#" class="href-signin">Войти</a>
                 </div>
                 <script>

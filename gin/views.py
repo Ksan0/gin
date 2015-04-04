@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from subsystems.a_user.models import AUser
-from subsystems.operator.models import Operator
+from subsystems.operator.models import OperatorInfo
 from subsystems.task.forms import CreateTaskForm, AssignSelfTaskForm
 from subsystems import user
 from subsystems.task.utils import get_task_history
@@ -13,21 +13,21 @@ def subview_index_anonymous(request, context):
         "signin_form": user.forms.SigninForm(),
         "restore_password_request_form": user.forms.RestorePasswordRequestForm()
     })
-    return render(request, "hello.html", context)
+    return render(request, "pages/index_anonymous.html", context)
 
 
 def subview_index_user(request, context):
     context.update({
         "create_task_form": CreateTaskForm()
     })
-    return render(request, "main_user.html", context)
+    return render(request, "pages/index_user.html", context)
 
 
 def subview_index_operator(request, context):
     context.update({
         "assign_self_task_form": AssignSelfTaskForm()
     })
-    return render(request, "main_operator.html", context)
+    return render(request, "pages/index_operator.html", context)
 
 
 def view_index(request):
@@ -53,17 +53,17 @@ def view_faq(request):
         "signin_form": user.forms.SigninForm(),
         "restore_password_form": user.forms.RestorePasswordRequestForm()
     }
-    return render(request, "faq.html", context)
+    return render(request, "pages/faq.html", context)
 
 
 def test_create(request):
     who = request.GET['who']
 
     if who == 'operator':
-        i = len(Operator.objects.all())
+        i = len(OperatorInfo.objects.all())
         email = "op{0}@op.ru".format(i)
         u = AUser.objects.create_user(email=email, password="1", is_operator=True, is_superuser=False)
-        o = Operator.objects.create(user=u)
+        o = OperatorInfo.objects.create(user=u)
         u = authenticate(id=u.id, password="1")
         login(request, u)
         return redirect("/")

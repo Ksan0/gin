@@ -34,7 +34,7 @@
 
     <div class="row">
         <div class="ground__dialog__input">
-            {% include "forms/add_message_form.html" with form=add_message_form %}
+            {% include "forms/task/create_task_message.html" with form=add_message_form %}
 
             {% if user.is_operator %}
                 <!--Да, тут нет структуры и не будет!!!-->

@@ -10,8 +10,7 @@ var GIN = {
         CREATION_DATE: "creation_date"
     },
 
-    RegForm: null,
-    Dialog: null
+    RegForm: null
 };
 
 

@@ -2,8 +2,6 @@
 
 <script>
 {% block add_script %}
-    on.e_ctrl_enter = true;
-
     f_success = function (data, textStatus, jqXHR, form) {
         var prototype = $(".ground__dialog__msgs__prototype");
         var newEl = prototype.clone();

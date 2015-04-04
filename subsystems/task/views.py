@@ -47,4 +47,4 @@ def view_task(request, task_id):
 
     context.update(get_task_history(request.user))
 
-    return render(request, "task.html", context)
+    return render(request, "pages/task.html", context)

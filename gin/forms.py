@@ -1,5 +1,6 @@
 from django import forms
 from subsystems.utils.ajax import AjaxResponseKeys
+from django.template.defaulttags import register
 
 
 class GinForm(forms.Form):
@@ -16,6 +17,7 @@ class GinForm(forms.Form):
         self.__action_method = "POST"
 
         self.__on_ctrl_enter = False
+        self.__fields_wrapper_classes = {}
 
     def get_form_id(self):
         return self.__form_id
@@ -54,6 +56,12 @@ class GinForm(forms.Form):
     def get_on_ctrl_enter(self):
         return self.__on_ctrl_enter
 
+    def set_field_wrapper_class(self, field, klass):
+        self.__fields_wrapper_classes[field] = klass
+
+    def get_field_wrapper_class(self, field):
+        return self.__fields_wrapper_classes.get(field, "")
+
     def errors_to_json(self):
         fields_errors = {}
         for e in self.errors:
@@ -61,3 +69,8 @@ class GinForm(forms.Form):
             return {
                 AjaxResponseKeys.FIELDS_ERRORS: fields_errors
             }
+
+
+@register.filter
+def get_form_field_wrapper(form, field):
+    return form.get_field_wrapper_class(field.name)

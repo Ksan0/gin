@@ -1,6 +1,6 @@
 from .models import Task, TaskMessage
 from .forms import CreateTaskForm, AssignSelfTaskForm, SetPriceForm, CreateTaskMessageForm
-from subsystems.operator.models import Operator
+from subsystems.operator.models import OperatorInfo
 from subsystems.utils.ajax import AjaxResponseKeys
 from subsystems.utils.json import render_to_json
 
@@ -50,7 +50,7 @@ def ajax_assign_self_task(request):
         return render_to_json(form.errors_to_json())
 
     try:
-        operator = Operator.objects.get(user=request.user.id)
+        operator = OperatorInfo.objects.get(user=request.user.id)
     except:
         form.add_error(None, "bad session")
         return render_to_json(form.errors_to_json())
@@ -80,7 +80,7 @@ def ajax_assign_self_task(request):
     return render_to_json(response_data)
 
 
-def ajax_add_message(request):
+def ajax_create_task_message(request):
     form = CreateTaskMessageForm(request.POST or None)
 
     if request.method != "POST":

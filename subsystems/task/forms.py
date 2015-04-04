@@ -34,6 +34,7 @@ class CreateTaskMessageForm(GinForm):
         super(CreateTaskMessageForm, self).__init__(*args, **kwargs)
         self.set_action("ajax_create_task_message")
         self.set_submit_button("Отправить", "ground__dialog__input__add-msg-form")
+        self.set_on_ctrl_enter(True)
 
 
 class SetPriceForm(GinForm):
@@ -42,4 +43,6 @@ class SetPriceForm(GinForm):
     task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
 
     def __init__(self, *args, **kwargs):
-        super(SetPriceForm, self).__init__("ajax_set_price", "POST", "", "set-price-btn", "Выставить счет", *args, **kwargs)
+        super(SetPriceForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_set_price")
+        self.set_submit_button("Выставить счет", "set-price-btn")
