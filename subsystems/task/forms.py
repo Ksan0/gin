@@ -33,8 +33,9 @@ class CreateTaskMessageForm(GinForm):
     def __init__(self, *args, **kwargs):
         super(CreateTaskMessageForm, self).__init__(*args, **kwargs)
         self.set_action("ajax_create_task_message")
-        self.set_submit_button("Отправить", "ground__dialog__input__add-msg-form")
+        self.set_submit_button("Отправить", "span1")
         self.set_on_ctrl_enter(True)
+        self.set_field_wrapper_class("text", "span7")
 
 
 class GetTaskMessagesForm(GinForm):

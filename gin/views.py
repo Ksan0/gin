@@ -69,3 +69,12 @@ def test_create(request):
         return redirect("/")
 
     return redirect("/")
+
+def view_history(request):
+    context = {
+        "current_view_name": "view_history",
+        "signup_form": user.forms.SignupForm(),
+        "signin_form": user.forms.SigninForm(),
+        "restore_password_form": user.forms.RestorePasswordRequestForm()
+    }
+    return render(request, "pages/history_page.html", context)

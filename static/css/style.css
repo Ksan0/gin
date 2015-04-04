@@ -283,7 +283,7 @@ input
     top: 30px;
 }
 
-.ground__history .ground__history__elems__i__date
+.history .ground__history__elems__i__date
 {
     color: #b4cdcd;
 	font-size: smaller;
@@ -292,12 +292,12 @@ input
     top: 5px;
 }
 
-.ground__history .ground__history__elems__i:hover > .ground__history__elems__i__date
+.history .ground__history__elems__i:hover > .ground__history__elems__i__date
 {
     color: #737373;
 }
 
-.ground__history .ground__history__elems__i
+.history .ground__history__elems__i
 {
 	border: 1px solid #b0e2ff;
 	border-radius: 10px;
@@ -305,7 +305,7 @@ input
 	padding-bottom: 17px;
 }
 
-.ground__history .ground__history__elems__i__event
+.history .ground__history__elems__i__event
 {
 	padding-left: 40px;
 	padding-right: 40px;
@@ -392,39 +392,39 @@ input
 	width: 100%;
 }
 
-#subsystems_dialog_forms_AddMessageForm .control-label
+#subsystems_task_forms_CreateTaskMessageForm .control-label
 {
     display: none;
 }
 
-#subsystems_dialog_forms_AddMessageForm .controls
+#subsystems_task_forms_CreateTaskMessageForm .controls
 {
     margin-left: 0 !important;
 }
 
-#subsystems_dialog_forms_AddMessageForm .ground__dialog__input__add-msg-form__txtarea
+#subsystems_task_forms_CreateTaskMessageForm .ground__dialog__input__add-msg-form__txtarea
 {
     resize: none;
-    width: 60%;
+    width: 100%;
 }
 
 textarea.ground__dialog__input__add-msg-form__txtarea
 {
     height: 5% !important;
     min-height: 5% !important;
-    width: 60% !important;
+    width: 100% !important;
 }
 
-#subsystems_dialog_forms_AddMessageForm .form_submit_button
+#subsystems_task_forms_CreateTaskMessageForm .form_submit_button
 {
-    left: 61%;
+    /*left: 61%;*/
     position: fixed;
     top: 92%;
 }
 
 .ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
 {
-    left: 70%;
+    /*left: 70%;*/
     position: fixed;
     top: 92%;
 }
@@ -464,11 +464,11 @@ textarea.ground__dialog__input__add-msg-form__txtarea
     width: 100%;
 }
 
-.ground__history-block
+/*.ground__history-block
 {
     position: fixed;
     width: inherit;
-}
+}*/
 
 .ground__history-block__take-task-btn
 {
@@ -541,6 +541,19 @@ textarea.ground__dialog__input__add-msg-form__txtarea
 }
 
 /*---------------------------------------------------------------------FAQ END-----------------------------------------------------------*/
+
+/*--------------------------------------------------------------HISTORY_PAGE BEGIN-----------------------------------------------------------*/
+
+.task100500
+{
+	border: 1px solid #b0e2ff;
+	border-radius: 10px;
+	padding-bottom: 17px;
+}
+
+/*--------------------------------------------------------------HISTORY_PAGE END-----------------------------------------------------------*/
+
+
 
 /*--------------------------------------------------------------BOOTSTRAP CHANGE BEGIN-----------------------------------------------------------*/
 
