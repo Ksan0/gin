@@ -18,31 +18,16 @@ def view_task(request, task_id):
     if task.user != request.user and task.operator != request.user and not request.user.is_superuser:
         return redirect("/")
 
-    paginator = Paginator(TaskMessage.objects.filter(task=task).order_by("creation_date"), 25)
-    try:
-        raw_messages = paginator.page(request.GET['p'])
-    except:
-        raw_messages = paginator.page(paginator.num_pages)
-
-    messages = []
-    for msg in raw_messages:
-        messages.append({
-            "class": msg.user.id == request.user.id and "dialog__msgright warning" or "dialog__msgleft success",
-            "text": msg.body,
-            "date": msg.get_date_str()
-        })
-
     context = {
         "task_id": task.id,
-        "messages": messages,
-        "page": raw_messages,
 
+        "create_task_message_form": CreateTaskMessageForm(initial={'task_id': task.id}),
+        "get_task_messages_form": GetTaskMessagesForm(initial={'task_id': task.id}),
         "set_price_form": SetPriceForm(initial={
             'task_id': task.id,
             'price_title': task.price_title,
             'price_count': task.price_count
-        }),
-        "add_message_form": CreateTaskMessageForm(initial={'task_id': task.id})
+        })
     }
 
     context.update(get_task_history(request.user))

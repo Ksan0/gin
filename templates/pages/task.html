@@ -5,24 +5,15 @@
         <div class="span7">
             <div class="ground__dialog">
                 <div class="ground__dialog__msgbefore">
-                    <a href="">Показать предыдущие сообщения</a>
+                    {% include "forms/task/get_task_messages.html" with form=get_task_messages_form %}
                 </div>
-                <div class="ground__dialog__msgs">
-                    <div class="ground__dialog__msgs__prototype dialog__msgright warning" style="display: none;">
-                        <span class="ground__dialog__msgs__text"></span>
-                        <div class="ground__dialog__msgs__info">
-                            <div class="ground__dialog__msgs__info__time"></div>
+                <div class="ground__task__messages">
+                    <div class="ground__task__messages__prototype" style="display: none;">
+                        <span class="ground__task__messages__text"></span>
+                        <div class="ground__task__messages__info">
+                            <div class="ground__task__messages__info__time"></div>
                         </div>
                     </div>
-
-                    {% for msg in messages %}
-                        <div class="{{ msg.class }}">
-                            <span class="ground__dialog__msgs__text">{{ msg.text }}</span>
-                            <div class="ground__dialog__msgs__info">
-                                <div class="ground__dialog__msgs__info__time">{{ msg.date }}</div>
-                            </div>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -34,7 +25,7 @@
 
     <div class="row">
         <div class="ground__dialog__input">
-            {% include "forms/task/create_task_message.html" with form=add_message_form %}
+            {% include "forms/task/create_task_message.html" with form=create_task_message_form %}
 
             {% if user.is_operator %}
                 <!--Да, тут нет структуры и не будет!!!-->

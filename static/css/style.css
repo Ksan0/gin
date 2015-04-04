@@ -329,7 +329,7 @@ input
 	top: 2px;
 }
 
-.ground__dialog__msgs
+.ground__task__messages
 {
 	margin-bottom: 12%;
 	position: relative;
@@ -339,7 +339,7 @@ input
 
 @-moz-document url-prefix()
 {
-    .ground__dialog__msgs
+    .ground__task__messages
     {
         margin-bottom: 18%;
     }
@@ -367,7 +367,7 @@ input
 	left: 53%;
 }
 
-.ground__dialog__msgs__info
+.ground__task__messages__info
 {
 	color: #999999;
 	font-size: smaller;
@@ -376,7 +376,7 @@ input
 	white-space: nowrap;
 }
 
-.ground__dialog__msgs__info__autor, .ground__dialog__msgs__info__time
+.ground__task__messages__info__autor, .ground__task__messages__info__time
 {
 	display: inline;
 }

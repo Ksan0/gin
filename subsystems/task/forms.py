@@ -28,13 +28,28 @@ class AssignSelfTaskForm(GinForm):
 
 class CreateTaskMessageForm(GinForm):
     text = forms.CharField(label="", widget=forms.Textarea({"class": "text ground__dialog__input__add-msg-form__txtarea form-control", "rows": "2"}))
-    task_id = forms.IntegerField(widget=forms.HiddenInput(), label='')
+    task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
 
     def __init__(self, *args, **kwargs):
         super(CreateTaskMessageForm, self).__init__(*args, **kwargs)
         self.set_action("ajax_create_task_message")
         self.set_submit_button("Отправить", "ground__dialog__input__add-msg-form")
         self.set_on_ctrl_enter(True)
+
+
+class GetTaskMessagesForm(GinForm):
+    task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
+    last_download_message_id = forms.IntegerField(
+        widget=forms.HiddenInput(attrs={"class": "last_download_message_id"}),
+        label="",
+        initial=-1
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(GetTaskMessagesForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_get_task_messages")
+        self.set_submit_button("Показать предыдущие сообщения")
+        self.set_send_on_init(True)
 
 
 class SetPriceForm(GinForm):

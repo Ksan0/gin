@@ -17,6 +17,9 @@ class GinForm(forms.Form):
         self.__action_method = "POST"
 
         self.__on_ctrl_enter = False
+        self.__send_on_init = False
+        # TODO:
+        # переписать на виджетах
         self.__fields_wrapper_classes = {}
 
     def get_form_id(self):
@@ -55,6 +58,12 @@ class GinForm(forms.Form):
 
     def get_on_ctrl_enter(self):
         return self.__on_ctrl_enter
+
+    def set_send_on_init(self, v):
+        self.__send_on_init = v
+
+    def get_send_on_init(self):
+        return self.__send_on_init
 
     def set_field_wrapper_class(self, field, klass):
         self.__fields_wrapper_classes[field] = klass

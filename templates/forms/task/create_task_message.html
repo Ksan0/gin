@@ -3,14 +3,14 @@
 <script>
 {% block add_script %}
     f_success = function (data, textStatus, jqXHR, form) {
-        var prototype = $(".ground__dialog__msgs__prototype");
+        var prototype = $(".ground__task__messages__prototype");
         var newEl = prototype.clone();
 
-        newEl.removeClass("ground__dialog__msgs__prototype");
-        newEl.css("display", "block");
-        newEl.find(".ground__dialog__msgs__text").before(data[GIN.AjaxResponseKeys.CREATION_DATA]);
-        newEl.find(".ground__dialog__msgs__info__time").html(data[GIN.AjaxResponseKeys.CREATION_DATE]);
-        $(".ground__dialog__msgs").append(newEl);
+        newEl.attr("class", data["class"]);
+        newEl.find(".ground__task__messages__text").before(data[GIN.AjaxResponseKeys.CREATION_DATA]);
+        newEl.find(".ground__task__messages__info__time").html(data[GIN.AjaxResponseKeys.CREATION_DATE]);
+        $(".ground__task__messages").append(newEl);
+        newEl.show();
 
         form.find(".text").val("");
     };

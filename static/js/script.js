@@ -14,7 +14,7 @@ var GIN = {
 };
 
 
-GIN.RegForm = function(form_id, method, url, on_ctrl_enter, f_success, f_error) {
+GIN.RegForm = function(form_id, method, url, on_ctrl_enter, send_on_init, f_success, f_error) {
     var form = $("#" + form_id);
 
     var f_send = function () {
@@ -55,5 +55,8 @@ GIN.RegForm = function(form_id, method, url, on_ctrl_enter, f_success, f_error) 
                 return f_send();
             }
         });
+    }
+    if (send_on_init) {
+        f_send();
     }
 };

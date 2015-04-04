@@ -26,10 +26,11 @@
             method = "{{ form.get_action_method }}",
             url = "{% url form.get_action_url_name %}",
             on_ctrl_enter = {{ form.get_on_ctrl_enter }},
+            send_on_init = {{ form.get_send_on_init }},
             f_success,
             f_error;
 
     {% block add_script %}{% endblock %}
 
-    GIN.RegForm(form_id, method, url, on_ctrl_enter, f_success, f_error);
+    GIN.RegForm(form_id, method, url, on_ctrl_enter, send_on_init, f_success, f_error);
 </script>

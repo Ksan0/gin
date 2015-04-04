@@ -1,0 +1,25 @@
+{% extends "forms/form.html" %}
+
+<script>
+{% block add_script %}
+    f_success = function (data, textStatus, jqXHR, form) {
+        var prototype = $(".ground__task__messages__prototype");
+
+        for (var i = 0; i < data["count"]; ++i) {
+            var newEl = prototype.clone();
+            var msgData = data["data"][i];
+            newEl.attr("class", msgData["class"]);
+            newEl.find(".ground__task__messages__text").html(msgData["text"]);
+            newEl.find(".ground__task__messages__info__time").html(msgData["date"]);
+            prototype.after(newEl);
+            newEl.show();
+        }
+
+        form.find(".last_download_message_id").val(data["last_download_message_id"]);
+
+        if (data["last_download_message_id"] == -1) {
+            form.hide();
+        }
+    };
+{% endblock %}
+</script>
