@@ -1,7 +1,4 @@
-from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
-from subsystems.a_user.models import AUser
-from subsystems.task.models import Task, TaskManager
 from subsystems.task.utils import get_task_history
 from .view_ajax import *
 
@@ -21,6 +18,7 @@ def view_task(request, task_id):
     context = {
         "task_id": task.id,
 
+        "assign_self_task_form": AssignSelfTaskForm(),
         "create_task_message_form": CreateTaskMessageForm(initial={'task_id': task.id}),
         "get_task_messages_form": GetTaskMessagesForm(initial={'task_id': task.id}),
         "set_price_form": SetPriceForm(initial={
