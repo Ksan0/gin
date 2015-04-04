@@ -36,7 +36,7 @@
         <div class="ground__dialog__input">
             {% include "forms/add_message_form.html" with form=add_message_form %}
 
-            {% if is_operator %}
+            {% if user.is_operator %}
                 <!--Да, тут нет структуры и не будет!!!-->
                 <div class="btn-price">
                     <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">

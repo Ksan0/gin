@@ -1,3 +1,6 @@
+False = false;
+True = true;
+
 var GIN = {
     AjaxResponseKeys: {
         FIELDS_ERRORS: "fields_errors",
@@ -12,7 +15,7 @@ var GIN = {
 };
 
 
-GIN.RegForm = function(on, method, url, form_id, f_success, f_error) {
+GIN.RegForm = function(form_id, method, url, on_ctrl_enter, f_success, f_error) {
     var form = $("#" + form_id);
 
     var f_send = function () {
@@ -47,7 +50,7 @@ GIN.RegForm = function(on, method, url, form_id, f_success, f_error) {
     form.find(".form_submit_button").on("click", function () {
         return f_send();
     });
-    if (on.e_ctrl_enter) {
+    if (on_ctrl_enter) {
         form.on("keydown", function (event) {
             if (event.keyCode == 13 && event.ctrlKey) {
                 return f_send();

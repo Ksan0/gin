@@ -38,8 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'subsystems.a_user',
     'subsystems.operator',
-    'subsystems.task',
-    'subsystems.dialog'
+    'subsystems.task'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,3 +109,7 @@ EMAIL_HOST_PASSWORD = 'Tech_db_testSystem'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+class CustomSettings:
+    DOMAIN_NAME_FULL = "http://localhost:8000"

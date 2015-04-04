@@ -1,4 +1,4 @@
-<form id="{{ form.html_id }}" class="{{ form.html_class }} form-horizontal">
+<form id="{{ form.get_form_id }}" class="{{ form.get_form_class }} form-horizontal">
     {% csrf_token %}
 
     <div class="__all___success">
@@ -18,20 +18,18 @@
         {% endfor %}
     </div>
 
-    <input class="form_submit_button {{ form.submit_button_class }} btn btn-info" type="submit" value="{{ form.submit_button_title }}">
+    <input type="submit" class="form_submit_button {{ form.get_submit_button_class }} btn btn-info" value="{{ form.get_submit_button_title }}">
 </form>
 
 <script>
-    var     on = {
-                e_ctrl_enter: false
-            },
-            method = "{{ form.action_method }}",
-            url = "{% url form.action_url_name %}",
-            form_id = "{{ form.html_id }}",
+    var     form_id = "{{ form.get_form_id }}",
+            method = "{{ form.get_action_method }}",
+            url = "{% url form.get_action_url_name %}",
+            on_ctrl_enter = {{ form.get_on_ctrl_enter }},
             f_success,
             f_error;
 
     {% block add_script %}{% endblock %}
 
-    GIN.RegForm(on, method, url, form_id, f_success, f_error);
+    GIN.RegForm(form_id, method, url, on_ctrl_enter, f_success, f_error);
 </script>

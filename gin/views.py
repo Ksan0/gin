@@ -1,64 +1,59 @@
-from django.contrib.auth import authenticate, login, logout
-from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from subsystems.a_user.models import AUser
 from subsystems.operator.models import Operator
 from subsystems.task.forms import CreateTaskForm, AssignSelfTaskForm
-from subsystems.task.models import Task, TaskManager
 from subsystems import user
+from subsystems.task.utils import get_task_history
 
 
-def index_hello_page(request):
-    context = {
-        "current_page": "index",
+def subview_index_anonymous(request, context):
+    context.update({
         "signup_form": user.forms.SignupForm(),
         "signin_form": user.forms.SigninForm(),
-        "restore_password_form": user.forms.RestorePasswordForm()
-    }
+        "restore_password_request_form": user.forms.RestorePasswordRequestForm()
+    })
     return render(request, "hello.html", context)
 
 
-def index_main_user_page(request):
-    all_history_tasks = Task.objects.filter(user=request.user).order_by("-creation_date")
-    last_open_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, True), 10)
-    last_close_tasks = Paginator(TaskManager.filter_by_status(all_history_tasks, False), 10)
-    context = {
-        "current_page": "index",
-        "last_open_tasks": last_open_tasks.page(1),
-        "last_close_tasks": last_close_tasks.page(1),
+def subview_index_user(request, context):
+    context.update({
         "create_task_form": CreateTaskForm()
-    }
+    })
     return render(request, "main_user.html", context)
 
 
-def index_main_operator_page(request):
-    all_history_tasks = Task.objects.filter(operator=request.user.id).order_by("-creation_date")
-    last_open_tasks = TaskManager.filter_by_status(all_history_tasks, True)[:10]
-    last_close_tasks = TaskManager.filter_by_status(all_history_tasks, False)[:10]
-    context = {
-        "current_page": "index",
-        "last_open_tasks": last_open_tasks,
-        "last_close_tasks": last_close_tasks,
+def subview_index_operator(request, context):
+    context.update({
         "assign_self_task_form": AssignSelfTaskForm()
-    }
+    })
     return render(request, "main_operator.html", context)
 
 
-def index_main_admin_page(request):
-    return render(request, "admin.html")
-
-
 def view_index(request):
+    context = {
+        "current_view_name": "view_index"
+    }
+
     if request.user.is_authenticated():
-        if request.user.is_superuser:
-            return index_main_admin_page(request)
-        user = AUser.objects.get(id=request.user.id)
-        if user.is_operator:
-            return index_main_operator_page(request)
+        context.update(get_task_history(request.user))
+
+        if request.user.is_operator:
+            return subview_index_operator(request, context)
         else:
-            return index_main_user_page(request)
+            return subview_index_user(request, context)
     else:
-        return index_hello_page(request)
+        return subview_index_anonymous(request, context)
+
+
+def view_faq(request):
+    context = {
+        "current_view_name": "view_faq",
+        "signup_form": user.forms.SignupForm(),
+        "signin_form": user.forms.SigninForm(),
+        "restore_password_form": user.forms.RestorePasswordRequestForm()
+    }
+    return render(request, "faq.html", context)
 
 
 def test_create(request):
@@ -74,12 +69,3 @@ def test_create(request):
         return redirect("/")
 
     return redirect("/")
-
-def view_faq(request):
-    context = {
-        "current_page": "faq",
-        "signup_form": user.forms.SignupForm(),
-        "signin_form": user.forms.SigninForm(),
-        "restore_password_form": user.forms.RestorePasswordForm()
-    }
-    return render(request, "faq.html", context)

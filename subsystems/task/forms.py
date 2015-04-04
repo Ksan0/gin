@@ -14,12 +14,26 @@ class CreateTaskForm(GinForm):
     )
     
     def __init__(self, *args, **kwargs):
-        super(CreateTaskForm, self).__init__("ajax_create_task", "POST", "", "", "Отправить", *args, **kwargs)
+        super(CreateTaskForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_create_task")
+        self.set_submit_button("Отправить")
 
 
 class AssignSelfTaskForm(GinForm):
     def __init__(self, *args, **kwargs):
-        super(AssignSelfTaskForm, self).__init__("ajax_assign_self_task", "POST", "", "", "Взять задачу", *args, **kwargs)
+        super(AssignSelfTaskForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_assign_self_task")
+        self.set_submit_button("Взять задачу")
+
+
+class CreateTaskMessageForm(GinForm):
+    text = forms.CharField(label="", widget=forms.Textarea({"class": "text ground__dialog__input__add-msg-form__txtarea form-control", "rows": "2"}))
+    task_id = forms.IntegerField(widget=forms.HiddenInput(), label='')
+
+    def __init__(self, *args, **kwargs):
+        super(CreateTaskMessageForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_create_task_message")
+        self.set_submit_button("Отправить", "ground__dialog__input__add-msg-form")
 
 
 class SetPriceForm(GinForm):

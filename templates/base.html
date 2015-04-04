@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     {% load static from staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static "css/gin.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
 	<link rel="stylesheet" type="text/css" href="{% static "bootstrap2/css/bootstrap.min.css" %}" />
     <script type="text/javascript" src="{% static "jquery/jquery-1.11.2.js" %}"></script>
     <script type="text/javascript" src="{% static "bootstrap2/js/bootstrap.min.js" %}"></script>
@@ -23,47 +23,31 @@
 
                 <ul class="nav">
                     <li class="divider-vertical"></li>
-
-                    <li><a href="{% url "view_index" %}" class="header__elem__index b-link">Главная</a></li>
-
-                    <li><a href="{% url "view_faq" %}" class="header__elem__faq b-link">FAQ</a></li>
-
-                    <li></li>
-
-                    <li></li>
-
+                    <li><a href="{% url "view_index" %}" class="header__elem__index b-link {% if current_view_name == "view_index" %}header__elem__current{% endif %}">Главная</a></li>
+                    <li><a href="{% url "view_faq" %}" class="header__elem__faq b-link {% if current_view_name == "view_faq" %}header__elem__current{% endif %}">FAQ</a></li>
                     <li class="divider-vertical"></li>
                 </ul>
 
                 <ul class="nav pull-right nav-btns">
                     {% if not user.is_authenticated %}
-                    <li>
-                        <a href="#signin" data-toggle="modal">
-                            <div type="button" class="btn btn-primary">
-                                Войти
-                            </div>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="#signin" data-toggle="modal">
+                                <div class="btn btn-primary">Войти</div>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="#signup" data-toggle="modal">
-                            <div type="button" class="btn btn-primary">
-                                Зарегистрироваться
-                            </div>
-                        </a>
-                    </li>
-
+                        <li>
+                            <a href="#signup" data-toggle="modal">
+                                <div class="btn btn-primary">Зарегистрироваться</div>
+                            </a>
+                        </li>
                     {% else %}
-                    <li>
-                        <a href={% url "view_logout" %}>
-                            <div type="button" class="btn btn-primary">Выйти</div>
-                        </a>
-                    </li>
+                        <li>
+                            <a href={% url "view_logout" %}>
+                                <div class="btn btn-primary">Выйти</div>
+                            </a>
+                        </li>
                     {% endif %}
-
-                    <script>
-                        $(".header__elem__{{ current_page }}").addClass("header__elem__current");
-                    </script>
                 </ul>
             </div>
         </div>
@@ -78,7 +62,7 @@
              </div>
 
              <div class="modal-body">
-                 {% include "forms/signup_form.html" with form=signup_form %}
+                 {% include "forms/user/signup_form.html" with form=signup_form %}
              </div>
          </div>
 
@@ -91,11 +75,11 @@
 
             <div class="modal-body">
                 <div class="signin__form__show">
-                    {% include "forms/signin_form.html" with form=signin_form %}
+                    {% include "forms/user/signin_form.html" with form=signin_form %}
                     <a href="#" class="href-restore">Восстановить пароль</a>
                 </div>
                 <div class="restore__password__form__show" style="display: none;">
-                    {% include "forms/restore_password_form.html" with form=restore_password_form %}
+                    {% include "forms/user/restore_password_request_form.html" with form=restore_password_request_form %}
                     <a href="#" class="href-signin">Войти</a>
                 </div>
                 <script>
@@ -108,7 +92,7 @@
                         $(".restore__password__form__show").hide();
                     });
                 </script>
-                </div></div>
+            </div>
         </div>
     {% endif %}
 

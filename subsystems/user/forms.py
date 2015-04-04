@@ -1,11 +1,6 @@
 from gin.forms import GinForm
 from django import forms
-
-
-def clean_password(password, password2):
-    if password != password2:
-        raise forms.ValidationError("Пароли не совпадают")
-    return password
+from subsystems.user.utils import forms_clean_password
 
 
 class SignupForm(GinForm):
@@ -14,10 +9,12 @@ class SignupForm(GinForm):
     password2 = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Повторите пароль")
 
     def __init__(self, *args, **kwargs):
-        super(SignupForm, self).__init__("ajax_signup_user", "POST", "", "", "Зарегистрироваться", *args, **kwargs)
+        super(SignupForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_signup_user")
+        self.set_submit_button("Зарегистрироваться")
 
     def clean_password(self):
-        return clean_password(self.data['password'], self.data['password2'])
+        return forms_clean_password(self.data['password'], self.data['password2'])
 
 
 class SigninForm(GinForm):
@@ -25,14 +22,18 @@ class SigninForm(GinForm):
     password = forms.CharField(widget=forms.PasswordInput({"class": ""}), label="Пароль")
     
     def __init__(self, *args, **kwargs):
-        super(SigninForm, self).__init__("ajax_signin_user", "POST", "", "", "Войти", *args, **kwargs)
+        super(SigninForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_signin_user")
+        self.set_submit_button("Войти")
 
 
-class RestorePasswordForm(GinForm):
+class RestorePasswordRequestForm(GinForm):
     email = forms.EmailField(widget=forms.EmailInput({"placeholder": "fff", "class": "form-control"}), label="Ваш email")
 
     def __init__(self, *args, **kwargs):
-        super(RestorePasswordForm, self).__init__("ajax_restore_password", "POST", "", "btn-restore", "Восстановить", *args, **kwargs)
+        super(RestorePasswordRequestForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_restore_password_request")
+        self.set_submit_button("Восстановить", "btn-restore")
 
 
 class RestorePasswordConfirmForm(GinForm):
@@ -42,7 +43,9 @@ class RestorePasswordConfirmForm(GinForm):
     token = forms.CharField(widget=forms.HiddenInput(), label="")
 
     def __init__(self, *args, **kwargs):
-        super(RestorePasswordConfirmForm, self).__init__("ajax_restore_password_confirm", "POST", "", "", "Сменить пароль", *args, **kwargs)
+        super(RestorePasswordConfirmForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_restore_password_confirm")
+        self.set_submit_button("Сменить пароль")
 
     def clean_password(self):
-        return clean_password(self.data['password'], self.data['password2'])
+        return forms_clean_password(self.data['password'], self.data['password2'])

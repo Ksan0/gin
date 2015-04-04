@@ -2,17 +2,15 @@
 
 <script>
 {% block add_script %}
-    on.e_ctrl_enter = true;
-
     f_success = function (data, textStatus, jqXHR, form) {
         if (data[GIN.AjaxResponseKeys.CREATION_ID]) {
             var prototype = $(".ground__history__elems__prototype");
             var newEl = prototype.clone();
             newEl.find(".ground__history__elems__i__date").html(data[GIN.AjaxResponseKeys.CREATION_DATE]);
             newEl.find(".ground__history__elems__i__event").html(data[GIN.AjaxResponseKeys.CREATION_DATA]);
-            newEl[0].href = "/task/" + data[GIN.AjaxResponseKeys.CREATION_ID];
+            newEl.attr("href", "/task/" + data[GIN.AjaxResponseKeys.CREATION_ID]);
             newEl.removeClass("ground__history__elems__prototype");
-            newEl.css("display", "block");
+            newEl.show();
             prototype.after(newEl);
 
             $(".ground__history__elems__open__text").html("");
