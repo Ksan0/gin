@@ -28,8 +28,15 @@ class AssignSelfTaskForm(GinForm):
 
 
 class CreateTaskMessageForm(GinForm):
-    text = forms.CharField(label="", widget=forms.Textarea({"placeholder": "Текст вашего сообщения...", "class": "text ground__dialog__input__add-msg-form__txtarea form-control", "rows": "2"}))
-    task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
+    text = forms.CharField(
+        label="",
+        widget=forms.Textarea({
+            "placeholder": "Текст вашего сообщения...",
+            "class": "text ground__dialog__input__add-msg-form__txtarea form-control",
+            "rows": "2"
+        })
+    )
+    task_id = forms.IntegerField(widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         super(CreateTaskMessageForm, self).__init__(*args, **kwargs)
@@ -40,7 +47,7 @@ class CreateTaskMessageForm(GinForm):
         self.set_field_wrapper_class("submit_button", "span1")
 
 class GetTaskMessagesForm(GinForm):
-    task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
+    task_id = forms.IntegerField(widget=forms.HiddenInput())
     last_download_message_id = forms.IntegerField(
         widget=forms.HiddenInput(attrs={"class": "last_download_message_id"}),
         label="",
@@ -57,7 +64,7 @@ class GetTaskMessagesForm(GinForm):
 class SetPriceForm(GinForm):
     price_title = forms.CharField()
     price_count = forms.IntegerField()
-    task_id = forms.IntegerField(widget=forms.HiddenInput(), label="")
+    task_id = forms.IntegerField(widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         super(SetPriceForm, self).__init__(*args, **kwargs)
