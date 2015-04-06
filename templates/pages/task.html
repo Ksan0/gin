@@ -24,41 +24,51 @@
     </div>
 
     <div class="row ground__dialog__input" style="margin-left: -20px !important;">
-        <div class="span10">
+        <div class="span9">
             <div class="row">
                 {% include "forms/task/create_task_message.html" with form=create_task_message_form %}
             </div>
         </div>
 
-        <div class="span1 offset1">
-            {% if user.is_operator %}
-                <div class="btn-price">
-                    <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">
-                        <div class="btn">Выставить счёт</div>
-                    </a>
-                    <div class="btn js-set_price_out" style="display: none"></div>
-                </div>
+        <div class="span3 offset1">
+            <div class="row">
+                {% if user.is_operator %}
+                    <div class="span2">
+                        <div class="btn-price">
+                            <a href="#price" data-toggle="modal" data-target="#price" class="js-a-ololo">
+                                <div class="btn">Выставить счёт</div>
+                            </a>
+                            <div class="btn js-set_price_out" style="display: none"></div>
+                        </div>
+                    </div>
 
-                {% if task.is_open %}
-                    {% include "forms/task/close_task.html" with form=close_task_form %}
-                {% endif %}
+                    <div class="span1">
+                        <div class="btn-close-task">
+                            {% if task.is_open %}
+                                {% include "forms/task/close_task.html" with form=close_task_form %}
+                            {% endif %}
+                        </div>
+                    </div>
 
-                <a href="/admin/user/userinfo/{{ task.userinfo.id }}/">Информация о пользователе</a>
-            {% else %}
-                {% if set_price_form.price_count.value > 0 %}
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                        <input type="hidden" name="cmd" value="_xclick" />
-                        <input type="hidden" name="bn" value="Gin-BuyNow_gingin_RU" />
-                        <input type="hidden" name="business" value="kgfq@mail.ru" />
-                        <input type="hidden" name="item_name" value="{{ set_price_form.price_title.value }}" />
-                        <input type="hidden" name="currency_code" value="RUB" />
-                        <input type="hidden" name="amount" value="{{ set_price_form.price_count.value }}" />
-                        <input type="hidden" name="no_shipping" value="1">
-                        <input type="hidden" name="custom" value="custom-field" />
-                        <button type="submit" class="btn btn-pay">Оплатить</button>
-                    </form>
+                    <!--a href="/admin/user/userinfo/{{ task.userinfo.id }}/">Информация о пользователе</a-->
+                {% else %}
+                    {% if task_price_form.price_count.value > 0 %}
+                        <div class="span1">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                <input type="hidden" name="cmd" value="_xclick" />
+                                <input type="hidden" name="bn" value="Gin-BuyNow_gingin_RU" />
+                                <input type="hidden" name="business" value="kgfq@mail.ru" />
+                                <input type="hidden" name="item_name" value="{{ task_price_form.price_title.value }}" />
+                                <input type="hidden" name="currency_code" value="RUB" />
+                                <input type="hidden" name="amount" value="{{ task_price_form.price_count.value }}" />
+                                <input type="hidden" name="no_shipping" value="1">
+                                <input type="hidden" name="custom" value="custom-field" />
+                                <button type="submit" class="btn btn-pay">Оплатить</button>
+                            </form>
+                        </div>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
+            </div>
         </div>
     </div>
 

@@ -172,12 +172,6 @@ input
     min-height: 25px !important;
 }
 
-#subsystems_task_forms_SetPriceForm .set-price-btn
-{
-    left: 180px !important;
-    position: relative;
-}
-
 .newoperator-modal .btn
 {
     left: 170px;
@@ -185,14 +179,25 @@ input
     text-align: center;
 }
 
-/*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
-
-/*---------------------------------------------------------------------MAIN_USER->QUERY BEGIN-----------------------------------------------------------*/
-
-.ground__query
+#subsystems_task_forms_CreateTaskMessageForm .form_submit_button
 {
-    padding-left: 25px !important;
-	top: 80px;
+    margin-top: 15%;
+    min-width: 100px;
+}
+
+#subsystems_task_forms_CreateTaskMessageForm .control-label
+{
+    display: none;
+}
+
+#subsystems_task_forms_CreateTaskMessageForm .controls
+{
+    margin-left: 0 !important;
+}
+
+#subsystems_task_forms_CreateTaskMessageForm .ground__dialog__input__add-msg-form__txtarea
+{
+    resize: none;
 }
 
 #subsystems_task_forms_CreateTaskForm .control-label
@@ -203,19 +208,6 @@ input
 #subsystems_task_forms_CreateTaskForm .controls
 {
     margin-left: 0 !important;
-}
-
-.ground__query .form-control
-{
-    height: 150px;
-    resize: none    ;
-	width: 100%;
-}
-
-.ground__query .btn-info
-{
-    margin-top: 30px;
-	width: 100%;
 }
 
 #subsystems_task_forms_CreateTaskForm .form_error
@@ -231,6 +223,40 @@ input
 #subsystems_task_forms_CreateTaskForm .control-group
 {
     margin-bottom: 0 !important;
+}
+
+#subsystems_task_forms_AssignSelfTaskForm .form_submit_button
+{
+    width: 100%;
+}
+
+#subsystems_task_forms_TaskPriceForm .set-price-btn
+{
+    left: 180px !important;
+    position: relative;
+}
+
+/*---------------------------------------------------------------------FORMS END-----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------MAIN_USER->QUERY BEGIN-----------------------------------------------------------*/
+
+.ground__query
+{
+    padding-left: 25px !important;
+	top: 80px;
+}
+
+.ground__query .form-control
+{
+    height: 150px;
+    resize: none;
+	width: 100%;
+}
+
+.ground__query .btn-info
+{
+    margin-top: 30px;
+	width: 100%;
 }
 
 /*---------------------------------------------------------------------MAIN_USER->QUERY END-----------------------------------------------------------*/
@@ -392,21 +418,6 @@ input
 	width: 100%;
 }
 
-#subsystems_task_forms_CreateTaskMessageForm .control-label
-{
-    display: none;
-}
-
-#subsystems_task_forms_CreateTaskMessageForm .controls
-{
-    margin-left: 0 !important;
-}
-
-#subsystems_task_forms_CreateTaskMessageForm .ground__dialog__input__add-msg-form__txtarea
-{
-    resize: none;
-}
-
 textarea.ground__dialog__input__add-msg-form__txtarea
 {
     height: 5% !important;
@@ -414,15 +425,19 @@ textarea.ground__dialog__input__add-msg-form__txtarea
     width: 100% !important;
 }
 
-#subsystems_task_forms_CreateTaskMessageForm .form_submit_button
+.ground__dialog__input .btn-price
 {
-    margin-top: 15%;
-    min-width: 100px;
+    margin-top: 6%;
 }
 
-.ground__dialog__input .btn-price, .ground__dialog__input .btn-pay
+.ground__dialog__input .btn-pay
 {
     margin-top: 15%;
+}
+
+.ground__dialog__input .btn-close-task
+{
+    margin-top: 14%;
 }
 
 .btn-price .btn, .btn-pay
@@ -435,7 +450,7 @@ textarea.ground__dialog__input__add-msg-form__txtarea
     display: none;
 }
 
-.btn-price .btn, .btn-pay .btn
+.btn-price .btn, .btn-pay.btn
 {
     background-color: #dcdaa1 !important;
     background-image: none;
@@ -480,11 +495,6 @@ textarea.ground__dialog__input__add-msg-form__txtarea
 {
     position: relative;
     text-align: center;
-    width: 100%;
-}
-
-#subsystems_task_forms_AssignSelfTaskForm .form_submit_button
-{
     width: 100%;
 }
 
