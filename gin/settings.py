@@ -25,7 +25,8 @@ DEBUG = SettingsLocal.DEBUG
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
-    "." + SettingsLocal.DOMAIN_NAME
+    "." + SettingsLocal.DOMAIN_NAME,
+    SettingsLocal.IP
 ]
 
 
