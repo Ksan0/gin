@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from subsystems.a_user.models import AUser
 from subsystems.user.forms import SignupForm, SigninForm, RestorePasswordRequestForm, RestorePasswordConfirmForm
+from subsystems.user.models import UserInfo
 from subsystems.user.utils import generate_restore_password_confirm_url
 from subsystems.utils.ajax import AjaxResponseKeys
 from subsystems.utils.json import render_to_json
@@ -22,6 +23,7 @@ def ajax_signup(request):
         s_email = form.cleaned_data["email"]
         s_password = form.cleaned_data["password"]
         user = AUser.objects.create_user(s_email, s_password, False, first_name=s_name)
+        UserInfo.objects.create(user=user)
         user = authenticate(id=user.id, password=s_password)
         login(request, user)
     except:
