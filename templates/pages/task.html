@@ -38,6 +38,12 @@
                     </a>
                     <div class="btn js-set_price_out" style="display: none"></div>
                 </div>
+
+                {% if task.is_open %}
+                    {% include "forms/task/close_task.html" with form=close_task_form %}
+                {% endif %}
+
+                <a href="/admin/user/userinfo/{{ task.userinfo.id }}/">Информация о пользователе</a>
             {% else %}
                 {% if set_price_form.price_count.value > 0 %}
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">

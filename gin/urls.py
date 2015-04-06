@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import gin
 from subsystems import user, task
+
+
 urlpatterns = patterns(
     '',
 
@@ -17,6 +19,7 @@ urlpatterns = patterns(
     url(r"^ajax/create_task_message", task.views.ajax_create_task_message, name="ajax_create_task_message"),
     url(r"^ajax/get_task_messages$", task.views.ajax_get_task_messages, name="ajax_get_task_messages"),
     url(r"^ajax/set_task_price$", task.views.ajax_set_task_price, name="ajax_set_task_price"),
+    url(r"ajax/close_task", task.views.ajax_close_task, name="ajax_close_task"),
 
     # ========== VIEWS ==========
     url(r"^$", gin.views.view_index, name="view_index"),
@@ -26,9 +29,9 @@ urlpatterns = patterns(
     url(r"^logout$", user.views.view_logout, name="view_logout"),
     #url(r"^history$", gin.views.view_history, name="view_history"),
 
-    # test
-    url(r"^test_create$", gin.views.test_create),
+    # ========== VIEWS SUPER ==========
+    url(r"^test_create$", gin.views_super.test_create),
 
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 )
 

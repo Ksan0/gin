@@ -51,6 +51,11 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
         abstract = True
 
+    def __init__(self, *args, **kwargs):
+        super(AbstractUser, self).__init__(*args, **kwargs)
+        self.is_active = True
+        self.is_staff = self.is_operator or self.is_superuser
+
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
@@ -78,6 +83,9 @@ class AUser(AbstractUser):
     """
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
+
+    def __str__(self):
+        return self.email
 
 
 @python_2_unicode_compatible

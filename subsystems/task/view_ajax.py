@@ -1,6 +1,7 @@
 from gin.settings_db import SettingsDB
 from .models import Task, TaskMessage
-from .forms import CreateTaskForm, AssignSelfTaskForm, TaskPriceForm, CreateTaskMessageForm, GetTaskMessagesForm
+from .forms import CreateTaskForm, AssignSelfTaskForm, TaskPriceForm, CreateTaskMessageForm, GetTaskMessagesForm, \
+    CloseTaskForm
 from subsystems.operator.models import OperatorInfo
 from subsystems.utils.ajax import AjaxResponseKeys
 from subsystems.utils.json import render_to_json
@@ -13,7 +14,7 @@ def ajax_create_task(request):
         form.add_error(None, "bad method")
         return render_to_json(form.errors_to_json())
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated() or request.user.is_operator:
         form.add_error(None, "bad session")
         return render_to_json(form.errors_to_json())
 
@@ -46,7 +47,7 @@ def ajax_assign_self_task(request):
         form.add_error(None, "bad method")
         return render_to_json(form.errors_to_json())
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated() or not request.user.is_operator:
         form.add_error(None, "bad session")
         return render_to_json(form.errors_to_json())
 
@@ -60,7 +61,7 @@ def ajax_assign_self_task(request):
         form.add_error(None, "Достигнуто максимальное количество активных задач")
         return render_to_json(form.errors_to_json())
 
-    tasks = Task.objects.filter(operator=None, status=Task.Status.CREATE).order_by("creation_date")
+    tasks = Task.objects.filter(operator=None, status=Task.Status.CREATE).order_by("id")
     try:
         task = tasks[0]
     except:
@@ -168,6 +169,7 @@ def ajax_get_task_messages(request):
         response_data["data"].append({
             "class": msg.user == request.user and "dialog__msgright warning" or "dialog__msgleft success",
             "text": msg.body,
+            "name": msg.user == request.user and "Вы" or msg.user.first_name,
             "date": msg.get_date_str()
         })
 
@@ -212,3 +214,34 @@ def ajax_set_task_price(request):
         "price_count": s_price_count
     }
     return render_to_json(response_data)
+
+
+def ajax_close_task(request):
+    form = CloseTaskForm(request.POST or None)
+
+    if request.method != "POST":
+        form.add_error(None, "bad method")
+        return render_to_json(form.errors_to_json())
+
+    if not request.user.is_authenticated():
+        form.add_error(None, "bad session")
+        return render_to_json(form.errors_to_json())
+
+    if not form.is_valid():
+        return render_to_json(form.errors_to_json())
+
+    try:
+        s_task_id = form.cleaned_data['task_id']
+        task = Task.objects.get(id=s_task_id)
+        if task.operator != request.user and not request.user.is_superuser:
+            form.add_error(None, "bad session")
+            return render_to_json(form.errors_to_json())
+    except:
+        form.add_error(None, "internal error")
+        return render_to_json(form.errors_to_json())
+
+    if task.is_open():
+        task.status = Task.Status.CLOSE_BY_OPERATOR
+        task.save()
+
+    return render_to_json({})

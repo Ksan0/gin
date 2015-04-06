@@ -1,0 +1,11 @@
+{% extends "forms/form.html" %}
+
+<script>
+{% block add_script %}
+
+    f_success = function (data, textStatus, jqXHR, form) {
+       form.hide();
+    };
+
+{% endblock %}
+</script>

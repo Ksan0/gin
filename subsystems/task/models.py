@@ -21,10 +21,10 @@ class Task(models.Model):
         # open
         CREATE = 0                  # таск был создан, но его еще не распределили оператору
         ASSIGN = 1                  # оператор получил этот таск
-        HAVE_PRICE = 2              # счет выставлен1024
+        HAVE_PRICE = 2              # счет выставлен
         # close
-        CANCEL_BY_USER = 50         # юзер отменил таск
-        CANCEL_BY_OPERATOR = 51     # оператор отменил таск
+        CLOSE_BY_USER = 50         # юзер отменил таск
+        CLOSE_BY_OPERATOR = 51     # оператор отменил таск
         SOLVED = 52                 # таск решен
 
     objects = TaskManager()
@@ -45,6 +45,9 @@ class Task(models.Model):
             return '{:%d.%m.%Y}'.format(self.creation_date)
         else:
             return '{:%H:%M}'.format(self.creation_date)
+
+    def is_open(self):
+        return self.Status.OPEN_INDEX[0] <= self.status < self.Status.OPEN_INDEX[1]
 
 
 class TaskMessage(models.Model):

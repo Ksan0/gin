@@ -10,7 +10,7 @@
             var msgData = data["data"][i];
             newEl.attr("class", msgData["class"]);
             newEl.find(".ground__task__messages__text").html(msgData["text"]);
-            newEl.find(".ground__task__messages__info__time").html(msgData["date"]);
+            newEl.find(".ground__task__messages__info__time").html(msgData["name"] + ", " + msgData["date"]);
             prototype.after(newEl);
             newEl.show();
         }

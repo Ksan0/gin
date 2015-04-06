@@ -81,3 +81,12 @@ class TaskPriceForm(GinForm):
         super(TaskPriceForm, self).__init__(*args, **kwargs)
         self.set_action("ajax_set_task_price")
         self.set_submit_button("Выставить счет", "set-price-btn")
+
+
+class CloseTaskForm(GinForm):
+    task_id = forms.IntegerField(widget=forms.HiddenInput())
+
+    def __init__(self, *args, **kwargs):
+        super(CloseTaskForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_close_task")
+        self.set_submit_button("Закрыть задачу")

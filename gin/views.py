@@ -1,7 +1,4 @@
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from subsystems.a_user.models import AUser
-from subsystems.operator.models import OperatorInfo
+from django.shortcuts import render
 from subsystems.task.forms import CreateTaskForm, AssignSelfTaskForm
 from subsystems import user
 from subsystems.task.utils import get_task_history
@@ -55,20 +52,6 @@ def view_faq(request):
     }
     return render(request, "pages/faq.html", context)
 
-
-def test_create(request):
-    who = request.GET['who']
-
-    if who == 'operator':
-        i = len(OperatorInfo.objects.all())
-        email = "op{0}@op.ru".format(i)
-        u = AUser.objects.create_user(email=email, password="1", is_operator=True, is_superuser=False)
-        o = OperatorInfo.objects.create(user=u)
-        u = authenticate(id=u.id, password="1")
-        login(request, u)
-        return redirect("/")
-
-    return redirect("/")
 
 def view_history(request):
     context = {

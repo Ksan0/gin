@@ -8,7 +8,7 @@
 
         newEl.attr("class", data["class"]);
         newEl.find(".ground__task__messages__text").before(data[GIN.AjaxResponseKeys.CREATION_DATA]);
-        newEl.find(".ground__task__messages__info__time").html(data[GIN.AjaxResponseKeys.CREATION_DATE]);
+        newEl.find(".ground__task__messages__info__time").html("Вы, " + data[GIN.AjaxResponseKeys.CREATION_DATE]);
         $(".ground__task__messages").append(newEl);
         newEl.show();
 

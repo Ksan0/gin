@@ -1,1 +1,1 @@
-from gin import views
+from gin import views, views_super
