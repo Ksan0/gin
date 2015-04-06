@@ -30,7 +30,7 @@ urlpatterns = patterns(
     #url(r"^history$", gin.views.view_history, name="view_history"),
 
     # ========== VIEWS SUPER ==========
-    url(r"^test_create$", gin.views_super.test_create),
+    url(r"^super/init", gin.views_super.view_super_init),
 
     url(r'^admin/', include(admin.site.urls)),
 )
