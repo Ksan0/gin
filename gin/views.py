@@ -51,7 +51,7 @@ def view_faq(request):
         "current_view_name": "view_faq",
         "signup_form": user.forms.SignupForm(),
         "signin_form": user.forms.SigninForm(),
-        "restore_password_form": user.forms.RestorePasswordRequestForm()
+        "restore_password_request_form": user.forms.RestorePasswordRequestForm()
     }
     return render(request, "pages/faq.html", context)
 
