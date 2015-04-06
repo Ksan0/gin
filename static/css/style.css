@@ -121,7 +121,7 @@ ul.nav
     top: 15px;
 }
 
-#subsystems_user_forms_RestorePasswordForm .btn-restore
+#subsystems_user_forms_RestorePasswordRequestForm .btn-restore
 {
     left: 180px;
     position: relative;
