@@ -6,7 +6,7 @@ sudo virtualenv /home/gin
 sudo chown -R ${USER} /home/gin
 cd /home/gin
 source bin/activate
-sudo pip3 install Django
+sudo pip3 install Django==1.7.6
 deactivate
 
 # === postgresql ===
