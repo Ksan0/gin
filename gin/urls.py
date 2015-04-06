@@ -32,6 +32,9 @@ urlpatterns = patterns(
     # ========== VIEWS SUPER ==========
     url(r"^super/init", gin.views_super.view_super_init),
 
+    # ========== VIEWS TEST ==========
+    url(r"^test/create$", gin.views_test.view_create),
+
     url(r'^admin/', include(admin.site.urls)),
 )
 
