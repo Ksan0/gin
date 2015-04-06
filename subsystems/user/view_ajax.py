@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from subsystems.a_user.models import AUser
 from subsystems.user.forms import SignupForm, SigninForm, RestorePasswordRequestForm, RestorePasswordConfirmForm
 from subsystems.user.models import UserInfo
-from subsystems.user.utils import generate_restore_password_confirm_url
+from subsystems.user.utils import generate_restore_password_confirm_url, create_restore_password_token
 from subsystems.utils.ajax import AjaxResponseKeys
 from subsystems.utils.json import render_to_json
 
