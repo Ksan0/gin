@@ -72,7 +72,8 @@ def ajax_restore_password_request(request):
     if not form.is_valid():
         return render_to_json(form.errors_to_json())
 
-    try:
+    if True:
+    #try:
         s_email = form.cleaned_data["email"]
         user = AUser.objects.get(email=s_email)
         restore_url = generate_restore_password_confirm_url(user)
@@ -81,8 +82,8 @@ def ajax_restore_password_request(request):
             "Если это сделали не Вы, просто проигнорируйте его\n" \
             "Для восстановления пароля перейдите по ссылке:\n" + restore_url
         send_mail(subject="Восстановление пароля", message=message, from_email="db.testsystem@gmail.com", recipient_list=[user.email])
-    except:
-        pass
+    #except:
+    #    pass
 
     return render_to_json({
         "message": "Письмо было отправленно на указанный email"
