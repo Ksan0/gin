@@ -18,9 +18,10 @@ def ajax_signup(request):
         return render_to_json(form.errors_to_json())
 
     try:
+        s_name = form.cleaned_data["name"]
         s_email = form.cleaned_data["email"]
         s_password = form.cleaned_data["password"]
-        user = AUser.objects.create_user(s_email, s_password, False)
+        user = AUser.objects.create_user(s_email, s_password, False, first_name=s_name)
         user = authenticate(id=user.id, password=s_password)
         login(request, user)
     except:

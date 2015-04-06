@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.datetime_safe import datetime
 from subsystems.a_user.models import AUser
+from gin.settings_db import SettingsDB
 
 
 class TaskManager(models.Manager):
@@ -20,7 +21,7 @@ class Task(models.Model):
         # open
         CREATE = 0                  # таск был создан, но его еще не распределили оператору
         ASSIGN = 1                  # оператор получил этот таск
-        HAVE_PRICE = 2              # счет выставлен
+        HAVE_PRICE = 2              # счет выставлен1024
         # close
         CANCEL_BY_USER = 50         # юзер отменил таск
         CANCEL_BY_OPERATOR = 51     # оператор отменил таск
@@ -32,9 +33,9 @@ class Task(models.Model):
     status = models.SmallIntegerField(default=Status.CREATE)
     user = models.ForeignKey(AUser, related_name='+')                       # юзер, который создал таск
     operator = models.ForeignKey(AUser, null=True, related_name='+')        # оператор, который выполняет таск
-    text = models.CharField(max_length=255)
+    text = models.CharField(max_length=SettingsDB.MAX_TASK_MESSAGE_LENGTH)
 
-    price_title = models.CharField(default="", max_length=50)
+    price_title = models.CharField(default="", max_length=SettingsDB.MAX_TASK_PRICE_TITLE)
     price_count = models.IntegerField(default=0)
 
     def get_date_str(self):
@@ -49,7 +50,7 @@ class Task(models.Model):
 class TaskMessage(models.Model):
     task = models.ForeignKey(Task)       # таск, к которому привязано сообщение
     user = models.ForeignKey(AUser)      # юзер, который написал сообщение (может быть и оператором)
-    body = models.CharField(max_length=255)
+    body = models.CharField(max_length=SettingsDB.MAX_TASK_MESSAGE_LENGTH)
     creation_date = models.DateTimeField(auto_now_add=True)
 
     def get_date_str(self):

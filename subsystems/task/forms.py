@@ -1,18 +1,21 @@
 from gin.forms import GinForm
 from django import forms
+from gin.settings_db import SettingsDB
 
 
 class CreateTaskForm(GinForm):
     text = forms.CharField(
         label="",
-        widget=forms.Textarea({"placeholder": "Опишите тут ваше задание...", "class": "text form-control"}),
-        min_length=10,
-        max_length=255,
+        max_length=SettingsDB.MAX_TASK_MESSAGE_LENGTH,
+        widget=forms.Textarea({
+            "placeholder": "Опишите тут ваше задание...",
+            "class": "text form-control"
+        }),
         error_messages={
             'min_length': 'Опишите задачу подробнее'
         }
     )
-    
+
     def __init__(self, *args, **kwargs):
         super(CreateTaskForm, self).__init__(*args, **kwargs)
         self.set_action("ajax_create_task")
@@ -30,6 +33,7 @@ class AssignSelfTaskForm(GinForm):
 class CreateTaskMessageForm(GinForm):
     text = forms.CharField(
         label="",
+        max_length=SettingsDB.MAX_TASK_MESSAGE_LENGTH,
         widget=forms.Textarea({
             "placeholder": "Текст вашего сообщения...",
             "class": "text ground__dialog__input__add-msg-form__txtarea form-control",
@@ -50,8 +54,8 @@ class CreateTaskMessageForm(GinForm):
 class GetTaskMessagesForm(GinForm):
     task_id = forms.IntegerField(widget=forms.HiddenInput())
     last_download_message_id = forms.IntegerField(
-        widget=forms.HiddenInput(attrs={"class": "last_download_message_id"}),
         label="",
+        widget=forms.HiddenInput(attrs={"class": "last_download_message_id"}),
         initial=-1
     )
 
@@ -62,12 +66,18 @@ class GetTaskMessagesForm(GinForm):
         self.set_send_on_init(True)
 
 
-class SetPriceForm(GinForm):
-    price_title = forms.CharField()
-    price_count = forms.IntegerField()
+class TaskPriceForm(GinForm):
+    price_title = forms.CharField(
+        label="Наименование товара",
+        max_length=SettingsDB.MAX_TASK_PRICE_TITLE
+    )
+    price_count = forms.IntegerField(
+        label="Цена (руб)",
+        min_value=0
+    )
     task_id = forms.IntegerField(widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
-        super(SetPriceForm, self).__init__(*args, **kwargs)
-        self.set_action("ajax_set_price")
+        super(TaskPriceForm, self).__init__(*args, **kwargs)
+        self.set_action("ajax_set_task_price")
         self.set_submit_button("Выставить счет", "set-price-btn")

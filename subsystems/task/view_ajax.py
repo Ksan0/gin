@@ -1,5 +1,6 @@
+from gin.settings_db import SettingsDB
 from .models import Task, TaskMessage
-from .forms import CreateTaskForm, AssignSelfTaskForm, SetPriceForm, CreateTaskMessageForm, GetTaskMessagesForm
+from .forms import CreateTaskForm, AssignSelfTaskForm, TaskPriceForm, CreateTaskMessageForm, GetTaskMessagesForm
 from subsystems.operator.models import OperatorInfo
 from subsystems.utils.ajax import AjaxResponseKeys
 from subsystems.utils.json import render_to_json
@@ -55,7 +56,7 @@ def ajax_assign_self_task(request):
         form.add_error(None, "bad session")
         return render_to_json(form.errors_to_json())
 
-    if operator.active_tasks_count >= 10:
+    if operator.active_tasks_count >= SettingsDB.MAX_OPEN_TASKS_BY_OPERATOR:
         form.add_error(None, "Достигнуто максимальное количество активных задач")
         return render_to_json(form.errors_to_json())
 
@@ -144,14 +145,12 @@ def ajax_get_task_messages(request):
         form.add_error(None, "bad session")
         return render_to_json(form.errors_to_json())
 
-    MESSAGES_CHUNK = 50
-
     try:
         s_last_download_message_id = form.cleaned_data['last_download_message_id']
         messages = TaskMessage.objects.filter(task=task)
         if s_last_download_message_id != -1:
             messages = TaskMessage.objects.filter(id__lt=s_last_download_message_id)
-        messages = messages.order_by("-id")[:MESSAGES_CHUNK]
+        messages = messages.order_by("-id")[:SettingsDB.MESSAGES_CHUNK_SIZE]
     except:
         form.add_error(None, "empty dd")
         return render_to_json(form.errors_to_json())
@@ -159,10 +158,10 @@ def ajax_get_task_messages(request):
     response_data = {
         "count": len(messages),
         "data": [],
-        "last_download_message_id": -1
+        "last_download_message_id": -1  # возвращает -1, когда сообщений на догрузку не осталось
     }
 
-    if response_data["count"] == MESSAGES_CHUNK:
+    if response_data["count"] == SettingsDB.MESSAGES_CHUNK_SIZE:
         response_data["last_download_message_id"] = messages[response_data["count"]-1].id
 
     for msg in messages:
@@ -175,8 +174,8 @@ def ajax_get_task_messages(request):
     return render_to_json(response_data)
 
 
-def ajax_set_price(request):
-    form = SetPriceForm(request.POST or None)
+def ajax_set_task_price(request):
+    form = TaskPriceForm(request.POST or None)
 
     if request.method != "POST":
         form.add_error(None, "bad method")
@@ -196,7 +195,7 @@ def ajax_set_price(request):
         form.add_error(None, "bad task id")
         return render_to_json(form.errors_to_json())
 
-    if task.operator.id != request.user.id and not request.user.is_superuser:
+    if task.operator != request.user and not request.user.is_superuser:
         form.add_error(None, "bad session")
         return render_to_json(form.errors_to_json())
 

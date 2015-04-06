@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from subsystems.task.forms import TaskPriceForm
 from subsystems.task.utils import get_task_history
 from .view_ajax import *
 
@@ -21,7 +22,7 @@ def view_task(request, task_id):
         "assign_self_task_form": AssignSelfTaskForm(),
         "create_task_message_form": CreateTaskMessageForm(initial={'task_id': task.id}),
         "get_task_messages_form": GetTaskMessagesForm(initial={'task_id': task.id}),
-        "set_price_form": SetPriceForm(initial={
+        "task_price_form": TaskPriceForm(initial={
             'task_id': task.id,
             'price_title': task.price_title,
             'price_count': task.price_count

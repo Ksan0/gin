@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from .settings_local import LocalSettings
+from .settings_local import SettingsLocal
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -21,11 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '0@-d8&l98616fejd@9z)(i*z_i+^edh_b4%mo8z1or5%15937m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = LocalSettings.DEBUG
+DEBUG = SettingsLocal.DEBUG
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
-    "." + LocalSettings.DOMAIN_NAME
+    "." + SettingsLocal.DOMAIN_NAME
 ]
 
 
@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'gindb',
         'PORT': '6432',
         'USER': 'ginuser',
-        'PASSWORD': LocalSettings.DB_PASSWORD
+        'PASSWORD': SettingsLocal.DB_PASSWORD
     }
 }
 
@@ -107,12 +107,12 @@ TEMPLATE_DIRS = [
 # email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = LocalSettings.EMAIL_USER
-EMAIL_HOST_PASSWORD = LocalSettings.EMAIL_PASSWORD
+EMAIL_HOST_USER = SettingsLocal.EMAIL_USER
+EMAIL_HOST_PASSWORD = SettingsLocal.EMAIL_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 class CustomSettings:
-    DOMAIN_NAME_FULL = "http://" + LocalSettings.DOMAIN_NAME
+    DOMAIN_NAME_FULL = "http://" + SettingsLocal.DOMAIN_NAME
