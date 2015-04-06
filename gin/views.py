@@ -77,4 +77,4 @@ def view_history(request):
         "signin_form": user.forms.SigninForm(),
         "restore_password_form": user.forms.RestorePasswordRequestForm()
     }
-    return render(request, "pages/history_page.html", context)
+    return render(request, "pages/history.html", context)

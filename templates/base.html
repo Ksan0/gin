@@ -10,7 +10,7 @@
     <script type="text/javascript" src="{% static "js/script.js" %}"></script>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-    <title>Джин</title>
+    <title>YourManager</title>
 </head>
 
 <body>
@@ -18,18 +18,14 @@
         <div class="navbar-inner">
             <div class="container">
                 <a class="brand bb-link" href="/">
-                    Джин
+                    YourManager
                 </a>
 
                 <ul class="nav">
                     <li class="divider-vertical"></li>
-
                     <li><a href="{% url "view_index" %}" class="header__elem__index b-link {% if current_view_name == "view_index" %}header__elem__current{% endif %}">Главная</a></li>
-
                     <li><a href="{% url "view_faq" %}" class="header__elem__faq b-link {% if current_view_name == "view_faq" %}header__elem__current{% endif %}">FAQ</a></li>
-
-                    <li><a href="{% url "view_history" %}" class="header__elem__faq b-link {% if current_view_name == "view_history" %}header__elem__current{% endif %}">История</a></li>
-
+                    {# <li><a href="{% url "view_history" %}" class="header__elem__faq b-link {% if current_view_name == "view_history" %}header__elem__current{% endif %}">История</a></li> #}
                     <li class="divider-vertical"></li>
                 </ul>
 

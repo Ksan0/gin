@@ -384,11 +384,11 @@ input
 .ground__dialog__input
 {
 	border: 1px solid #ccccdd;
-	background-color: #e6e6fa;
-	/*height: 12%;*/
-	padding: 1%;
+	background-color: #fafafa;
+	height: 14.5%;
+	padding: 2%;
 	position: fixed;
-	top: 88%;
+	top: 85.5%;
 	width: 100%;
 }
 

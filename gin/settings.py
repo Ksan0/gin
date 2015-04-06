@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'subsystems.a_user',
+    'subsystems.user',
     'subsystems.operator',
     'subsystems.task'
 )

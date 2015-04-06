@@ -33,7 +33,7 @@ class CreateTaskMessageForm(GinForm):
         widget=forms.Textarea({
             "placeholder": "Текст вашего сообщения...",
             "class": "text ground__dialog__input__add-msg-form__txtarea form-control",
-            "rows": "2"
+            "rows": "3"
         })
     )
     task_id = forms.IntegerField(widget=forms.HiddenInput())
@@ -45,6 +45,7 @@ class CreateTaskMessageForm(GinForm):
         self.set_on_ctrl_enter(True)
         self.set_field_wrapper_class("text", "span9")
         self.set_field_wrapper_class("submit_button", "span1")
+
 
 class GetTaskMessagesForm(GinForm):
     task_id = forms.IntegerField(widget=forms.HiddenInput())

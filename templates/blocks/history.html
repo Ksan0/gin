@@ -1,10 +1,9 @@
-{% if user.is_operator %}
-    <div class="ground__history-block__take-task-btn">
-        {% include "forms/task/assign_self_task.html" with form=assign_self_task_form %}
-    </div>
-{% endif %}
-
 <div class="ground__history history">
+    {% if user.is_operator %}
+        <div class="ground__history-block__take-task-btn">
+            {% include "forms/task/assign_self_task.html" with form=assign_self_task_form %}
+        </div>
+    {% endif %}
     <div class="ground__history__title">
         <div class="ground__history__title__open">
             <a class="ground__history__title__open__link" style="text-decoration: underline; cursor: pointer;">Открытые</a>

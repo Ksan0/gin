@@ -9,6 +9,6 @@ def get_task_history(user):
     all_history_tasks = all_history_tasks.order_by("-creation_date")
 
     return {
-        "last_open_tasks": TaskManager.filter_by_status(all_history_tasks, True)[:10],
-        "last_close_tasks": TaskManager.filter_by_status(all_history_tasks, False)[:10]
+        "last_open_tasks": TaskManager.filter_by_status(all_history_tasks, True)[:5],
+        "last_close_tasks": TaskManager.filter_by_status(all_history_tasks, False)[:5]
     }
